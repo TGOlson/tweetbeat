@@ -7,7 +7,6 @@ gem 'rails', '4.0.1'
 
 gem 'puma'
 gem 'twitter'
-
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -38,6 +37,10 @@ end
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails_12factor', :groups => [:development]
+
+
+gem 'rspec-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
