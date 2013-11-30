@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TenderDemo::Application.load_tasks
+TweetBeat::Application.load_tasks

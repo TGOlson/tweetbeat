@@ -2,3 +2,5 @@
 
 ## The Beginning
 Moltar was angry.
+
+Very angry.
