@@ -1,4 +1,5 @@
 $(function(){
+
   $('#toggle_synth').on('click', function(){
     $('nav').show()
     $('body').css('background-color', '#fff')
