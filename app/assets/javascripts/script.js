@@ -9,9 +9,6 @@ $(function() {
     sample.setAttribute('autoplay','autoplay')
   }
 
-  // sample('fuck_you')
-  console.log('attempted to make noise')
-
   $('#start-stream').on('click', function(){
     var source = new EventSource('/stream')
     source.addEventListener('tweet', function(e) {
