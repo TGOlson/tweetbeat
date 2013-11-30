@@ -1,4 +1,4 @@
-require 'reloader/sse'
+require 'formater/sse'
 
 class TweetsController < ApplicationController
   include ActionController::Live
