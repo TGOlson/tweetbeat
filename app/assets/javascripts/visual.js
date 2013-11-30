@@ -15,9 +15,10 @@ function playVisuals(){
   svg.append("rect")
   .attr("width", width)
   .attr("height", height)
-  .on("ontouchstart" in document ? "touchmove" : "mousemove", particle)
+  .on("ontouchstart" in document ? "touchmove" : "click", particle)
 
   function particle() {
+
     var m = d3.mouse(this)
 
     svg.insert("circle", "rect")
