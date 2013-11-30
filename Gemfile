@@ -7,7 +7,6 @@ gem 'rails', '4.0.1'
 gem 'sqlite3'
 
 gem 'puma'
-gem 'rb-fsevent'
 gem 'twitter'
 
 # Use SCSS for stylesheets
@@ -35,6 +34,8 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
