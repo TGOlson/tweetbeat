@@ -16,9 +16,11 @@ class TweetsController < ApplicationController
 
     begin
       topics = ["coffee", "tea"]
+      # topics = ["dbcsleeps"]
       client.filter(:track => topics.join(",")) do |tweet|
         tweet_content = 'coffee' if tweet.text.downcase.match('coffee')
         tweet_content = 'tea' if tweet.text.downcase.match('tea')
+        # tweet_content = 'dbcsleeps' if tweet.text.downcase.match('dbcsleeps')
         sse.write({ :content => tweet_content }, :event => 'tweet')
       end
 
