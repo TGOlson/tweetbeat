@@ -1,8 +1,8 @@
 function playVisuals(){
 
 
-  var width = $(window).width()
-  var height = $(window).height()
+  var width = $(window).width() - 5
+  var height = $(window).height() - 5
 
   var color = d3.scale.category20c()
 
@@ -38,5 +38,5 @@ function playVisuals(){
 }
 
 function stopVisuals(){
-
+  $('svg').remove()
 }
