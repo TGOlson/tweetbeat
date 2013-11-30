@@ -3,6 +3,9 @@ require 'formater/sse'
 class TweetsController < ApplicationController
   include ActionController::Live
 
+  @@topics = ["coffee", "tea", "dbcsleeps", "canada", "USA",
+          "California", "Tesla"]
+
   def index
   end
 
@@ -15,9 +18,7 @@ class TweetsController < ApplicationController
     client = TwitterClient.new.client
 
     begin
-      topics = ["coffee", "tea"]
-      # topics = ["dbcsleeps"]
-      client.filter(:track => topics.join(",")) do |tweet|
+      client.filter(:track => @@topics.join(",")) do |tweet|
         tweet_content = 'coffee' if tweet.text.downcase.match('coffee')
         tweet_content = 'tea' if tweet.text.downcase.match('tea')
         # tweet_content = 'dbcsleeps' if tweet.text.downcase.match('dbcsleeps')
@@ -29,5 +30,9 @@ class TweetsController < ApplicationController
     ensure
       sse.close
     end
+  end
+
+  def topics
+    render json: @@topics
   end
 end
