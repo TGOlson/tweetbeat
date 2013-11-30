@@ -1,11 +1,11 @@
 $(function(){
   $('#toggle_synth').on('click', function(){
-    console.log('you synthin')
-    $('nav').fadeIn()
-
+    $('nav').show()
+    $('body').css('background-color', '#fff')
   })
 
   $('#toggle_visual').on('click', function(){
-    $('nav').fadeOut()
+    $('nav').hide()
+    $('body').css('background-color', '#222')
   })
 })

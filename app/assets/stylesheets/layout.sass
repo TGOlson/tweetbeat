@@ -4,36 +4,43 @@
 
 body
   +margin-reset
-  background-color: #222
+  background-color: #fff
 
 a
-  color: #ddd
+  color: #fff
   text-decoration: none
 
 a:hover
   text-decoration: underline
 
-nav
-  background-color: #111
+#fullnav
+  nav
+    background-color: #111
 
-  ul
-    +margin-reset
+    ul
+      +margin-reset
 
-    li
-      display: inline-block
-      list-style: none
+      li
+        display: inline-block
+        list-style: none
 
-    #nav_title
-      font-size: 25px
-      margin: 10px 0px 5px 10px
+      #nav_title
+        font-size: 25px
+        margin: 10px 0px 5px 10px
 
 
-    #toggle_bar
-      float: right
-      margin: 10px
+      #toggle_bar
+        float: right
+        margin: 10px
 
-      #view_toggle
+  #view_toggle
+    position: absolute
+    right: 10px
+    top: 10px
 
-        label
-          width: 100px
-          background-color: #fff
+    label
+      width: 100px
+      background-color: #fff
+      margin: 4px
+      padding: 2px
+      border-radius: 4px

@@ -1,11 +1,14 @@
-<nav>
-  <ul>
-    <li id='nav_title'><%= link_to 'TweetBeat', :root %></li>
-    <li id='toggle_bar'>
-      <div id="view_toggle">
-        <label class="blue"><input type="radio" id='toggle_synth' name="toggle"><span>Synth</span></label>
-        <label class="green"><input type="radio" id='toggle_visual' name="toggle"><span>Visual</span></label>
-      </div>
-    </li>
-  </ul>
-</nav>
+<div id='fullnav'>
+
+  <nav>
+    <ul>
+      <li id='nav_title'><%= link_to 'TweetBeat', :root %></li>
+    </ul>
+  </nav>
+
+  <div id="view_toggle">
+    <label id="synth"><input type="radio" id='toggle_synth' name="toggle"><span>Synth</span></label>
+    <label id="visual"><input type="radio" id='toggle_visual' name="toggle"><span>Visual</span></label>
+  </div>
+
+</div>
