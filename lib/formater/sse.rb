@@ -1,6 +1,6 @@
 require 'json'
 
-module Reloader
+module Formater
   class SSE
     def initialize io
       @io = io
