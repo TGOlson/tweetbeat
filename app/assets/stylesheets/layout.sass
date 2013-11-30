@@ -1,0 +1,46 @@
+=margin-reset
+  margin: 0px
+  padding: 0px
+
+body
+  +margin-reset
+  background-color: #fff
+
+a
+  color: #fff
+  text-decoration: none
+
+a:hover
+  text-decoration: underline
+
+#fullnav
+  nav
+    background-color: #111
+
+    ul
+      +margin-reset
+
+      li
+        display: inline-block
+        list-style: none
+
+      #nav_title
+        font-size: 25px
+        margin: 10px 0px 5px 10px
+
+
+      #toggle_bar
+        float: right
+        margin: 10px
+
+  #view_toggle
+    position: absolute
+    right: 10px
+    top: 10px
+
+    label
+      width: 100px
+      background-color: #fff
+      margin: 4px
+      padding: 2px
+      border-radius: 4px
