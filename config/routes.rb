@@ -1,4 +1,4 @@
-TenderDemo::Application.routes.draw do
+TweetBeat::Application.routes.draw do
   root to: 'tweets#index'
 
   get 'stream' => 'tweets#stream'
