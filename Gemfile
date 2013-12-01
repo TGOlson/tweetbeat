@@ -41,8 +41,7 @@ gem 'rails_12factor', :groups => [:development]
 gem 'simplecov', :require => false, :group => :test
 
 gem 'rspec-rails'
-
-
+gem 'capybara'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
