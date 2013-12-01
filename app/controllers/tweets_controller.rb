@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
       client.filter(:track => @@topics.join(",")) do |tweet|
         text = tweet.text
         @@topics.each_with_index do |topic, index|
-          sse.write({ :content => text }, :event => index) if text.downcase.match(topic)
+          sse.write({ :content => text }, :event => index) if text.downcase.match(topic.downcase)
         end
       end
 
