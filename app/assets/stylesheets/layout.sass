@@ -53,22 +53,41 @@ a:hover
 
 #topics_container
   background-color: $medium-pale-green
+  position: fixed
+  height: 100%
+  width: 220px
+  font-family: Helvetica
 
   #topics_list
     margin: auto
-    padding: 10px 0px 10px 40px
+    padding: 20px 0px 10px 10px
 
     .topic
-      +inline-list
-      height: 80px
-      width: 80px
-      margin: 5px
+      list-style: none
+      padding: 8px 5px
+      width: 170px
+      margin: 5px 10px
       background-color: $light-pale-green
       text-align: center
 
-.synth_canvas
+      .fa
+        float: right
+        padding: 1px
+        color: #2c3e50
+
+#synth_container
+  margin-left: 220px
+  height: 100%
   width: 100%
-  height: 200px
+  position: fixed
+
+  ul
+    +margin-reset
+    height: 100%
+    width: 100%
+
+    li
+      +inline-list
 
 .drop_hover
   background-color: #eee
