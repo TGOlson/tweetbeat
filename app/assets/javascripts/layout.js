@@ -11,4 +11,6 @@ $(function(){
     $('body').css('background-color', '#222')
     playVisuals()
   })
+
+  $('.topic').draggable()
 })

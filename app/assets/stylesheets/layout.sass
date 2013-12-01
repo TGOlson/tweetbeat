@@ -2,9 +2,13 @@
   margin: 0px
   padding: 0px
 
+=inline-list
+  display: inline-block
+  list-style: none
 body
   +margin-reset
   background-color: #fff
+  font-family: Arial, Helvetica, sans-serif
 
 a
   color: #fff
@@ -15,14 +19,13 @@ a:hover
 
 #fullnav
   nav
-    background-color: #111
+    background-color: #222
 
     ul
       +margin-reset
 
       li
-        display: inline-block
-        list-style: none
+        +inline-list
 
       #nav_title
         margin: 10px 10px 5px 10px
@@ -34,14 +37,31 @@ a:hover
 
   #view_toggle
     position: absolute
-    right: 10px
-    top: 10px
+    right: 8px
+    top: 8px
 
     label
       width: 100px
       background-color: #fff
-      padding: 1px
+      padding: 0 3px
       border-radius: 4px
+      color: #222
+      font-size: 13px
 
     input
       display: none
+
+#topics_container
+  background-color: #27ae60
+  width: 100%
+  height: 200px
+
+  #topics_list
+    +margin-reset
+
+    .topic
+      background-color: #2ecc71
+      border: 2px solid #1abc9c
+      height: 75px
+      width: 75px
+      +inline-list
