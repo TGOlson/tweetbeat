@@ -4,6 +4,8 @@ var Layout = {
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
+    this.setPadSize()
+    $(window).resize(this.setPadSize)
   },
 
   toggleSynth: function(){
@@ -28,5 +30,10 @@ var Layout = {
         Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
+  },
+
+  setPadSize: function(){
+    var width = $('#synth_container').find('li').width()
+    $('#synth_container').find('li').height(width)
   }
 }

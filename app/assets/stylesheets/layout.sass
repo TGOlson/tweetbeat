@@ -55,18 +55,18 @@ a:hover
   background-color: $medium-pale-green
   position: fixed
   height: 100%
-  width: 220px
+  width: 300px
   font-family: Helvetica
 
   #topics_list
     margin: auto
-    padding: 20px 0px 10px 10px
+    padding: 20px 10px 10px 10px
 
     .topic
       list-style: none
       padding: 8px 5px
-      width: 170px
-      margin: 5px 10px
+      width: 220px
+      margin: 5px 25px
       background-color: $light-pale-green
       text-align: center
 
@@ -76,18 +76,32 @@ a:hover
         color: #2c3e50
 
 #synth_container
-  margin-left: 220px
-  height: 100%
-  width: 100%
-  position: fixed
+  margin-left: 300px
 
-  ul
-    +margin-reset
-    height: 100%
-    width: 100%
+  #synth_pads
+    width: 50%
+    margin-left: 15%
+    float: left
 
-    li
-      +inline-list
+    ul
+      padding-top: 5%
+      margin: 0
+
+      li
+        +inline-list
+        margin: 5%
+        width: 22%
+        background-color: red
+
+  #synth_controls
+    margin-left: 65%
+    width: 35%
+
+    ul
+      padding-top: 5%
+      margin: 0
+
+
 
 .drop_hover
   background-color: #eee
