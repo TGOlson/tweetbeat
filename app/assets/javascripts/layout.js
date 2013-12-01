@@ -33,7 +33,7 @@ var Layout = {
   },
 
   setPadSize: function(){
-    var width = $('#synth_container').find('li').width()
-    $('#synth_container').find('li').height(width)
+    var width = $('#synth_pads').find('li').width()
+    $('#synth_pads').find('li').height(width)
   }
 }

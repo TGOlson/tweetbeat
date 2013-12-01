@@ -2,6 +2,8 @@ $white: #fff
 $darkgrey: #222
 $light-pale-green: #2ecc71
 $medium-pale-green: #27ae60
+$light-red: #e74c3c
+$light-blue: #2980b9
 
 =margin-reset
   margin: 0px
@@ -13,7 +15,7 @@ $medium-pale-green: #27ae60
 
 body
   +margin-reset
-  background-color: $white
+  background-color: #ccc
   font-family: Arial, Helvetica, sans-serif
 
 a
@@ -52,7 +54,7 @@ a:hover
       display: none
 
 #topics_container
-  background-color: $medium-pale-green
+  background-color: #ccc
   position: fixed
   height: 100%
   width: 300px
@@ -84,14 +86,15 @@ a:hover
     float: left
 
     ul
-      padding-top: 5%
+      padding-top: 10%
       margin: 0
 
       li
         +inline-list
+        border-radius: 5px
         margin: 5%
         width: 22%
-        background-color: red
+        background-color: $light-red
 
   #synth_controls
     margin-left: 65%
@@ -100,7 +103,13 @@ a:hover
     ul
       padding-top: 5%
       margin: 0
+      list-style: none
 
+      li
+        margin: 3%
+        height: 250px
+        width: 250px
+        background-color: $light-blue
 
 
 .drop_hover
