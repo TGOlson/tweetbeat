@@ -1,10 +1,3 @@
-$(function() {
-
-  $.get('/topics', function(data) { Topics.init(data) }) // may prove unnecessary, see var Topics below
-  soundGrid.init()
-  // will want to initialize draggability of soundGrid (in init?), and droppability of appropriate keyword-representing table elements
-})
-
 var Topics = { // may not need this at all; as long as we get topic id as 'event' tag from SSE and get same id from the draggable table elements, no need
   list: null,
   init: function(data) {
@@ -20,21 +13,13 @@ var Stream = {
   },
   open: function() {
     Stream.source = new EventSource('/stream')
-//////////// begin testing ****************************************************************
-    Stream.testBindKeywordToSound()
-//////////// end testing ******************************************************************
   },
-  // bindKeywordToSound: function(e) {
-  //   e.preventDefault()
-  //   // e.keywordID (string) will be the 'event' sent with an SSE of the appropriate keyword (or not -- for this and e.soundID, may have to grab using jQuery)
-  //   // e.soundID (number) will be the id of the appropriate audio file or sound, whatever its form
-  //   Stream.source.addEventListener(e.keywordID, function() {
-  //     Audio.play(e.soundID)
-  //   })
-  // }
-  testBindKeywordToSound: function() { // test only
-    Stream.source.addEventListener('0', function() {
-      Audio.play(0)
+  bindKeywordToSound: function(keywordID, soundID) {
+    console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
+    Stream.source.addEventListener(keywordID, function(e) {
+      Audio.play(soundID)
+      tweetContent = JSON.parse(e.data)["content"] // mainly for debugging
+      console.log(tweetContent) // mainly for debugging
     })
   }
 }
@@ -47,16 +32,6 @@ var Audio = {
     sample.setAttribute('autoplay','autoplay')
   }
   // may add init, which calls a create function on each item in list and/or initializes a synth object
-}
-
-var soundGrid = {
-  init: function() {
-    // add listener for drops (triggers bindKeywordToSound via event delegation (uses e.target, see http://davidwalsh.name/event-delegate))
-    // add listener for clicks (to play target child)
-  },
-  buttonFlash: function() {
-    // causes a child button to flash (triggered on click or tweet)
-  }
 }
 
 
