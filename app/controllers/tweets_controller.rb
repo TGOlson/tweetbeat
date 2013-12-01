@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
           "California", "Tesla"]
 
   def index
+    @topics = @@topics
   end
 
   def stream
