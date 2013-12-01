@@ -23,12 +23,10 @@ var Layout = {
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
         $(event.toElement).fadeOut()
+        var soundID = event.target.id
+        var keywordID = event.toElement.id
+        Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
   }
 }
-
-
-$(function(){
-  Layout.init()
-})
