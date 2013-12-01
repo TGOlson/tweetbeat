@@ -3,25 +3,25 @@ require 'formater/sse'
 class TweetsController < ApplicationController
   include ActionController::Live
 
-  @@topics = ["coffee", "tea", "dbcsleeps", "Canada", "USA",
-          "California", "Tesla"]
+  TOPICS = ["coffee", "tea", "dbcsleeps", "Canada", "USA",
+            "California", "Tesla", "Moltar"]
 
   def index
-    @topics = @@topics
+    @topics = TOPICS
   end
 
   def stream
     # SSE expects the `text/event-stream` content type
     response.headers['Content-Type'] = 'text/event-stream'
 
-    sse = Formater::SSE.new(response.stream)
+    sse = Formatter::SSE.new(response.stream)
 
     client = TwitterClient.new.client
 
     begin
-      client.filter(:track => @@topics.join(",")) do |tweet|
+      client.filter(:track => TOPICS.join(",")) do |tweet|
         text = tweet.text
-        @@topics.each_with_index do |topic, index|
+        TOPICS.each_with_index do |topic, index|
           sse.write({ :content => text }, :event => index) if text.downcase.match(topic.downcase)
         end
       end
@@ -34,6 +34,6 @@ class TweetsController < ApplicationController
   end
 
   def topics
-    render json: @@topics
+    render json: TOPICS
   end
 end
