@@ -20,10 +20,10 @@ class TweetsController < ApplicationController
 
     begin
       client.filter(:track => @@topics.join(",")) do |tweet|
-        tweet_content = 'coffee' if tweet.text.downcase.match('coffee')
-        tweet_content = 'tea' if tweet.text.downcase.match('tea')
-        # tweet_content = 'dbcsleeps' if tweet.text.downcase.match('dbcsleeps')
-        sse.write({ :content => tweet_content }, :event => 'tweet')
+        text = tweet.text
+        @@topics.each_with_index do |topic, index|
+          sse.write({ :content => text }, :event => index) if text.downcase.match(topic.downcase)
+        end
       end
 
     rescue IOError
