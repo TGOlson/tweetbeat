@@ -38,6 +38,7 @@ end
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails_12factor', :groups => [:development]
 
+gem 'simplecov', :require => false, :group => :test
 
 gem 'rspec-rails'
 
