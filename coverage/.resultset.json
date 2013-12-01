@@ -222,7 +222,7 @@
         null,
         null,
         1,
-        0,
+        1,
         null,
         null
       ],
@@ -258,13 +258,13 @@
       "/Users/apprentice/Documents/DBC/projects/testing_twitter/Legend-of-Moltar/spec/features/tweet_spec.rb": [
         1,
         null,
-        1,
-        1,
         null,
-        1,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1385858679
+    "timestamp": 1385867261
   }
 }
