@@ -9,10 +9,13 @@
 </head>
 <body>
 
-<%= render 'layouts/navbar' %>
-<%= render 'layouts/topics' %>
+  <%= render 'layouts/navbar' %>
 
-<%= yield %>
+  <div class='synth'>
+    <%= render 'layouts/topics' %>
+  </div>
+
+  <div class='synth_canvas'></div>
 
 </body>
 </html>

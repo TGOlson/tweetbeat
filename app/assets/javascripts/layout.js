@@ -1,16 +1,23 @@
 $(function(){
 
   $('#toggle_synth').on('click', function(){
-    $('nav').show()
+    $('.synth').show()
     $('body').css('background-color', '#fff')
     stopVisuals()
   })
 
   $('#toggle_visual').on('click', function(){
-    $('nav').hide()
+    $('.synth').hide()
     $('body').css('background-color', '#222')
     playVisuals()
   })
 
-  $('.topic').draggable()
+  // $('#topics_list').sortable()
+  $('.topic').draggable({ revert: "invalid" })
+  $('.synth_canvas').droppable({
+    hoverClass: "drop_hover",
+    drop: function( event, ui ) {
+      $(event.toElement).fadeOut()
+    }
+  })
 })
