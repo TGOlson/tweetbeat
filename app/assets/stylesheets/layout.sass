@@ -1,3 +1,8 @@
+$white: #fff
+$darkgrey: #222
+$light-pale-green: #2ecc71
+$medium-pale-green: #27ae60
+
 =margin-reset
   margin: 0px
   padding: 0px
@@ -5,35 +10,30 @@
 =inline-list
   display: inline-block
   list-style: none
+
 body
   +margin-reset
-  background-color: #fff
+  background-color: $white
   font-family: Arial, Helvetica, sans-serif
 
 a
-  color: #fff
+  color: $white
   text-decoration: none
 
 a:hover
   text-decoration: underline
 
 #fullnav
-  nav
-    background-color: #222
+  background-color: $darkgrey
 
-    ul
-      +margin-reset
+  ul
+    +margin-reset
 
-      li
-        +inline-list
+    li
+      +inline-list
 
-      #nav_title
-        margin: 10px 10px 5px 10px
-
-
-      #toggle_bar
-        float: right
-        margin: 10px
+    #nav_title
+      margin: 10px 10px 5px 10px
 
   #view_toggle
     position: absolute
@@ -42,30 +42,28 @@ a:hover
 
     label
       width: 100px
-      background-color: #fff
+      background-color: $white
       padding: 0 3px
       border-radius: 4px
-      color: #222
+      color: $darkgrey
       font-size: 13px
 
     input
       display: none
 
 #topics_container
-  background-color: #27ae60
-  width: 100%
-  padding: 10px
+  background-color: $medium-pale-green
 
   #topics_list
-    +margin-reset
-
+    margin: auto
+    padding: 10px 0px 10px 40px
 
     .topic
-      background-color: #2ecc71
+      +inline-list
       height: 80px
       width: 80px
       margin: 5px
-      +inline-list
+      background-color: $light-pale-green
       text-align: center
 
 .synth_canvas
