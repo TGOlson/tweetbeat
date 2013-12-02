@@ -6,7 +6,6 @@
 
 
   function playSample(index){
-    console.log("in play sample")
     var audio = new Audio()
     audio.src = sampleLibrary[index]
     audio.output = context.createMediaElementSource(audio)
@@ -19,6 +18,6 @@
     window.AudioContext = window.AudioContext || window.webkitAudioContext
     context = new AudioContext()
     masterGain = context.createGain()
-    masterGain.gain.value = 0.2
+    masterGain.gain.value = 1
     masterGain.connect(context.destination)
   }

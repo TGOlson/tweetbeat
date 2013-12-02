@@ -36,10 +36,10 @@ var Layout = {
     })
   },
 
-  setPadSize: function(){
-    var width = $('#synth_pads').find('li').width()
-    $('#synth_pads').find('li').height(width)
-  },
+  // removeDroppedKeyword: function(e){
+  //   $(e.target).closest('div').text(".").removeClass('keyword_dropped')
+  //   $(Stream.source).unbind(e.target.id)
+  // },
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
