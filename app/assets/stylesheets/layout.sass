@@ -89,17 +89,29 @@ a:hover
     float: left
     width: 650px
 
-    ul
+    #all_pads
       padding-top: 150px
       margin: 0
 
-      li
+      .single_pad
         +inline-list
         border-radius: 5px
         margin: 20px
         width: 160px
         height: 160px
         background-color: $light-red
+
+        #empty_synth_list
+          +margin-reset
+          height: 100%
+
+          li
+            list-style: none
+            margin: 5px 0
+            padding: 10px 0
+            width: 100%
+            background-color: grey
+            text-align: center
 
   #synth_controls
     float: left

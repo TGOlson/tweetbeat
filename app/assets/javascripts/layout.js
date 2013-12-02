@@ -2,8 +2,11 @@ var Layout = {
   init: function(){
     $('#toggle_synth').on('click', this.toggleSynth)
     $('#toggle_visual').on('click', this.toggleVisual)
-    $('.topic').draggable({ revert: "invalid" })
-    this.setDropArea()
+    // $('.topic').draggable({ revert: "invalid" })
+    // this.setDropArea()
+    $( "#topics_list, #empty_synth_list" ).sortable({
+      connectWith: ".connected"
+    }).disableSelection();
   },
 
   toggleSynth: function(){
