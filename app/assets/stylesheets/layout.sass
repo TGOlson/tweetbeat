@@ -89,11 +89,11 @@ a:hover
     float: left
     width: 650px
 
-    #all_pads
+    ul
       padding-top: 150px
       margin: 0
 
-      .single_pad
+      li
         +inline-list
         border-radius: 5px
         margin: 20px
@@ -101,17 +101,14 @@ a:hover
         height: 160px
         background-color: $light-red
 
-        #empty_synth_list
-          +margin-reset
-          height: 100%
+        .drop_area
+          height: 34px
+          margin-top: 100px
+          text-align: center
 
-          li
-            list-style: none
-            margin: 5px 0
-            padding: 10px 0
-            width: 100%
-            background-color: grey
-            text-align: center
+        .keyword_dropped
+          background-color: #ddd
+          width: 160px
 
   #synth_controls
     float: left
@@ -133,3 +130,4 @@ a:hover
 
 .ui-effects-transfer
   border: 2px dotted gray
+  background-color: red
