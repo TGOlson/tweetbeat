@@ -4,8 +4,6 @@ var Layout = {
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
-    this.setPadSize()
-    $(window).resize(this.setPadSize)
   },
 
   toggleSynth: function(){
@@ -27,7 +25,7 @@ var Layout = {
 
         var keyword = ui.helper
         console.log(keyword)
-        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 300 )
         $(this).html(keyword.textContent)
 
         $(keyword).width( $(this).width() )
@@ -36,9 +34,11 @@ var Layout = {
           top: this.offsetTop + ( $(this).width() * .6 )
         })
 
-        var soundID = event.target.id
-        var keywordID = keyword[0].id
-        Stream.bindKeywordToSound(keywordID, soundID)
+        $(keyword).css('background-color', 'grey')
+
+        // var soundID = event.target.id
+        // var keywordID = keyword[0].id
+        // Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
   },
