@@ -12,11 +12,10 @@ var Stream = {
   },
   bindKeywordToSound: function(keywordID, soundID) {
     console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
-    Stream.source.removeEventListener(keywordID)
-    Stream.source.addEventListener(keywordID, function(e) {
+    $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
-      tweetContent = JSON.parse(e.data)["content"] // mainly for debugging
+      tweetContent = JSON.parse(e.originalEvent.data)["content"] // mainly for debugging
       console.log(tweetContent) // mainly for debugging
     })
   }
