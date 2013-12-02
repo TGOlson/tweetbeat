@@ -14,6 +14,7 @@ var Stream = {
     console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
     Stream.source.addEventListener(keywordID, function(e) {
       sample[soundID].play()
+      Layout.flashColor(soundID)
       tweetContent = JSON.parse(e.data)["content"] // mainly for debugging
       console.log(tweetContent) // mainly for debugging
     })

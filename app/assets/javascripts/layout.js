@@ -46,5 +46,15 @@ var Layout = {
   setPadSize: function(){
     var width = $('#synth_pads').find('li').width()
     $('#synth_pads').find('li').height(width)
+  },
+
+  flashColor: function(soundID) {
+    $('#synth_pads #' + soundID).animate({
+      backgroundColor: 'yellow'
+    }, 20, function() {
+      $('#synth_pads #' + soundID).animate({
+        backgroundColor: '#e74c3c'
+      }, 20)
+    })
   }
 }
