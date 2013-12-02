@@ -28,7 +28,7 @@ var Layout = {
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
         $(this).find('div')
-          .html('<span class="close"><i class="fa fa-times-circle"></i></span>' + keyword.text())
+          .html('<span class="close"><i class="fa fa-times-circle" id=' + keyword[0].id + '></i></span>' + keyword.text())
           .addClass('keyword_dropped')
           .hide().fadeIn()
 
@@ -41,6 +41,7 @@ var Layout = {
 
   removeDroppedKeyword: function(e){
     $(e.target).closest('div').text(".").removeClass('keyword_dropped')
+    $(Stream.source).unbind(e.target.id)
   },
 
   setPadSize: function(){
