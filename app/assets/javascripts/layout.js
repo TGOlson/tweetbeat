@@ -24,7 +24,7 @@ var Layout = {
       drop: function( event, ui ) {
 
         var keyword = ui.helper
-        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 300 ).fadeOut(100)
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
         $(this).find('div').html(keyword.text())
         $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
