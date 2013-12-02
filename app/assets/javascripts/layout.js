@@ -4,8 +4,6 @@ var Layout = {
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
-    this.setPadSize()
-    $(window).resize(this.setPadSize)
   },
 
   toggleSynth: function(){
@@ -26,15 +24,10 @@ var Layout = {
       drop: function( event, ui ) {
 
         var keyword = ui.helper
-        console.log(keyword)
-        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
-        $(this).html(keyword.textContent)
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 300 ).fadeOut(100)
 
-        $(keyword).width( $(this).width() )
-        keyword.offset({
-          left: this.offsetLeft,
-          top: this.offsetTop + ( $(this).width() * .6 )
-        })
+        $(this).find('div').html(keyword.text())
+        $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
 
         var soundID = event.target.id
         var keywordID = keyword[0].id

@@ -15,7 +15,7 @@ $light-blue: #2980b9
 
 body
   +margin-reset
-  background-color: #ccc
+  background-color: #eee
   font-family: Arial, Helvetica, sans-serif
 
 a
@@ -54,23 +54,27 @@ a:hover
       display: none
 
 #topics_container
-  background-color: #ccc
-  position: fixed
-  height: 100%
-  width: 300px
+
   font-family: Helvetica
+  background-color: #dedede
 
   #topics_list
-    margin: auto
-    padding: 20px 10px 10px 10px
+    width: 80%
+    margin: 0 0 0 10%
+    padding: 5px 0
 
     .topic
-      list-style: none
+      +inline-list
       padding: 8px 0
-      width: 220px
-      margin: 5px 25px
+      width: 160px
+      margin: 4px
+      border-radius: 4px
       background-color: $light-pale-green
       text-align: center
+
+      .ellipsis
+        margin-right: 7px
+        float: right
 
       .fa
         float: right
@@ -78,37 +82,46 @@ a:hover
         color: #2c3e50
 
 #synth_container
-  margin-left: 300px
+  width: 900px
+  margin: auto
 
   #synth_pads
-    width: 50%
-    margin-left: 15%
     float: left
+    width: 650px
 
     ul
-      padding-top: 10%
+      padding-top: 150px
       margin: 0
 
       li
         +inline-list
         border-radius: 5px
-        margin: 5%
-        width: 22%
+        margin: 20px
+        width: 160px
+        height: 160px
         background-color: $light-red
 
+        .drop_area
+          height: 34px
+          margin-top: 100px
+          text-align: center
+
+        .keyword_dropped
+          background-color: #ddd
+          width: 160px
+
   #synth_controls
-    margin-left: 65%
-    width: 35%
+    float: left
 
     ul
-      padding-top: 5%
+      padding-top: 200px
       margin: 0
       list-style: none
 
       li
         margin: 3%
-        height: 250px
-        width: 250px
+        height: 150px
+        width: 150px
         background-color: $light-blue
 
 
@@ -117,3 +130,4 @@ a:hover
 
 .ui-effects-transfer
   border: 2px dotted gray
+  background-color: red
