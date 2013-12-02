@@ -87,30 +87,30 @@ a:hover
 
   #synth_pads
     float: left
-    width: 650px
+    width: 700px
     padding-top: 15%
 
     ul
-      margin: 0
+      +margin-reset
 
       li
         +inline-list
-        border-radius: 5px
         margin: 20px
         width: 160px
         height: 160px
-        background-color: $light-red
+        background-color: #ddd
+        border: 15px solid #bbb
+        border-bottom: 15px solid #999
+        color: #999
 
         .drop_area
-          margin-top: 100px
+          margin-top: 60px
           text-align: center
           padding: 8px 0
-          color: $light-red
+          font-size: 27px
 
         .keyword_dropped
-          background-color: #ddd
           width: 160px
-          color: black
 
           .close
             float: left
