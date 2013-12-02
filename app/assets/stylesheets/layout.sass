@@ -88,9 +88,9 @@ a:hover
   #synth_pads
     float: left
     width: 650px
+    padding-top: 15%
 
     ul
-      padding-top: 150px
       margin: 0
 
       li
@@ -102,13 +102,19 @@ a:hover
         background-color: $light-red
 
         .drop_area
-          height: 34px
           margin-top: 100px
           text-align: center
+          padding: 8px 0
+          color: $light-red
 
         .keyword_dropped
           background-color: #ddd
           width: 160px
+          color: black
+
+          .close
+            float: left
+            margin-left: 7px
 
   #synth_controls
     float: left
@@ -130,4 +136,3 @@ a:hover
 
 .ui-effects-transfer
   border: 2px dotted gray
-  background-color: red
