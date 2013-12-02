@@ -2,7 +2,6 @@ var Layout = {
   init: function(){
     $('#toggle_synth').on('click', this.toggleSynth)
     $('#toggle_visual').on('click', this.toggleVisual)
-    $('.drop_area').on('click', 'i', this.removeDroppedKeyword)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
   },
@@ -27,20 +26,14 @@ var Layout = {
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
-        $(this).find('div')
-          .html('<span class="close"><i class="fa fa-times-circle"></i></span>' + keyword.text())
-          .addClass('keyword_dropped')
-          .hide().fadeIn()
+        $(this).find('div').html(keyword.text())
+        $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
 
         var soundID = event.target.id
         var keywordID = keyword[0].id
         Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
-  },
-
-  removeDroppedKeyword: function(e){
-    $(e.target).closest('div').text(".").removeClass('keyword_dropped')
   },
 
   setPadSize: function(){
@@ -50,11 +43,11 @@ var Layout = {
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
-      backgroundColor: 'yellow'
-    }, 20, function() {
+      color: '#e74c3c'
+    }, 200, function() {
       $('#synth_pads #' + soundID).animate({
-        backgroundColor: '#e74c3c'
-      }, 20)
+        color: '#999'
+      }, 200)
     })
   }
 }
