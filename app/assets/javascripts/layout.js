@@ -4,6 +4,8 @@ var Layout = {
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
+    this.setPadSize()
+    $(window).resize(this.setPadSize)
   },
 
   toggleSynth: function(){
@@ -19,14 +21,33 @@ var Layout = {
   },
 
   setDropArea: function(){
-    $('.synth_canvas').droppable({
+    $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
-        $(event.toElement).fadeOut()
-        var soundID = event.target.id
-        var keywordID = event.toElement.id
-        Stream.bindKeywordToSound(keywordID, soundID)
+
+        var keyword = ui.helper
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
+        $(this).html(keyword.textContent)
+
+
+        $(keyword).width( $(this).width() )
+        keyword.offset({
+          left: this.offsetLeft,
+          top: this.offsetTop + ( $(this).width() * .6 )
+        })
+
+        // debugger
+        // var soundID = event.target.id
+        // var keywordID = event.toElement.id
+        // Stream.bindKeywordToSound(keywordID, soundID)
+
+
       }
     })
+  },
+
+  setPadSize: function(){
+    var width = $('#synth_pads').find('li').width()
+    $('#synth_pads').find('li').height(width)
   }
 }

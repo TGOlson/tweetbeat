@@ -5,6 +5,7 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<link href='http://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,8 +15,7 @@
 
   <div class='synth'>
     <%= render 'layouts/topics', :topics => @topics %>
-    <div class='synth_canvas' style="background:red" id="0"></div>
-    <div class='synth_canvas' style="background:yellow" id="1"></div>
+    <%= render 'layouts/synth' %>
   </div>
 
 
