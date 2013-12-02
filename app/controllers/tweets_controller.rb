@@ -3,7 +3,7 @@ require 'formater/sse'
 class TweetsController < ApplicationController
   include ActionController::Live
 
-  TOPICS = ["coffee", "tea", "dbcsleeps", "Canada", "USA",
+  TOPICS = ["Coffee", "Tea", "DBCsleeps", "Canada", "USA",
             "California", "Tesla", "Moltar", "Moltar", "Moltar", "Moltar", "Moltar", "Moltar", "Moltar"]
 
   def index
