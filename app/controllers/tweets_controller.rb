@@ -11,7 +11,6 @@ class TweetsController < ApplicationController
   end
 
   def stream
-    # SSE expects the `text/event-stream` content type
     response.headers['Content-Type'] = 'text/event-stream'
 
     sse = Formatter::SSE.new(response.stream)
@@ -27,7 +26,7 @@ class TweetsController < ApplicationController
       end
 
     rescue IOError
-      # When the client disconnects, we'll get an IOError on write
+
     ensure
       sse.close
     end

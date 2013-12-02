@@ -1,7 +1,11 @@
 <div id='topics_container'>
   <ul id='topics_list'>
     <% topics.each_with_index do |topic, index| %>
-      <li class='topic' id="<%= index %>"><%= topic %></li>
+      <li class='topic' id="<%= index %>"><%= topic %>
+        <i class="fa fa-ellipsis-v"></i>
+        <i class="fa fa-ellipsis-v"></i>
+        <i class="fa fa-ellipsis-v"></i>
+      </li>
     <% end %>
   </ul>
 </div>
