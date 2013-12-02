@@ -21,13 +21,24 @@ var Layout = {
   },
 
   setDropArea: function(){
-    $('.synth_canvas').droppable({
+    $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
-        $(event.toElement).fadeOut()
-        var soundID = event.target.id
-        var keywordID = event.toElement.id
-        Stream.bindKeywordToSound(keywordID, soundID)
+
+        var keyword = ui.helper
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
+        $(this).html(keyword.textContent)
+        $(keyword).width( $(this).width() )
+        keyword.offset({
+          left: this.offsetLeft,
+          top: this.offsetTop + 100
+        })
+        // debugger
+        // var soundID = event.target.id
+        // var keywordID = event.toElement.id
+        // Stream.bindKeywordToSound(keywordID, soundID)
+
+
       }
     })
   },
