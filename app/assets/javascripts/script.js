@@ -2,16 +2,12 @@ var Topics = { // may not need this at all; as long as we get topic id as 'event
   list: null,
   init: function(data) {
     Topics.list = data
-    Stream.init()
   }
 }
 
 var Stream = {
   source: null,
   init: function() {
-    $('#start-stream').on('click', Stream.open)
-  },
-  open: function() {
     Stream.source = new EventSource('/stream')
   },
   bindKeywordToSound: function(keywordID, soundID) {

@@ -26,9 +26,9 @@ var Layout = {
       drop: function( event, ui ) {
 
         var keyword = ui.helper
+        console.log(keyword)
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
         $(this).html(keyword.textContent)
-
 
         $(keyword).width( $(this).width() )
         keyword.offset({
@@ -36,12 +36,9 @@ var Layout = {
           top: this.offsetTop + ( $(this).width() * .6 )
         })
 
-        // debugger
-        // var soundID = event.target.id
-        // var keywordID = event.toElement.id
-        // Stream.bindKeywordToSound(keywordID, soundID)
-
-
+        var soundID = event.target.id
+        var keywordID = keyword[0].id
+        Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
   },
