@@ -28,11 +28,14 @@ var Layout = {
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 500 )
         $(this).html(keyword.textContent)
+
+
         $(keyword).width( $(this).width() )
         keyword.offset({
           left: this.offsetLeft,
-          top: this.offsetTop + 100
+          top: this.offsetTop + ( $(this).width() * .6 )
         })
+
         // debugger
         // var soundID = event.target.id
         // var keywordID = event.toElement.id
