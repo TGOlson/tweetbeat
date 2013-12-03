@@ -78,7 +78,6 @@ var Layout = {
       drop: function( event, ui ) {
 
         console.log($(event.target).find('.dropped_keyword'))
-        console.log(ui)
 
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
