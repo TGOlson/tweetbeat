@@ -37,10 +37,6 @@ var Layout = {
     })
   },
 
-  // removeDroppedKeyword: function(e){
-  //   $(e.target).closest('div').text(".").removeClass('keyword_dropped')
-  //   $(Stream.source).unbind(e.target.id)
-  // },
 
   landKeywordOnPad: function(soundID){
     var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
@@ -48,11 +44,12 @@ var Layout = {
   },
 
   makeKeywordPadDraggable: function(target){
-    $(target).draggable({ revert: "invalid" }).on('mousedown', function(){
-      $(this).addClass('topic')
-    }).on('mouseup', function(){
-      $(this).removeClass('topic')
-    })
+    $(target).draggable({ revert: "invalid" })
+  },
+
+  removeDroppedKeyword: function(target){
+    target.removeClass('keyword_dropped')
+    // $(Stream.source).unbind(e.target.id)
   },
 
   flashColor: function(soundID) {
