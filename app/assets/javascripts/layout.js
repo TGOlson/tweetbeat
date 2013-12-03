@@ -18,14 +18,13 @@ var Layout = {
       } else if (e.target && e.target.nodeName == "DIV") {
         var classes = e.target.className.split(" ")
         for (var i = 0; i < classes.length; i++) {
-          if (classes[i] == "drop_area") {
+          if (classes[i] == "drop_area" || classes[i] == "ctrl_bound") {
             liElement = $(e.target).closest('li')[0]
             playSample(liElement.id)
             Layout.flashColor(liElement.id)
           }
         }
       }
-      // later, integrate in flash of color too, and add to that animation
     })
   },
 
@@ -44,7 +43,12 @@ var Layout = {
   bindControlToDisplayToggle: function() {
     $(document).on("keydown", function(e) {
       if (e.ctrlKey) {
-        console.log('control')
+        $('.ctrl_bound').removeClass('hidden')
+      }
+    })
+    $(document).on("keyup", function(e) {
+      if (e.keyCode == 17) {
+        $('.ctrl_bound').addClass('hidden')
       }
     })
   },
@@ -103,13 +107,6 @@ var Layout = {
   },
 
   flashColor: function(soundID) {
-    // $('#synth_pads #' + soundID).animate({
-    //   color: '#e74c3c'
-    // }, 200, function() {
-    //   $('#synth_pads #' + soundID).animate({
-    //     color: '#999'
-    //   }, 200)
-    // })
     $('#synth_pads #' + soundID).animate({
       color: '#e74c3c',
       borderBottomColor: '#bbb',
