@@ -2,7 +2,7 @@
   <div id='synth_pads'>
     <ul id='all_pads'>
       <% 9.times do |n| %>
-        <li id="<%= n %>"><div class='drop_area'>&nbsp;</div></li>
+        <li id="<%= n %>"><div class="ctrl_bound letter_display hidden"><%= key_bindings[n] %></div><div class='drop_area'>&nbsp;</div></li>
       <% end %>
     </ul>
   </div>
