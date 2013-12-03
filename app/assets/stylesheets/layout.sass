@@ -18,6 +18,7 @@ $light-gray: #adadad
 $mid-gray: #949494
 $deep-gray: #5c5c5c
 $charcoal: #4f4f4f
+$mid-deep-charcoal: #3f3f3f
 $deep-charcoal: #2f2f2f
 
 =margin-reset
@@ -48,7 +49,7 @@ $deep-charcoal: #2f2f2f
   background-color: $deep-gray
   padding: 0 3px
   border-radius: 99px
-  border: 2px solid $very-light-orange-burn
+  border: 2px solid $light-gray
   color: #999
   font-size: 13px
 
@@ -67,11 +68,11 @@ $deep-charcoal: #2f2f2f
     left: 24px
     top: 2px
     font-size: 17px
-    color: $very-light-orange-burn
+    color: $light-gray
 
 body
   +margin-reset
-  background-color: $deep-gray
+  background-color: $deep-charcoal
   font-family: Electrolize
 
 body.visual
@@ -106,7 +107,7 @@ a:hover
       margin: 15px 10px 5px 10px
 
       a
-        color: $very-light-orange-burn
+        color: $charcoal
 
 
 
@@ -123,7 +124,7 @@ a:hover
       +topic-style
       padding: 8px 0
       position: relative
-      color: $very-light-orange-burn
+      color: $charcoal
 
       .ellipsis
         position: absolute
@@ -137,7 +138,8 @@ a:hover
   height: 700px
   margin: 50px auto
   position: relative
-  border: 10px solid $mid-gray
+  background: $mid-gray
+  border: 10px solid $deep-gray
   border-top: 10px solid $charcoal
   border-bottom: 10px solid $charcoal
 
@@ -154,8 +156,9 @@ a:hover
         width: 150px
         height: 150px
         background-color: $light-gray
-        border: 15px solid $mid-gray
-        border-bottom: 15px solid $charcoal
+        border: 15px solid $deep-gray
+        border-bottom: 15px solid $mid-deep-charcoal
+        border-radius: 20px
         position: relative
         color: $mid-gray
 
