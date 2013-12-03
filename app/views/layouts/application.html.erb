@@ -12,14 +12,7 @@
 </head>
 <body>
 
-
-  <%= render 'layouts/navbar' %>
-
-  <div class='synth'>
-    <%= render 'layouts/topics', :topics => @topics %>
-    <%= render 'layouts/synth' %>
-  </div>
-
+  <%= yield %>
 
 </body>
 </html>
