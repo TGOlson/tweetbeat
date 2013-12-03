@@ -14,6 +14,12 @@ function playSample(index){
   source.start(0)
 }
 
+function changeVolume(volume){
+  console.log(volume)
+  masterGain.gain.value = (volume / 100) * (volume / 100)
+  console.log(masterGain.gain.value)
+}
+
 function loadSample(sampleURL, index){
   var request = new XMLHttpRequest()
   request.open("GET", sampleURL, true)
