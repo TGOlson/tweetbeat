@@ -19,11 +19,8 @@ var Visualizer = {
 
   populate: function(svg){
     $.each( $('.keyword_dropped'), function(i, e){
-      console.log(e.id)
       var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
-      Visualizer.keywordObjects.push( [e.id, xloc, yloc] )
-      Visualizer.setEventToAppendSvg(svg, e.id)
 
       svg.insert('circle')
         .attr("cx", xloc)
@@ -31,6 +28,9 @@ var Visualizer = {
         .attr("r", 20)
         .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
         .style("stroke-opacity", 1)
+
+      Visualizer.keywordObjects.push( [e.id, xloc, yloc] )
+      Visualizer.setEventToAppendSvg(svg, e.id)
     })
   },
 
@@ -41,7 +41,6 @@ var Visualizer = {
       .attr("height", Visualizer.height)
        Visualizer.appendNewSvg(svg, keywordID)
     })
-    // .on(keywordID, function(){ Visualizer.appendNewSvg(svg, keywordID) })
   },
 
 
@@ -63,7 +62,7 @@ var Visualizer = {
       .transition()
       .duration( Math.random() * 2000 + 1000 )
       .ease(Math.sqrt)
-      .attr("r", Math.random() * 100 + 100 )
+      .attr("r", Math.random() * 1000 + 100 )
       .style("stroke-opacity", 1e-6)
       .remove()
   },
