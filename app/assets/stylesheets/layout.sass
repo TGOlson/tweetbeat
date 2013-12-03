@@ -13,6 +13,16 @@ $light-blue: #2980b9
   display: inline-block
   list-style: none
 
+=topic-style
+  margin: 4px
+  border-radius: 4px
+  background-color: $light-pale-green
+  text-align: center
+  z-index: 99
+  cursor: move
+  font-size: 16px
+  color: #222
+
 body
   +margin-reset
   background-color: #eee
@@ -24,6 +34,9 @@ a
 
 a:hover
   text-decoration: underline
+
+.topic
+  +topic-style
 
 #fullnav
   background-color: $darkgrey
@@ -65,15 +78,10 @@ a:hover
 
     .topic
       +inline-list
-      position: relative
+      +topic-style
       padding: 8px 0
+      position: relative
       width: 160px
-      margin: 4px
-      border-radius: 4px
-      background-color: $light-pale-green
-      text-align: center
-      z-index: 99
-      cursor: move
 
       .ellipsis
         position: absolute
