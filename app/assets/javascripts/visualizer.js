@@ -8,7 +8,6 @@ var Visualizer = {
   start: function(){
     var svg = this.setSvgToBody()
     this.populate(svg)
-    this.setEventToAppendSvg(svg)
   },
 
   setSvgToBody: function(width, height){
@@ -20,10 +19,12 @@ var Visualizer = {
 
   populate: function(svg){
     $.each( $('.keyword_dropped'), function(i, e){
-      console.log(e)
+      console.log(e.id)
       var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
-      Visualizer.keywordObjects.push( [xloc, yloc] )
+      Visualizer.keywordObjects.push( [e.id, xloc, yloc] )
+      Visualizer.setEventToAppendSvg(svg, e.id)
+
       svg.insert('circle')
         .attr("cx", xloc)
         .attr("cy", yloc )
@@ -33,11 +34,11 @@ var Visualizer = {
     })
   },
 
-  setEventToAppendSvg: function(svg){
+  setEventToAppendSvg: function(svg, keywordID){
     svg.append("rect")
     .attr("width", Visualizer.width)
     .attr("height", Visualizer.height)
-    .on("click", function(){ Visualizer.appendNewSvg(svg) })
+    .on(keywordID, function(){ Visualizer.appendNewSvg(svg) })
   },
 
 
