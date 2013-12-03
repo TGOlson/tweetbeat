@@ -64,14 +64,18 @@ var Layout = {
   showVisual: function(){
     $('.synth').hide()
     $('body').css('background-color', '#222')
+    $('#toggle_icon').find('i')[0].className = 'fa fa-certificate'
     $('#circle_toggle').animate({ left: '25px' }, 200)
+    $('#toggle_icon').animate({ left: '5px' }, 200)
     Visualizer.start()
   },
 
   showSynth: function(){
     $('.synth').show()
     $('body').css('background-color', '#eee')
+    $('#toggle_icon').find('i')[0].className = 'fa fa-wrench'
     $('#circle_toggle').animate({ left: '0px' }, 200)
+    $('#toggle_icon').animate({ left: '24px' }, 200)
     Visualizer.stop()
   },
 
