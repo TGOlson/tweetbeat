@@ -25,6 +25,36 @@ $light-blue: #2980b9
   color: #222
   width: 160px
 
+=toggle-style
+  position: absolute
+  right: 8px
+  top: 5px
+  width: 40px
+  height: 20px
+  background-color: #ccc
+  padding: 0 3px
+  border-radius: 99px
+  border: 2px solid $white
+  color: #999
+  font-size: 13px
+
+  #circle_toggle
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #555
+    border-radius: 99px
+    width: 20px
+    height: 20px
+    z-index: 97
+
+  #toggle_icon
+    position: absolute
+    left: 24px
+    top: 2px
+    font-size: 17px
+    color: $light-grey
+
 body
   +margin-reset
   background-color: $light-grey
@@ -46,6 +76,9 @@ a:hover
 .topic
   +topic-style
 
+.slide_toggle
+  +toggle-style
+
 #fullnav
   background-color: $light-grey
 
@@ -58,35 +91,6 @@ a:hover
     #nav_title
       margin: 15px 10px 5px 10px
 
-  #toggle_view
-    position: absolute
-    right: 8px
-    top: 5px
-    width: 40px
-    height: 20px
-    background-color: #ccc
-    padding: 0 3px
-    border-radius: 99px
-    border: 2px solid $white
-    color: #999
-    font-size: 13px
-
-    #circle_toggle
-      position: absolute
-      left: 0
-      top: 0
-      background-color: #555
-      border-radius: 99px
-      width: 20px
-      height: 20px
-      z-index: 97
-
-    #toggle_icon
-      position: absolute
-      left: 24px
-      top: 2px
-      font-size: 17px
-      color: $light-grey
 
 
 #topics_container
