@@ -45,7 +45,12 @@ var Layout = {
   },
 
   makeKeywordPadDraggable: function(target){
-    $(target).draggable({ revert: "invalid" })
+    $(target).draggable({ revert: "invalid" }).on('mousedown', Layout.toggleTopicStyle)
+  },
+
+  toggleTopicStyle: function(e){
+    console.log(e.target)
+    $(e.target).addClass('topic')
   },
 
   removeDroppedKeyword: function(target){
