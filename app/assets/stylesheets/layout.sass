@@ -65,6 +65,7 @@ a:hover
 
     .topic
       +inline-list
+      position: relative
       padding: 8px 0
       width: 160px
       margin: 4px
@@ -72,15 +73,14 @@ a:hover
       background-color: $light-pale-green
       text-align: center
       z-index: 99
+      cursor: move
 
       .ellipsis
-        margin-right: 7px
-        float: right
-
-      .fa
-        float: right
-        padding: 1px
-        color: #2c3e50
+        position: absolute
+        margin-top: 1px
+        right: 7px
+        color: darken($light-pale-green, 20%)
+        text-shadow: 0.1em 0.1em darken($light-pale-green, 10%)
 
 #synth_container
   width: 920px
