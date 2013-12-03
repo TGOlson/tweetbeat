@@ -7,6 +7,7 @@ var Visualizer = {
   start: function(){
     var svg = this.setSvgCanvas()
     this.populate(svg)
+    $('svg').on('click', 'circle', this.keywordClickEvent)
   },
 
   setSvgCanvas: function(width, height){
@@ -23,16 +24,20 @@ var Visualizer = {
 
   populate: function(svg){
     $.each( $('.keyword_dropped'), function(i, e){
+
       var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
+      var color = Visualizer.color(Math.floor( Math.random()*20 + 1 ))
 
       svg.insert('circle')
       .attr('id', 'visual-' + e.id)
       .attr("cx", xloc)
       .attr("cy", yloc )
       .attr("r", 20)
-      .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
-      .style("stroke-opacity", 1)
+      .attr('keyword', $(e).find('div').text().split(' ')[0] )
+      .style("stroke", 'none')
+      .style("fill", color)
+      .style("fill-opacity", .5)
 
       Visualizer.setEventForVisuals(svg, e.id)
     })
@@ -44,15 +49,23 @@ var Visualizer = {
    })
   },
 
+  keywordClickEvent: function(e){
+    // console.log( $(e.target).attr('keyword') )
+    var keyword = $(e.target).attr('keyword')
+    $(e.target).insert('text') //('<div class="keyword_ani">' + keyword + '</div>')
+    // var keyword_div = $(e.target).find('.keyword_ani')
+    debugger
+  },
 
   appendNewCircle: function(svg, keywordID){
     var keyword = $('#visual-' + keywordID)
     svg.insert("circle", "rect")
     .attr("cx", keyword.attr('cx'))
     .attr("cy", keyword.attr('cy'))
-    .attr("r", 1e-6)
+    .attr("r", 40)
     .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
     .style("stroke-opacity", .5)
+    .style('fill', 'none')
     .transition()
     .duration( Math.random() * 2000 + 1000 )
     .ease(Math.sqrt)
