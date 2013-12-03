@@ -1,19 +1,3 @@
- $(function() {
-    $( "#slider-vertical" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 60,
-    })
-    $('#slider-vertical').slider({
-      change: function(event,ui) {
-        Layout.setVolume(ui.value) }
-    })
-  });
-
-
-
 var Layout = {
   init: function(){
     $('#toggle_synth').on('click', this.toggleSynth)
@@ -23,6 +7,7 @@ var Layout = {
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
     this.setDropArea()
+    this.setSliderStyle()
   },
 
   bindClicksToSounds: function() {
@@ -84,9 +69,10 @@ var Layout = {
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
-        $(this).find('div').html(keyword.text())
-        $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
-
+        $(this).find('div').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+        $(this).find('.drop_area')
+          .addClass('keyword_dropped').hide().fadeIn()
+          .css('top', 60).css('left', 0)
         var soundID = event.target.id
         var keywordID = keyword[0].id
         Stream.bindKeywordToSound(keywordID, soundID)
@@ -94,10 +80,27 @@ var Layout = {
     })
   },
 
-  // removeDroppedKeyword: function(e){
-  //   $(e.target).closest('div').text(".").removeClass('keyword_dropped')
-  //   $(Stream.source).unbind(e.target.id)
-  // },
+
+  landKeywordOnPad: function(soundID){
+    var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
+    this.makeKeywordPadDraggable(target)
+  },
+
+  makeKeywordPadDraggable: function(target){
+    $(target).draggable({ revert: "invalid" })
+      .on('mousedown', Layout.toggleTopicStyle)
+      .on('mouseup', Layout.toggleTopicStyle)
+  },
+
+  toggleTopicStyle: function(e){
+    console.log(e.target)
+    $(e.target).toggleClass('topic')
+  },
+
+  removeDroppedKeyword: function(target){
+    target.removeClass('keyword_dropped')
+    // $(Stream.source).unbind(e.target.id)
+  },
 
   flashColor: function(soundID) {
     // $('#synth_pads #' + soundID).animate({
@@ -124,11 +127,25 @@ var Layout = {
     })
   },
 
+
+  setSliderStyle: function(){
+    $( "#slider-vertical" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+    })
+    $('#slider-vertical').slider({
+      change: function(event,ui) {
+        Layout.setVolume(ui.value) }
+    })
+  },
+
   setVolume: function(volume){
     changeVolume(volume)
   }
 }
-
 
 
 

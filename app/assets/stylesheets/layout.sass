@@ -13,6 +13,17 @@ $light-blue: #2980b9
   display: inline-block
   list-style: none
 
+=topic-style
+  margin: 4px
+  border-radius: 4px
+  background-color: $light-pale-green
+  text-align: center
+  z-index: 99
+  cursor: move
+  font-size: 16px
+  color: #222
+  width: 160px
+
 body
   +margin-reset
   background-color: #eee
@@ -24,6 +35,9 @@ a
 
 a:hover
   text-decoration: underline
+
+.topic
+  +topic-style
 
 #fullnav
   background-color: $darkgrey
@@ -65,22 +79,16 @@ a:hover
 
     .topic
       +inline-list
+      +topic-style
       padding: 8px 0
-      width: 160px
-      margin: 4px
-      border-radius: 4px
-      background-color: $light-pale-green
-      text-align: center
-      z-index: 99
+      position: relative
 
       .ellipsis
-        margin-right: 7px
-        float: right
-
-      .fa
-        float: right
-        padding: 1px
-        color: #2c3e50
+        position: absolute
+        margin-top: 1px
+        right: 7px
+        color: darken($light-pale-green, 20%)
+        text-shadow: 0.1em 0.1em darken($light-pale-green, 10%)
 
 #synth_container
   width: 920px
@@ -105,15 +113,19 @@ a:hover
         border: 15px solid #bbb
         border-bottom: 15px solid #999
         color: #999
+        position: relative
 
         .drop_area
-          margin-top: 60px
+          position: absolute
+          top: 60px
           text-align: center
-          padding: 8px 0
+          line-height: 34px
           font-size: 27px
+          cursor: move
 
         .keyword_dropped
-          width: 160px
+          width: 150px
+          z-index: 98
 
           .close
             float: left

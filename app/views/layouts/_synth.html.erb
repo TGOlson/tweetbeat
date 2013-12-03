@@ -1,16 +1,10 @@
 <div id='synth_container'>
   <div id='synth_pads'>
-  <ul id='all_pads'>
-    <li id="0"><div class='drop_area'>&nbsp;</div></li>
-    <li id="1"><div class='drop_area'>&nbsp;</div></li>
-    <li id="2"><div class='drop_area'>&nbsp;</div></li>
-    <li id="3"><div class='drop_area'>&nbsp;</div></li>
-    <li id="4"><div class='drop_area'>&nbsp;</div></li>
-    <li id="5"><div class='drop_area'>&nbsp;</div></li>
-    <li id="6"><div class='drop_area'>&nbsp;</div></li>
-    <li id="7"><div class='drop_area'>&nbsp;</div></li>
-    <li id="8"><div class='drop_area'>&nbsp;</div></li>
-  </ul>
+    <ul id='all_pads'>
+      <% 9.times do |n| %>
+        <li id="<%= n %>"><div class='drop_area'>&nbsp;</div></li>
+      <% end %>
+    </ul>
   </div>
 
   <div id='synth_controls'>
