@@ -13,7 +13,7 @@ $mid-orange-burn: #e86a13
 $light-orange: #ff8f45
 $light-orange-burn: #e5813e
 $very-light-orange-burn: #e5bba4
-$very-light-gray: #ededed
+$very-light-gray: #cdcdcd
 $light-gray: #adadad
 $mid-gray: #949494
 $deep-gray: #5c5c5c
@@ -32,7 +32,7 @@ $deep-charcoal: #2f2f2f
 =topic-style
   margin: 4px
   border-radius: 4px
-  background-color: $deep-orange-burn
+  background-color: $mid-orange-burn
   text-align: center
   z-index: 99
   cursor: move
@@ -72,7 +72,7 @@ $deep-charcoal: #2f2f2f
 
 body
   +margin-reset
-  background-color: $deep-charcoal
+  background-color: $very-light-gray
   font-family: Electrolize
 
 body.visual
@@ -95,7 +95,7 @@ a:hover
   +toggle-style
 
 #fullnav
-  background-color: $deep-orange-burn
+  background-color: $mid-orange-burn
 
   ul
     +margin-reset
@@ -130,8 +130,8 @@ a:hover
         position: absolute
         margin-top: 1px
         right: 7px
-        color: darken($deep-orange-burn, 20%)
-        text-shadow: 0.1em 0.1em darken($deep-orange-burn, 10%)
+        color: darken($light-orange-burn, 20%)
+        text-shadow: 0.1em 0.1em darken($light-orange-burn, 10%)
 
 #synth_container
   width: 920px
@@ -197,7 +197,7 @@ a:hover
       height: 200px
       width: 200px
       background: rgba(15, 08, 15, .6)
-     
+
 
 .drop_hover
   background-color: $light-grey
