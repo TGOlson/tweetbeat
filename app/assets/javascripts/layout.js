@@ -130,14 +130,14 @@ var Layout = {
       color: '#e5813e',
       borderBottomColor: '#949494',
       borderTopColor: '#4f4f4f',
-      backgroundColor: '#adadad'
+      backgroundColor: '#a0a0a0'
     }, 10, function() {
       setTimeout(function() {
         $('#synth_pads #' + soundID).animate({
           color: '#949494',
           borderBottomColor: '#4f4f4f',
           borderTopColor: '#949494',
-          backgroundColor: '#bdbdbd'
+          backgroundColor: '#adadad'
         }, 10)
       }, 190)
     })
