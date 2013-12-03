@@ -4,6 +4,4 @@ TweetBeat::Application.routes.draw do
   get 'stream' => 'tweets#stream'
 
   get 'topics' => 'tweets#topics'
-
-  mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 end
