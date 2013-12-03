@@ -105,15 +105,18 @@ a:hover
         border: 15px solid #bbb
         border-bottom: 15px solid #999
         color: #999
+        position: relative
 
         .drop_area
-          margin-top: 60px
+          position: absolute
+          top: 60px
           text-align: center
-          padding: 8px 0
+          line-height: 34px
           font-size: 27px
 
         .keyword_dropped
           width: 150px
+          z-index: 98
 
           .close
             float: left
