@@ -35,17 +35,28 @@ var Visualizer = {
   },
 
   setEventToAppendSvg: function(svg, keywordID){
-    svg.append("rect")
-    .attr("width", Visualizer.width)
-    .attr("height", Visualizer.height)
-    .on(keywordID, function(){ Visualizer.appendNewSvg(svg) })
+    $(Stream.source).on(keywordID, function(){
+      svg.append("rect")
+      .attr("width", Visualizer.width)
+      .attr("height", Visualizer.height)
+       Visualizer.appendNewSvg(svg, keywordID)
+    })
+    // .on(keywordID, function(){ Visualizer.appendNewSvg(svg, keywordID) })
   },
 
 
-  appendNewSvg: function(svg){
+  appendNewSvg: function(svg, keywordID){
+      var xloc = 0
+      var yloc = 0
+      $.each(Visualizer.keywordObjects, function(i, e){
+        if(e[0] === keywordID){
+          xloc  = e[1]
+          yloc  = e[2]
+        }
+      })
       svg.insert("circle", "rect")
-      .attr("cx", 100)
-      .attr("cy", 200)
+      .attr("cx", xloc)
+      .attr("cy", yloc)
       .attr("r", 1e-6)
       .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
       .style("stroke-opacity", 1)
@@ -55,8 +66,6 @@ var Visualizer = {
       .attr("r", Math.random() * 100 + 100 )
       .style("stroke-opacity", 1e-6)
       .remove()
-
-      d3.event.preventDefault()
   },
 
   stop: function(){
