@@ -55,21 +55,27 @@ a:hover
     #nav_title
       margin: 10px 10px 5px 10px
 
-  #view_toggle
+  .toggle_view
     position: absolute
     right: 8px
-    top: 8px
+    top: 5px
+    width: 35px
+    height: 16px
+    background-color: $light-grey
+    padding: 0 3px
+    border-radius: 99px
+    border: 2px solid $light-grey
+    color: $dark-grey
+    font-size: 13px
 
-    label
-      width: 100px
-      background-color: $white
-      padding: 0 3px
-      border-radius: 4px
-      color: $dark-grey
-      font-size: 13px
-
-    input
-      display: none
+    #circle_toggle
+      position: absolute
+      left: 0
+      top: 0
+      background-color: $dark-grey
+      border-radius: 99px
+      width: 16px
+      height: 16px
 
 #topics_container
   background-color: #dedede
