@@ -2,11 +2,29 @@ var Layout = {
   init: function(){
     $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
+    $('#xy').on("mousemove", function(move){
+      var position = Layout.getCanvasPos(this, move)
+      console.log("X = " + position.x + " Y = " + position.y)
+      changeFrequency(position.x)
+      changeQ(position.y)
+    })
+    $('#filter-toggle').on("click", function(){
+      toggleFilter()
+    })
+
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
     this.setDropArea()
     this.setSliderStyle()
+  },
+
+  getCanvasPos: function(canvas,move){
+    var rect = canvas.getBoundingClientRect()
+    return{
+      x: move.clientX - rect.left,
+      y: (move.clientY - rect.top) * (-1) + (200)
+    }
   },
 
   bindClicksToSounds: function() {
