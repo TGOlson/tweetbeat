@@ -1,25 +1,10 @@
- $(function() {
-    $( "#slider-vertical" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 60,
-    })
-    $('#slider-vertical').slider({
-      change: function(event,ui) {
-        Layout.setVolume(ui.value) }
-    })
-  });
-
-
-
 var Layout = {
   init: function(){
     $('#toggle_synth').on('click', this.toggleSynth)
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
     this.setDropArea()
+    this.setSliderStyle()
   },
 
   toggleSynth: function(){
@@ -64,6 +49,20 @@ var Layout = {
       $('#synth_pads #' + soundID).animate({
         color: '#999'
       }, 200)
+    })
+  },
+
+  setSliderStyle: function(){
+    $( "#slider-vertical" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+    })
+    $('#slider-vertical').slider({
+      change: function(event,ui) {
+        Layout.setVolume(ui.value) }
     })
   },
 
