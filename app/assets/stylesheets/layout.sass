@@ -16,6 +16,7 @@ $very-light-orange-burn: #e5bba4
 $light-gray: #bdbdbd
 $mid-gray: #949494
 $deep-gray: #5c5c5c
+$charcoal: #4f4f4f
 
 =margin-reset
   margin: 0px
@@ -68,7 +69,7 @@ $deep-gray: #5c5c5c
 
 body
   +margin-reset
-  background-color: $light-grey
+  background-color: $deep-gray
   font-family: Electrolize
 
 body.visual
@@ -108,7 +109,7 @@ a:hover
 
 
 #topics_container
-  background-color: $mid-orange-burn
+  background-color: $light-orange-burn
 
   #topics_list
     width: 80%
@@ -148,11 +149,11 @@ a:hover
         margin: 20px
         width: 150px
         height: 150px
-        background-color: #ddd
-        border: 15px solid #bbb
-        border-bottom: 15px solid #999
-        color: #999
+        background-color: $light-gray
+        border: 15px solid $mid-gray
+        border-bottom: 15px solid $charcoal
         position: relative
+        color: $mid-gray
 
         .drop_area
           position: absolute
