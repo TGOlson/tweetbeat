@@ -13,6 +13,16 @@ $light-blue: #2980b9
   display: inline-block
   list-style: none
 
+=topic-style
+  padding: 8px 0
+  width: 160px
+  border-radius: 4px
+  background-color: $light-pale-green
+  text-align: center
+  z-index: 99
+  font-size: 16px
+  color: $darkgrey
+
 body
   +margin-reset
   background-color: #eee
@@ -24,6 +34,9 @@ a
 
 a:hover
   text-decoration: underline
+
+.topic
+  +topic-style
 
 #fullnav
   background-color: $darkgrey
@@ -65,13 +78,9 @@ a:hover
 
     .topic
       +inline-list
-      padding: 8px 0
-      width: 160px
+      +topic-style
       margin: 4px
-      border-radius: 4px
-      background-color: $light-pale-green
-      text-align: center
-      z-index: 99
+
 
       .ellipsis
         margin-right: 7px
@@ -135,7 +144,7 @@ a:hover
       border: 10px solid rgba(15, 08, 15, .2)
 
 .drop_hover
-  background-color: #eee
+  background-color: #fff
 
 .ui-effects-transfer
   border: 2px dotted gray
