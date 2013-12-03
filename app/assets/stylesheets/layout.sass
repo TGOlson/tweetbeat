@@ -6,6 +6,21 @@ $medium-pale-green: #27ae60
 $light-red: #e74c3c
 $light-blue: #2980b9
 
+$deep-orange: #ff530d
+$deep-orange-burn: #e0490b
+$mid-orange: #ff7515
+$mid-orange-burn: #e86a13
+$light-orange: #ff8f45
+$light-orange-burn: #e5813e
+$very-light-orange-burn: #e5bba4
+$very-light-gray: #ededed
+$light-gray: #adadad
+$mid-gray: #949494
+$deep-gray: #5c5c5c
+$charcoal: #4f4f4f
+$mid-deep-charcoal: #3f3f3f
+$deep-charcoal: #2f2f2f
+
 =margin-reset
   margin: 0px
   padding: 0px
@@ -17,7 +32,7 @@ $light-blue: #2980b9
 =topic-style
   margin: 4px
   border-radius: 4px
-  background-color: $light-pale-green
+  background-color: $deep-orange-burn
   text-align: center
   z-index: 99
   cursor: move
@@ -31,10 +46,10 @@ $light-blue: #2980b9
   top: 5px
   width: 40px
   height: 20px
-  background-color: #ccc
+  background-color: $deep-gray
   padding: 0 3px
   border-radius: 99px
-  border: 2px solid $white
+  border: 2px solid $light-gray
   color: #999
   font-size: 13px
 
@@ -42,7 +57,7 @@ $light-blue: #2980b9
     position: absolute
     left: 0
     top: 0
-    background-color: #555
+    background-color: $deep-charcoal
     border-radius: 99px
     width: 20px
     height: 20px
@@ -53,11 +68,11 @@ $light-blue: #2980b9
     left: 24px
     top: 2px
     font-size: 17px
-    color: $light-grey
+    color: $light-gray
 
 body
   +margin-reset
-  background-color: $light-grey
+  background-color: $deep-charcoal
   font-family: Electrolize
 
 body.visual
@@ -80,7 +95,7 @@ a:hover
   +toggle-style
 
 #fullnav
-  background-color: $light-grey
+  background-color: $deep-orange-burn
 
   ul
     +margin-reset
@@ -91,10 +106,13 @@ a:hover
     #nav_title
       margin: 15px 10px 5px 10px
 
+      a
+        color: $mid-deep-charcoal
+
 
 
 #topics_container
-  background-color: #dedede
+  background-color: $light-orange-burn
 
   #topics_list
     width: 80%
@@ -106,20 +124,24 @@ a:hover
       +topic-style
       padding: 8px 0
       position: relative
+      color: $mid-deep-charcoal
 
       .ellipsis
         position: absolute
         margin-top: 1px
         right: 7px
-        color: darken($light-pale-green, 20%)
-        text-shadow: 0.1em 0.1em darken($light-pale-green, 10%)
+        color: darken($deep-orange-burn, 20%)
+        text-shadow: 0.1em 0.1em darken($deep-orange-burn, 10%)
 
 #synth_container
   width: 920px
   height: 700px
   margin: 50px auto
   position: relative
-  border: 10px solid #bbb
+  background: $mid-gray
+  border: 10px solid $deep-gray
+  border-top: 10px solid $charcoal
+  border-bottom: 10px solid $charcoal
 
   #synth_pads
     position: absolute
@@ -133,11 +155,12 @@ a:hover
         margin: 20px
         width: 150px
         height: 150px
-        background-color: #ddd
-        border: 15px solid #bbb
-        border-bottom: 15px solid #999
-        color: #999
+        background-color: $light-gray
+        border: 15px solid $deep-gray
+        border-bottom: 15px solid $mid-deep-charcoal
+        border-radius: 20px
         position: relative
+        color: $mid-gray
 
         .drop_area
           position: absolute
