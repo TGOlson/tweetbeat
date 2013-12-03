@@ -19,7 +19,49 @@ var Layout = {
     $('#toggle_synth').on('click', this.toggleSynth)
     $('#toggle_visual').on('click', this.toggleVisual)
     $('.topic').draggable({ revert: "invalid" })
+    this.bindClicksToSounds()
+    this.bindKeypressesToSounds()
+    this.bindControlToDisplayToggle()
     this.setDropArea()
+  },
+
+  bindClicksToSounds: function() {
+    $('#synth_pads').on("click", function(e) {
+      if (e.target && e.target.nodeName == "LI") {
+        playSample(e.target.id)
+        Layout.flashColor(e.target.id)
+      } else if (e.target && e.target.nodeName == "DIV") {
+        var classes = e.target.className.split(" ")
+        for (var i = 0; i < classes.length; i++) {
+          if (classes[i] == "drop_area") {
+            liElement = $(e.target).closest('li')[0]
+            playSample(liElement.id)
+            Layout.flashColor(liElement.id)
+          }
+        }
+      }
+      // later, integrate in flash of color too, and add to that animation
+    })
+  },
+
+  bindKeypressesToSounds: function() {
+    var bindings = {'q': 0, 'w': 1, 'e': 2, 'a': 3, 's': 4, 'd': 5, 'z': 6, 'x':7, 'c': 8}
+    $(document).on("keypress", function(e) {
+      enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
+      boundSoundID = bindings[enteredChar]
+      if (boundSoundID >= 0 || boundSoundID <= 8) {
+        playSample(boundSoundID)
+        Layout.flashColor(boundSoundID)
+      }
+    })
+  },
+
+  bindControlToDisplayToggle: function() {
+    $(document).on("keydown", function(e) {
+      if (e.ctrlKey) {
+        console.log('control')
+      }
+    })
   },
 
   toggleSynth: function(){
@@ -58,12 +100,27 @@ var Layout = {
   // },
 
   flashColor: function(soundID) {
+    // $('#synth_pads #' + soundID).animate({
+    //   color: '#e74c3c'
+    // }, 200, function() {
+    //   $('#synth_pads #' + soundID).animate({
+    //     color: '#999'
+    //   }, 200)
+    // })
     $('#synth_pads #' + soundID).animate({
-      color: '#e74c3c'
-    }, 200, function() {
-      $('#synth_pads #' + soundID).animate({
-        color: '#999'
-      }, 200)
+      color: '#e74c3c',
+      borderBottomColor: '#bbb',
+      borderTopColor: '#999',
+      backgroundColor: '#ccc'
+    }, 10, function() {
+      setTimeout(function() {
+        $('#synth_pads #' + soundID).animate({
+          color: '#999',
+          borderBottomColor: '#999',
+          borderTopColor: '#bbb',
+          backgroundColor: '#ddd'
+        }, 10)
+      }, 190)
     })
   },
 
