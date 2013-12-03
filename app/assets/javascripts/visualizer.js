@@ -3,17 +3,21 @@ var Visualizer = {
   color: d3.scale.category20c(),
   width: $(window).width() - 5,
   height: $(window).height() - 5,
-  keywordObjects: [],
 
   start: function(){
-    var svg = this.setSvgToBody()
+    var svg = this.setSvgCanvas()
     this.populate(svg)
   },
 
-  setSvgToBody: function(width, height){
+  setSvgCanvas: function(width, height){
     var svg = d3.select("body").append("svg")
     .attr("width", Visualizer.width)
     .attr("height", Visualizer.height)
+
+    svg.append("rect")
+    .attr("width", Visualizer.width)
+    .attr("height", Visualizer.height)
+
     return svg
   },
 
@@ -23,48 +27,38 @@ var Visualizer = {
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
 
       svg.insert('circle')
-        .attr("cx", xloc)
-        .attr("cy", yloc )
-        .attr("r", 20)
-        .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
-        .style("stroke-opacity", 1)
-
-      Visualizer.keywordObjects.push( [e.id, xloc, yloc] )
-      Visualizer.setEventToAppendSvg(svg, e.id)
-    })
-  },
-
-  setEventToAppendSvg: function(svg, keywordID){
-    $(Stream.source).on(keywordID, function(){
-      svg.append("rect")
-      .attr("width", Visualizer.width)
-      .attr("height", Visualizer.height)
-       Visualizer.appendNewSvg(svg, keywordID)
-    })
-  },
-
-
-  appendNewSvg: function(svg, keywordID){
-      var xloc = 0
-      var yloc = 0
-      $.each(Visualizer.keywordObjects, function(i, e){
-        if(e[0] === keywordID){
-          xloc  = e[1]
-          yloc  = e[2]
-        }
-      })
-      svg.insert("circle", "rect")
+      .attr('id', 'visual-' + e.id)
       .attr("cx", xloc)
-      .attr("cy", yloc)
-      .attr("r", 1e-6)
+      .attr("cy", yloc )
+      .attr("r", 20)
       .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
       .style("stroke-opacity", 1)
-      .transition()
-      .duration( Math.random() * 2000 + 1000 )
-      .ease(Math.sqrt)
-      .attr("r", Math.random() * 1000 + 100 )
-      .style("stroke-opacity", 1e-6)
-      .remove()
+
+      Visualizer.setEventForVisuals(svg, e.id)
+    })
+  },
+
+  setEventForVisuals: function(svg, keywordID){
+    $(Stream.source).on(keywordID, function(){
+     Visualizer.appendNewCircle(svg, keywordID)
+   })
+  },
+
+
+  appendNewCircle: function(svg, keywordID){
+    var keyword = $('#visual-' + keywordID)
+    svg.insert("circle", "rect")
+    .attr("cx", keyword.attr('cx'))
+    .attr("cy", keyword.attr('cy'))
+    .attr("r", 1e-6)
+    .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
+    .style("stroke-opacity", .5)
+    .transition()
+    .duration( Math.random() * 2000 + 1000 )
+    .ease(Math.sqrt)
+    .attr("r", Math.random() * 1000 + 100 )
+    .style("stroke-opacity", 1e-6)
+    .remove()
   },
 
   stop: function(){
