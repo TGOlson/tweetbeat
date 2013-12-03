@@ -78,13 +78,16 @@ var Layout = {
       drop: function( event, ui ) {
 
         console.log($(event.target).find('.dropped_keyword'))
+        console.log(ui)
 
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
-
+        // debugger
         $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
           .addClass('keyword_dropped').hide().fadeIn()
           .css('top', 60).css('left', 0)
+
+        $(this).find('.drop_area')[0].id  = keyword[0].id
         var soundID = event.target.id
         var keywordID = keyword[0].id
         Stream.bindKeywordToSound(keywordID, soundID)
@@ -102,14 +105,18 @@ var Layout = {
     $(target).draggable({ revert: "invalid" })
       .on('mousedown', function(e) {
         Layout.removeSoundBindingOnDrag(e)
-        Layout.toggleTopicStyle(e)
+        Layout.addTopicStyle(e)
       })
-      .on('mouseup', Layout.toggleTopicStyle)
+      .on('mouseup', Layout.removeTopicStyle)
   },
 
-  toggleTopicStyle: function(e){
-    $(e.target).toggleClass('topic')
+  // toggle introduces bugs, need both add and remove
+  addTopicStyle: function(e){
+    $(e.target).addClass('topic')
+  },
 
+  removeTopicStyle: function(e){
+    $(e.target).removeClass('topic')
   },
 
   flashColor: function(soundID) {
