@@ -1,9 +1,17 @@
 <div id='synth_container'>
   <div id='synth_pads'>
     <ul id='all_pads'>
-      <% 9.times do |n| %>
-        <li id="<%= n %>"><div class="ctrl_bound letter_display hidden"><%= key_bindings[n] %></div><div class='drop_area'>&nbsp;</div></li>
-      <% end %>
+      <ul id='all_pads'>
+        <li id="0"><div class="ctrl_bound letter_display hidden">q</div><div id="synthname">SYNTH1</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="1"><div class="ctrl_bound letter_display hidden">w</div><div id="synthname">SYNTH2</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="2"><div class="ctrl_bound letter_display hidden">e</div><div id="synthname">SYNTH3</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="3"><div class="ctrl_bound letter_display hidden">a</div><div id="synthname">BASS1</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="4"><div class="ctrl_bound letter_display hidden">s</div><div id="synthname">BASS2</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="5"><div class="ctrl_bound letter_display hidden">d</div><div id="synthname">BASS3</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="6"><div class="ctrl_bound letter_display hidden">z</div><div id="synthname">KICK1</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="7"><div class="ctrl_bound letter_display hidden">x</div><div id="synthname">KICK2</div><div class='drop_area'>&nbsp;</div></li>
+        <li id="8"><div class="ctrl_bound letter_display hidden">c</div><div id="synthname">PERC3</div><div class='drop_area'>&nbsp;</div></li>
+    </ul>
     </ul>
   </div>
 
