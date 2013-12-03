@@ -11,7 +11,6 @@ var Stream = {
     Stream.source = new EventSource('/stream')
   },
   bindKeywordToSound: function(keywordID, soundID) {
-    console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
     Layout.landKeywordOnPad(soundID)
     $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
@@ -19,6 +18,9 @@ var Stream = {
       tweetContent = JSON.parse(e.originalEvent.data)["content"] // mainly for debugging
       console.log(tweetContent) // mainly for debugging
     })
+  },
+  removeBoundKeywordFromSound: function(keywordID) {
+    $(Stream.source).unbind(keywordID)
   }
 }
 

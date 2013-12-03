@@ -80,9 +80,14 @@ var Layout = {
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
+
+        var keywordID = $(this).contents('div').last().attr('id')
+        if (keywordID >= 0) {
+          Stream.removeBoundKeywordFromSound(keywordID)
+        }
         var keyword = ui.helper
+
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
-        // debugger
         $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
           .addClass('keyword_dropped').hide().fadeIn()
           .css('top', 60).css('left', 0)
@@ -103,22 +108,21 @@ var Layout = {
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
-      .on('mousedown', Layout.addTopicStyle)
+      .on('mousedown', function(e) {
+        Stream.removeBoundKeywordFromSound(e.target.id)
+        Layout.addTopicStyle(e)
+      })
       .on('mouseup', Layout.removeTopicStyle)
   },
 
-  // toggle introduces bugs, need both add and remove
   addTopicStyle: function(e){
+    console.log('added topic style')
     $(e.target).addClass('topic')
   },
 
   removeTopicStyle: function(e){
+    console.log('removed topic style')
     $(e.target).removeClass('topic')
-  },
-
-  removeDroppedKeyword: function(target){
-    target.removeClass('keyword_dropped')
-    // $(Stream.source).unbind(e.target.id)
   },
 
   flashColor: function(soundID) {
