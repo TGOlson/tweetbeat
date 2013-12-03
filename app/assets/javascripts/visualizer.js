@@ -3,33 +3,32 @@ var Visualizer = {
   color: d3.scale.category20c(),
   width: $(window).width() - 5,
   height: $(window).height() - 5,
+  svg: null,
 
   start: function(){
-    var svg = this.setSvgCanvas()
-    this.populate(svg)
+    this.setSvgCanvas()
+    this.populate()
     $('svg').on('click', 'circle', this.keywordClickEvent)
   },
 
   setSvgCanvas: function(width, height){
-    var svg = d3.select("body").append("svg")
+    Visualizer.svg = d3.select("body").append("svg")
     .attr("width", Visualizer.width)
     .attr("height", Visualizer.height)
 
-    svg.append("rect")
+    Visualizer.svg.append("rect")
     .attr("width", Visualizer.width)
     .attr("height", Visualizer.height)
-
-    return svg
   },
 
-  populate: function(svg){
+  populate: function(){
     $.each( $('.keyword_dropped'), function(i, e){
 
       var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
       var color = Visualizer.color(Math.floor( Math.random()*20 + 1 ))
 
-      svg.insert('circle')
+      Visualizer.svg.insert('circle')
       .attr('id', 'visual-' + e.id)
       .attr("cx", xloc)
       .attr("cy", yloc )
@@ -39,27 +38,40 @@ var Visualizer = {
       .style("fill", color)
       .style("fill-opacity", .5)
 
-      Visualizer.setEventForVisuals(svg, e.id)
+      Visualizer.setEventForVisuals(e.id)
     })
   },
 
-  setEventForVisuals: function(svg, keywordID){
+  setEventForVisuals: function(keywordID){
     $(Stream.source).on(keywordID, function(){
-     Visualizer.appendNewCircle(svg, keywordID)
+     Visualizer.appendNewCircle(keywordID)
    })
   },
 
   keywordClickEvent: function(e){
-    // console.log( $(e.target).attr('keyword') )
-    var keyword = $(e.target).attr('keyword')
-    $(e.target).insert('text') //('<div class="keyword_ani">' + keyword + '</div>')
-    // var keyword_div = $(e.target).find('.keyword_ani')
-    debugger
+    var keywordID = $(e.target).attr('id')
+    var keyword = $('#' + keywordID)
+    Visualizer.svg.insert("text")
+      .attr("x", keyword.attr('cx') - 30 )
+      .attr("y", keyword.attr('cy'))
+      .text( keyword.attr('keyword') )
+      .style('fill', keyword.attr('style').split(' ')[3].slice(0, 7) )
+      .style("stroke-opacity", .5)
+      .transition()
+      .duration( 700 )
+      .ease(Math.sqrt)
+      .attr("transform", "translate(" + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + "," + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + ")" )
+      .style("fill-opacity", 1e-6)
+      .remove()
+
+    // debugger
+
+
   },
 
-  appendNewCircle: function(svg, keywordID){
+  appendNewCircle: function(keywordID){
     var keyword = $('#visual-' + keywordID)
-    svg.insert("circle", "rect")
+    Visualizer.svg.insert("circle", "rect")
     .attr("cx", keyword.attr('cx'))
     .attr("cy", keyword.attr('cy'))
     .attr("r", 40)
