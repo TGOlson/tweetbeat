@@ -27,7 +27,7 @@ var Layout = {
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
-        $(this).find('div').html(keyword.text())
+        $(this).find('div').html('<span class="dropped_keyword">' + keyword.text() + '</span>')
         $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
 
         var soundID = event.target.id
@@ -42,6 +42,15 @@ var Layout = {
   //   $(Stream.source).unbind(e.target.id)
   // },
 
+  landKeywordOnPad: function(soundID){
+    var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
+    this.makeKeywordPadDraggable(target)
+  },
+
+  makeKeywordPadDraggable: function(target){
+    target.draggable()
+  },
+
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
       color: '#e74c3c'
@@ -51,6 +60,7 @@ var Layout = {
       }, 200)
     })
   },
+
 
   setSliderStyle: function(){
     $( "#slider-vertical" ).slider({

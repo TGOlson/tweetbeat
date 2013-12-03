@@ -12,6 +12,7 @@ var Stream = {
   },
   bindKeywordToSound: function(keywordID, soundID) {
     console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
+    Layout.landKeywordOnPad(soundID)
     $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
