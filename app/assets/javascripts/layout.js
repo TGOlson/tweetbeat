@@ -1,6 +1,6 @@
 var Layout = {
   init: function(){
-    $('.toggle_view').on('click', this.toggleView)
+    $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
@@ -52,30 +52,27 @@ var Layout = {
     })
   },
 
-  toggleView: function(e){
-    var id = $(e.target).closest('.toggle_view')[0].id
-    if( id === 'synth_view' ) { Layout.showVisual()
-      $(e.target).closest('.toggle_view')[0].id = 'visual_view'
-    } else { Layout.showSynth()
-      $(e.target).closest('.toggle_view')[0].id = 'synth_view'
-    }
+  toggleView: function(){
+    $('#toggle_icon').find('i').toggle()
+    $('.synth').toggle()
+    $('body').toggleClass('visual')
+
+    if( $('#toggle_view').hasClass('synth_view') ) {
+      Layout.showVisual()
+    } else { Layout.showSynth() }
+
+    $('#toggle_view').toggleClass('synth_view')
   },
 
   showVisual: function(){
-    $('.synth').hide()
-    $('body').css('background-color', '#222')
-    $('#toggle_icon').find('i')[0].className = 'fa fa-certificate'
-    $('#circle_toggle').animate({ left: '25px' }, 200)
-    $('#toggle_icon').animate({ left: '5px' }, 200)
+    $('#circle_toggle').animate({ left: '25px' }, 100)
+    $('#toggle_icon').animate({ left: '5px' }, 100)
     Visualizer.start()
   },
 
   showSynth: function(){
-    $('.synth').show()
-    $('body').css('background-color', '#eee')
-    $('#toggle_icon').find('i')[0].className = 'fa fa-wrench'
-    $('#circle_toggle').animate({ left: '0px' }, 200)
-    $('#toggle_icon').animate({ left: '24px' }, 200)
+    $('#circle_toggle').animate({ left: '0px' }, 100)
+    $('#toggle_icon').animate({ left: '24px' }, 100)
     Visualizer.stop()
   },
 
