@@ -53,6 +53,13 @@ var Layout = {
     })
   },
 
+  removeSoundBindingOnDrag: function(e) {
+    Stream.removeBoundKeywordFromSound(e.target.id)
+  },
+    // to also remove event listener when a dropped topic is overwritten:
+    //   on drop, check to see if a topic was already there; if so, grab its id and disable it
+    //   at that point, call Layout.removeSoundBindingOnDrag or Stream.removeBoundKeywordFromSound
+
   toggleSynth: function(){
     $('.synth').show()
     $('body').css('background-color', '#fff')
@@ -69,6 +76,8 @@ var Layout = {
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
+
+        console.log($(event.target).find('.dropped_keyword'))
 
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
@@ -91,18 +100,16 @@ var Layout = {
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
-      .on('mousedown', Layout.toggleTopicStyle)
+      .on('mousedown', function(e) {
+        Layout.removeSoundBindingOnDrag(e)
+        Layout.toggleTopicStyle(e)
+      })
       .on('mouseup', Layout.toggleTopicStyle)
   },
 
   toggleTopicStyle: function(e){
-    console.log(e.target)
     $(e.target).toggleClass('topic')
-  },
 
-  removeDroppedKeyword: function(target){
-    target.removeClass('keyword_dropped')
-    // $(Stream.source).unbind(e.target.id)
   },
 
   flashColor: function(soundID) {
