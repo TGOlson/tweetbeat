@@ -3,33 +3,43 @@ var Visualizer = {
   color: d3.scale.category20c(),
   width: $(window).width() - 5,
   height: $(window).height() - 5,
+  keywordObjects: [],
 
   start: function(){
     var svg = this.setSvgToBody()
-
-    svg.append("rect")
-    .attr("width", Visualizer.width)
-    .attr("height", Visualizer.height)
-    .on("click", function(){ Visualizer.appendNewSvg(svg) })
+    this.populate(svg)
+    this.setEventToAppendSvg(svg)
   },
 
   setSvgToBody: function(width, height){
-
     var svg = d3.select("body").append("svg")
     .attr("width", Visualizer.width)
     .attr("height", Visualizer.height)
     return svg
   },
 
-  setEventHandlerToAppend: function(){
-
-  },
-
-  populate: function(){
+  populate: function(svg){
     $.each( $('.keyword_dropped'), function(i, e){
       console.log(e)
+      var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
+      var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
+      Visualizer.keywordObjects.push( [xloc, yloc] )
+      svg.insert('circle')
+        .attr("cx", xloc)
+        .attr("cy", yloc )
+        .attr("r", 20)
+        .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
+        .style("stroke-opacity", 1)
     })
   },
+
+  setEventToAppendSvg: function(svg){
+    svg.append("rect")
+    .attr("width", Visualizer.width)
+    .attr("height", Visualizer.height)
+    .on("click", function(){ Visualizer.appendNewSvg(svg) })
+  },
+
 
   appendNewSvg: function(svg){
       svg.insert("circle", "rect")
@@ -39,9 +49,9 @@ var Visualizer = {
       .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
       .style("stroke-opacity", 1)
       .transition()
-      .duration(2000)
+      .duration( Math.random() * 2000 + 1000 )
       .ease(Math.sqrt)
-      .attr("r", 100)
+      .attr("r", Math.random() * 100 + 100 )
       .style("stroke-opacity", 1e-6)
       .remove()
 
