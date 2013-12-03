@@ -30,7 +30,7 @@ var Layout = {
 
   bindKeypressesToSounds: function() {
     var bindings = {'q': 0, 'w': 1, 'e': 2, 'a': 3, 's': 4, 'd': 5, 'z': 6, 'x':7, 'c': 8}
-    $(document).on("keypress", function(e) {
+    $(document).on("keydown", function(e) {
       enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
       boundSoundID = bindings[enteredChar]
       if (boundSoundID >= 0 || boundSoundID <= 8) {
