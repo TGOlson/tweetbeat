@@ -69,8 +69,6 @@ var Layout = {
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
-        console.log(event)
-        console.log(ui)
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
         // debugger

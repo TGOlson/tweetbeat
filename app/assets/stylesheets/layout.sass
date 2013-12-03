@@ -1,5 +1,6 @@
 $white: #fff
-$darkgrey: #222
+$light-grey: #eee
+$dark-grey: #222
 $light-pale-green: #2ecc71
 $medium-pale-green: #27ae60
 $light-red: #e74c3c
@@ -26,8 +27,8 @@ $light-blue: #2980b9
 
 body
   +margin-reset
-  background-color: #eee
-  font-family: Arial, Helvetica, sans-serif
+  background-color: $light-grey
+  font-family: Electrolize
 
 a
   color: $white
@@ -43,7 +44,7 @@ a:hover
   +topic-style
 
 #fullnav
-  background-color: $darkgrey
+  background-color: $dark-grey
 
   ul
     +margin-reset
@@ -64,15 +65,13 @@ a:hover
       background-color: $white
       padding: 0 3px
       border-radius: 4px
-      color: $darkgrey
+      color: $dark-grey
       font-size: 13px
 
     input
       display: none
 
 #topics_container
-
-  font-family: Helvetica
   background-color: #dedede
 
   #topics_list
@@ -117,7 +116,7 @@ a:hover
         border-bottom: 15px solid #999
         color: #999
         position: relative
-        
+
 
         .drop_area
           position: absolute
@@ -157,10 +156,10 @@ a:hover
       border: 10px solid rgba(15, 08, 15, .2)
 
 .drop_hover
-  background-color: #eee
+  background-color: $light-grey
 
 .ui-effects-transfer
-  border: 2px dotted gray
+  border: 2px dotted $dark-grey
 
 #synthname
   font-family: Electrolize
