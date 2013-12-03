@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
   include ActionController::Live
 
   TOPICS = ["Coffee", "Tea", "DBCsleeps", "Canada", "USA",
-            "California", "Tesla", "Spring", "Summer", "Fall",
+            "California", "Tesla", "Spring", "Summer", "Autumn",
             "Winter", "Santa", "Snowman", "Moltar"]
 
   def index
