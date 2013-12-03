@@ -2,13 +2,18 @@
 
   <div class='synth'>
     <ul>
-      <li id='nav_title'><%= link_to 'TweetBeat', :root %></li>
+      <li id='nav_title'><%= link_to 'TweetBeat', root_path %></li>
     </ul>
   </div>
 
-  <div id="view_toggle">
-    <input type="radio" id="toggle_synth" name="radio" checked="checked"><label for="toggle_synth">Synth</label>
-    <input type="radio" id="toggle_visual" name="radio"><label for="toggle_visual">Visual</label>
+  <div id="toggle_view" class="slide_toggle synth_view">
+    <div id='circle_toggle'></div>
+    <div id='toggle_icon'>
+      <i class="fa fa-wrench"></i>
+      <i class="fa fa-certificate" style="display: none"></i>
+    </div>
   </div>
 
+   <!--  <input type="radio" id="toggle_synth" name="radio" checked="checked"><label for="toggle_synth">Synth</label>
+    <input type="radio" id="toggle_visual" name="radio"><label for="toggle_visual">Visual</label> -->
 </div>

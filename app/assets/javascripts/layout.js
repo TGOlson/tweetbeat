@@ -1,7 +1,6 @@
 var Layout = {
   init: function(){
-    $('#toggle_synth').on('click', this.toggleSynth)
-    $('#toggle_visual').on('click', this.toggleVisual)
+    $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
@@ -53,16 +52,28 @@ var Layout = {
     })
   },
 
-  toggleSynth: function(){
-    $('.synth').show()
-    $('body').css('background-color', '#fff')
-    Visualizer.stop()
+  toggleView: function(){
+    $('#toggle_icon').find('i').toggle()
+    $('.synth').toggle()
+    $('body').toggleClass('visual')
+
+    if( $('#toggle_view').hasClass('synth_view') ) {
+      Layout.showVisual()
+    } else { Layout.showSynth() }
+
+    $('#toggle_view').toggleClass('synth_view')
   },
 
-  toggleVisual: function(){
-    $('.synth').hide()
-    $('body').css('background-color', '#222')
+  showVisual: function(){
+    $('#circle_toggle').animate({ left: '25px' }, 100)
+    $('#toggle_icon').animate({ left: '5px' }, 100)
     Visualizer.start()
+  },
+
+  showSynth: function(){
+    $('#circle_toggle').animate({ left: '0px' }, 100)
+    $('#toggle_icon').animate({ left: '24px' }, 100)
+    Visualizer.stop()
   },
 
   setDropArea: function(){

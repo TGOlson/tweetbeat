@@ -1,5 +1,6 @@
 $white: #fff
-$darkgrey: #222
+$light-grey: #eee
+$dark-grey: #222
 $light-pale-green: #2ecc71
 $medium-pale-green: #27ae60
 $light-red: #e74c3c
@@ -24,13 +25,46 @@ $light-blue: #2980b9
   color: #222
   width: 160px
 
+=toggle-style
+  position: absolute
+  right: 8px
+  top: 5px
+  width: 40px
+  height: 20px
+  background-color: #ccc
+  padding: 0 3px
+  border-radius: 99px
+  border: 2px solid $white
+  color: #999
+  font-size: 13px
+
+  #circle_toggle
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #555
+    border-radius: 99px
+    width: 20px
+    height: 20px
+    z-index: 97
+
+  #toggle_icon
+    position: absolute
+    left: 24px
+    top: 2px
+    font-size: 17px
+    color: $light-grey
+
 body
   +margin-reset
-  background-color: #eee
-  font-family: Arial, Helvetica, sans-serif
+  background-color: $light-grey
+  font-family: Electrolize
+
+body.visual
+  background-color: $dark-grey
 
 a
-  color: $white
+  color: $dark-grey
   text-decoration: none
 
 a:hover
@@ -42,8 +76,11 @@ a:hover
 .topic
   +topic-style
 
+.slide_toggle
+  +toggle-style
+
 #fullnav
-  background-color: $darkgrey
+  background-color: $light-grey
 
   ul
     +margin-reset
@@ -52,27 +89,11 @@ a:hover
       +inline-list
 
     #nav_title
-      margin: 10px 10px 5px 10px
+      margin: 15px 10px 5px 10px
 
-  #view_toggle
-    position: absolute
-    right: 8px
-    top: 8px
 
-    label
-      width: 100px
-      background-color: $white
-      padding: 0 3px
-      border-radius: 4px
-      color: $darkgrey
-      font-size: 13px
-
-    input
-      display: none
 
 #topics_container
-
-  font-family: Helvetica
   background-color: #dedede
 
   #topics_list
@@ -117,7 +138,7 @@ a:hover
         border-bottom: 15px solid #999
         color: #999
         position: relative
-        
+
 
         .drop_area
           position: absolute
@@ -157,10 +178,10 @@ a:hover
       border: 10px solid rgba(15, 08, 15, .2)
 
 .drop_hover
-  background-color: #eee
+  background-color: $light-grey
 
 .ui-effects-transfer
-  border: 2px dotted gray
+  border: 2px dotted $dark-grey
 
 #synthname
   font-family: Electrolize
