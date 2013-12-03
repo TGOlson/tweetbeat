@@ -8,7 +8,8 @@ class TweetsController < ApplicationController
 
   def index
     @topics = TOPICS
-    @key_bindings = {0 => 'q', 1 => 'w', 2 => 'e', 3 => 'a', 4 => 's', 5 => 'd', 6 => 'z',7 => 'x', 8 => 'c'}
+    @bindings_and_names = [['q', 'SYNTH1'], ['w', 'SYNTH2'], ['e', 'SYNTH3'], ['a', 'BASS1'], ['s', 'BASS2'],
+                           ['d', 'BASS3'], ['z', 'KICK1'], ['x', 'KICK2'], ['c', 'PERC3']]
   end
 
   def stream
