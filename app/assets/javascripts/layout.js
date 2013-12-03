@@ -127,7 +127,7 @@ var Layout = {
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
-      color: '#e5813e',
+      color: '#e0490b',
       borderBottomColor: '#5c5c5c',
       borderTopColor: '#3f3f3f',
       backgroundColor: '#a0a0a0'
