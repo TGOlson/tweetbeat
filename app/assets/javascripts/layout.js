@@ -73,8 +73,7 @@ var Layout = {
         var keyword = ui.helper
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
 
-        $(this).find('div').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-        $(this).find('.drop_area')
+        $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
           .addClass('keyword_dropped').hide().fadeIn()
           .css('top', 60).css('left', 0)
         var soundID = event.target.id
