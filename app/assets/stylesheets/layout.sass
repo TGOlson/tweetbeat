@@ -31,7 +31,7 @@ body
   font-family: Electrolize
 
 a
-  color: $white
+  color: $dark-grey
   text-decoration: none
 
 a:hover
@@ -44,7 +44,7 @@ a:hover
   +topic-style
 
 #fullnav
-  background-color: $dark-grey
+  background-color: $light-grey
 
   ul
     +margin-reset
@@ -53,29 +53,36 @@ a:hover
       +inline-list
 
     #nav_title
-      margin: 10px 10px 5px 10px
+      margin: 15px 10px 5px 10px
 
   .toggle_view
     position: absolute
     right: 8px
     top: 5px
-    width: 35px
-    height: 16px
-    background-color: $light-grey
+    width: 40px
+    height: 20px
+    background-color: #ccc
     padding: 0 3px
     border-radius: 99px
-    border: 2px solid $light-grey
-    color: $dark-grey
+    border: 2px solid $white
+    color: #999
     font-size: 13px
 
     #circle_toggle
       position: absolute
       left: 0
       top: 0
-      background-color: $dark-grey
+      background-color: #555
       border-radius: 99px
-      width: 16px
-      height: 16px
+      width: 20px
+      height: 20px
+
+    #toggle_icon
+      position: absolute
+      left: 24px
+      top: 2px
+      font-size: 17px
+      color: $light-grey
 
 #topics_container
   background-color: #dedede

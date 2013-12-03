@@ -62,16 +62,16 @@ var Layout = {
   },
 
   showVisual: function(){
-    $('.synth').fadeOut(10, function(){
-      $('body').animate({ backgroundColor: '#222'}, 200)
-    })
+    $('.synth').hide()
+    $('body').css('background-color', '#222')
+    $('#circle_toggle').animate({ left: '25px' }, 200)
     Visualizer.start()
   },
 
   showSynth: function(){
-    $('body').animate({ backgroundColor: '#eee'}, 200, function(){
-      $('.synth').fadeIn(10)
-    })
+    $('.synth').show()
+    $('body').css('background-color', '#eee')
+    $('#circle_toggle').animate({ left: '0px' }, 200)
     Visualizer.stop()
   },
 
