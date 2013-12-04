@@ -1,13 +1,7 @@
 <div id='topics_container'>
   <ul id='topics_list' class='connected'>
     <% topics.each_with_index do |topic, index| %>
-    <li class='topic' id="<%= index %>"><%= topic %>
-      <span class='ellipsis'>
-        <i class="fa fa-ellipsis-v"></i>
-        <i class="fa fa-ellipsis-v"></i>
-        <i class="fa fa-ellipsis-v"></i>
-      </span>
-    </li>
+    <li class='topic' id="<%= index %>"><%= topic %></li>
     <% end %>
   </ul>
 </div>

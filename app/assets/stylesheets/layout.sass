@@ -1,18 +1,7 @@
-$white: #fff
 $light-grey: #eee
 $dark-grey: #222
-$light-pale-green: #2ecc71
-$medium-pale-green: #27ae60
-$light-red: #e74c3c
-$light-blue: #2980b9
-
-$very-light-gray: #ededed
-$light-gray: #adadad
-$mid-gray: #949494
-$deep-gray: #5c5c5c
-$charcoal: #4f4f4f
-$mid-deep-charcoal: #3f3f3f
-$deep-charcoal: #2f2f2f
+$red: #e74c3c
+$dark-red: #c0392b
 
 =margin-reset
   margin: 0px
@@ -21,17 +10,6 @@ $deep-charcoal: #2f2f2f
 =inline-list
   display: inline-block
   list-style: none
-
-=topic-style
-  margin: 4px
-  border-radius: 4px
-  background-color: rgba(127, 140, 141,.5)
-  text-align: center
-  z-index: 99
-  cursor: move
-  font-size: 16px
-  color: #fff
-  width: 160px
 
 =toggle-style
   position: absolute
@@ -61,7 +39,7 @@ $deep-charcoal: #2f2f2f
     left: 24px
     top: 2px
     font-size: 17px
-    color: $light-gray
+    color: $light-grey
 
 body
   +margin-reset
@@ -71,18 +49,22 @@ body
 body.visual
   background-color: $dark-grey
 
-a
-  color: $dark-grey
-  text-decoration: none
-
-a:hover
-  text-decoration: underline
-
 .hidden
   display: none
 
 .topic
-  +topic-style
+  margin: 4px
+  border-radius: 4px
+  background-color: rgba(127, 140, 141,.5)
+  text-align: center
+  z-index: 99
+  cursor: move
+  font-size: 16px
+  color: #fff
+  width: 160px
+
+.topic:hover
+  background-color: rgba(170, 170, 170,.5)
 
 .slide_toggle
   +toggle-style
@@ -103,13 +85,14 @@ a:hover
         color: #fff
 
 .synth
-  width: 1600px
+  width: 1240px
   margin: 100px auto
 
 #topics_container
   background-color: #eee
   padding: 5px 0
   position: absolute
+  margin: 20px 0 0 0
 
   #topics_list
     width: 80%
@@ -118,40 +101,32 @@ a:hover
 
     .topic
       list-style: none
-      +topic-style
       padding: 8px 0
       position: relative
-
-      .ellipsis
-        position: absolute
-        margin-top: 1px
-        right: 7px
-        color: rgba(255, 240, 241, 1)
-        // text-shadow: 1px 1px rgba(236, 240, 241,1)
 
 #top-line
   position: absolute
   height: 10px
   background-color: #1abc9c
   border: 0 none
-  width: 890px
-  left: 30px
-  top: 65px
+  width: 670px
+  left: 25px
+  top: 55px
 
 #moltar
   +margin-reset
   position: absolute
   top: 15px
   right: 35px
-  font-size: 65px
+  font-size: 55px
   color: darken(#c0392b, 20%)
   text-shadow: 0 1px 1px lighten(#c0392b, 50%)
 
 #synth_container
-  width: 950px
-  height: 690px
+  width: 720px
+  height: 520px
   margin: 50px auto 0
-  padding-top: 90px
+  padding-top: 80px
   position: relative
   background: #e74c3c
   border-right: 30px solid #c0392b
@@ -159,18 +134,22 @@ a:hover
 
   #synth_pads
     position: absolute
-    width: 670px
+    width: 500px
     padding: 10px
     border-right: 2px solid #1abc9c
 
     ul
       +margin-reset
 
+
+      .drop_hover
+        background-color: lighten(#eee, 5%)
+
       li
         +inline-list
-        margin: 20px
-        width: 150px
-        height: 150px
+        margin: 15px
+        width: 110px
+        height: 110px
         background-color: #eee
         border: 10px solid #bdc3c7
         border-bottom: 10px solid #95a5a6
@@ -179,75 +158,81 @@ a:hover
 
         .drop_area
           position: absolute
-          top: 60px
+          top: 20px
           text-align: center
-          line-height: 34px
-          font-size: 27px
+          line-height: 32px
+          font-size: 18px
           cursor: move
 
-        .letter_display
-          position: absolute
-          font-size: 150%
-          top: 5%
-          left: 10%
-
         .keyword_dropped
-          width: 150px
+          width: 110px
           z-index: 98
 
           .close
             float: left
             margin-left: 7px
 
+        .letter_display
+          position: absolute
+          font-size: 150%
+          top: 5%
+          left: 10%
+          color: #ddd
+
+        #synthname
+          font-family: Electrolize
+          color: #ccc
+          position: absolute
+          font-size: 12px
+          bottom: 0
+          left: 3px
+
   #synth_controls
     position: absolute
-    top: 165px
+    top: 170px
     right: 20px
 
     #slider-vertical
-      height: 200px
+      height: 150px
       width: 12px
       margin: auto
+
     #xy
       cursor: url("/assets/glow2.png"), auto
-      margin-top: 60px
-      height: 200px
-      width: 200px
+      margin-top: 50px
+      height: 150px
+      width: 150px
       border: 7px  solid #5c5c5c
       border-radius: 10px
       background: url("/assets/xybackground.png")
       background-size: contain
 
-.drop_hover
-  background-color: $light-grey
+    .filter-toggle
+      position: absolute
+      left: 54px
+      bottom: -30px
+      border-radius: 5px
+      border: 1px solid #5c5c5c
+      background: #adadad
+      font-family: Electrolize
+      color: rgba(15, 08, 15, .6)
+
+#about_section
+  position: absolute
+  right: 15px
+  bottom: 15px
+  font-family: 'Rochester', cursive
+  font-size: 80px
+  color: #ccc
+  +margin-reset
+
+  p
+    +margin-reset
 
 .ui-effects-transfer
   border: 2px dotted $dark-grey
 
-#synthname
-  font-family: Electrolize
-  color: #ccc
-  position: absolute
-  font-size: 15px
-  bottom: 0
-  left: 3px
 
-.letter_display
-  color: #ddd
-
-#filter-button
-  position: absolute
-  right: 0
-
-.filter-toggle
-  position: absolute
-  left: 0
-  bottom: 220px
-  border-radius: 5px
-  border: 1px solid #5c5c5c
-  background: #adadad
-  font-family: Electrolize
-  color: rgba(15, 08, 15, .6)
 
 .filter-toggle:focus
   outline: none
