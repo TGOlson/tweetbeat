@@ -168,11 +168,10 @@ var Layout = {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
-
+      value: 60
     })
     $('#slider-vertical').slider({
-      slide: function(event,ui) {
+      change: function(event,ui) {
         Layout.setVolume(ui.value) }
     })
   },
