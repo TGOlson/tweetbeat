@@ -8,6 +8,6 @@ var App = {
     initializeAudio() // comment out for app tests -- should stub
     Scrolling.init()
     Topics.init()
-    // Stream.init()
+    Stream.init()
   }
 }
