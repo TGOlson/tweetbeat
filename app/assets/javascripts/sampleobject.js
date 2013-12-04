@@ -1,7 +1,7 @@
 var context
 var sampleLibrary = [["audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
-                      "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
-                      "audio/correctimundo.mp3","audio/whats_the_matter.mp3"]]
+"audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
+"audio/correctimundo.mp3","audio/whats_the_matter.mp3"]]
 var sampleBuffers = new Array ()
 var masterGain
 var filter
@@ -77,28 +77,34 @@ function initializeFilter(){
   filter.on = false
 }
 
- function initializeGain(){
+function initializeGain(){
   masterGain = context.createGain()
   masterGain.gain.value = 1
- }
+}
 
- function connectNodes(){
+function connectNodes(){
   filter.connect(masterGain)
   masterGain.connect(context.destination)
- }
-
- function bufferSamples(){
-  for (lib=0; lib<sampleLibrary.length; lib++)
-    for (index=0; index<sampleLibrary[lib].length; index++)
-      loadSample(sampleLibrary[lib][index],lib, index)
- }
-
-function initializeAudio(){
-  window.AudioContext = window.AudioContext || window.webkitAudioContext
-  context = new AudioContext()
-  currentLibrary = 0
-  initializeFilter()
-  initializeGain()
-  audioConstants = initializeConstants()
-  bufferSamples()
 }
+
+function bufferSamples(){
+  for (lib=0; lib<sampleLibrary.length; lib++){
+    sampleBuffers[lib] = new Array()
+    for (index=0; index<sampleLibrary[lib].length; index++){
+      console.log("index = " + index)
+      console.log("sample is " + sampleLibrary[lib][index])
+      loadSample(sampleLibrary[lib][index],lib, index)
+    }  
+  }
+}
+
+  function initializeAudio(){
+    window.AudioContext = window.AudioContext || window.webkitAudioContext
+    context = new AudioContext()
+    currentLibrary = 0
+    audioConstants = initializeConstants()
+    initializeFilter()
+    initializeGain()
+    connectNodes()
+    bufferSamples()
+  }
