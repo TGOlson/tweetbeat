@@ -2,15 +2,8 @@ var Layout = {
   init: function(){
     $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
-    $('#xy').on("mousemove", function(move){
-      var position = Layout.getCanvasPos(this, move)
-      changeFrequency(position.x)
-      changeQ(position.y)
-    })
-    $('.filter-toggle').on("click", function(){
-      toggleFilter()
-      $(this).toggleClass("filter-on")
-    })
+    $('#xy').on("mousemove", this.xyPadPostition)
+    $('.filter-toggle').on("click", this.filterToggleButton)
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
@@ -158,6 +151,16 @@ var Layout = {
     })
   },
 
+  xyPadPostition: function(e){
+      var position = Layout.getCanvasPos(this, e)
+      changeFrequency(position.x)
+      changeQ(position.y)
+  },
+
+  filterToggleButton: function(){
+    toggleFilter()
+    $('.filter-toggle').toggleClass("filter-on")
+  },
 
   setSliderStyle: function(){
     $( "#slider-vertical" ).slider({
