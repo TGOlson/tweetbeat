@@ -11,36 +11,6 @@ $dark-red: #c0392b
   display: inline-block
   list-style: none
 
-=toggle-style
-  position: absolute
-  right: 8px
-  top: 5px
-  width: 40px
-  height: 20px
-  background-color: #ddd
-  padding: 0 3px
-  border-radius: 99px
-  border: 2px solid #eee
-  color: #999
-  font-size: 13px
-
-  #circle_toggle
-    position: absolute
-    left: 0
-    top: 0
-    background-color: #999
-    border-radius: 99px
-    width: 20px
-    height: 20px
-    z-index: 97
-
-  #toggle_icon
-    position: absolute
-    left: 24px
-    top: 2px
-    font-size: 17px
-    color: $light-grey
-
 body
   +margin-reset
   background-color: #eee
@@ -67,7 +37,34 @@ body.visual
   background-color: rgba(170, 170, 170,.5)
 
 .slide_toggle
-  +toggle-style
+  position: absolute
+  right: 15px
+  top: 15px
+  width: 50px
+  height: 25px
+  background-color: #eee
+  padding: 0 3px
+  border-radius: 99px
+  border: 2px solid #ccc
+  color: #999
+  font-size: 13px
+
+  #circle_toggle
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #999
+    border-radius: 99px
+    width: 25px
+    height: 25px
+    z-index: 97
+
+  #toggle_icon
+    position: absolute
+    left: 30px
+    top: 3px
+    font-size: 22px
+    color: #bbb
 
 #fullnav
   background-color: #e74c3c
@@ -220,9 +217,13 @@ body.visual
       font-family: Electrolize
       color: rgba(15, 08, 15, .6)
 
+    .filter-on
+      background: rgba(254,65,65,.8)
+
 #about_section
-  position: absolute
-  right: 15px
+  position: fixed
+  text-align: right
+  right: 20px
   bottom: 15px
   font-family: 'Rochester', cursive
   font-size: 80px
