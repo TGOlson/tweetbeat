@@ -22,19 +22,3 @@ describe('app', function(){
 
 
 })
-
-    // spyOn(Scrolling, 'init')
-    // spyOn(Topics, 'init')
-    // spyOn(Stream, 'init')
-    // expect( Scrolling.init ).toHaveBeenCalled()
-    // expect( Topics.init ).toHaveBeenCalled()
-    // expect( Stream.init ).toHaveBeenCalled()
-// describe('init', function(){
-//   it('should initialize event listeners', function(){
-//     spyOn(Layout, 'setDropArea')
-//       // spyOn($.fn, "click")
-//       Layout.init()
-//       expect( Layout.setDropArea ).toHaveBeenCalled()
-//       // expect( $.fn.click ).toHaveBeenCalled()
-//     })
-// })
