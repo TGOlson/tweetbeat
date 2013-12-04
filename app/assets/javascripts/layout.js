@@ -5,15 +5,8 @@ var Layout = {
              'z': 6, 'x': 7, 'c': 8},
 
   init: function(){
-    this.applyEventHandlers()
     this.callHelperFunctions()
-  },
-
-  applyEventHandlers: function(){
-    $('#toggle_view').on('click', this.toggleView)
-    $('.topic').draggable({ revert: "invalid" })
-    $('#xy').on("mousemove", this.xyPadPostition)
-    $('.filter-toggle').on("click", this.filterToggleButton)
+    this.applyEventHandlers()
   },
 
   callHelperFunctions: function(){
@@ -24,23 +17,17 @@ var Layout = {
     this.setSliderStyle()
   },
 
-  getCanvasPos: function(canvas,move){
-    var rect = canvas.getBoundingClientRect()
-    return{
-      x: move.clientX - rect.left,
-      y: (move.clientY - rect.top) * (-1) + (150)
-    }
+  applyEventHandlers: function(){
+    $('.topic').draggable({ revert: "invalid" })
+    $('#toggle_view').on('click', this.toggleView)
+    $('#xy').on("mousemove", this.xyPadPostition)
+    $('.filter-toggle').on("click", this.filterToggleButton)
   },
 
   bindClicksToSounds: function() {
     $('#synth_pads').on("click", 'li', function(e) {
-        Layout.invokeHitAction(e.target.id)
+      Layout.invokeHitAction(e.target.id)
     })
-  },
-
-  invokeHitAction: function(element){
-    playSample(element)
-    Layout.flashColor(element)
   },
 
   bindKeypressesToSounds: function() {
@@ -59,6 +46,49 @@ var Layout = {
         $('.ctrl_bound').toggleClass('hidden')
       }
     })
+  },
+
+  setDropArea: function(){
+    $('#synth_pads li').droppable({
+      hoverClass: "drop_hover",
+      drop: function( event, ui ) {
+
+        var keywordID = $(this).contents('div').last().attr('id')
+        if (keywordID >= 0) {
+          Stream.removeBoundKeywordFromSound(keywordID)
+        }
+        var keyword = ui.helper
+
+        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
+        $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+        .addClass('keyword_dropped').hide().fadeIn()
+        .css('top', 40).css('left', 0)
+
+        $(this).find('.drop_area')[0].id  = keyword[0].id
+        var soundID = event.target.id
+        var keywordID = keyword[0].id
+        Stream.bindKeywordToSound(keywordID, soundID)
+      }
+    })
+  },
+
+  setSliderStyle: function(){
+    $( "#slider-vertical" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60
+    })
+    $('#slider-vertical').slider({
+      change: function(event,ui) {
+        Layout.setVolume(ui.value) }
+      })
+  },
+
+  invokeHitAction: function(element){
+    playSample(element)
+    Layout.flashColor(element)
   },
 
   toggleView: function(){
@@ -85,30 +115,6 @@ var Layout = {
     Visualizer.stop()
   },
 
-  setDropArea: function(){
-    $('#synth_pads li').droppable({
-      hoverClass: "drop_hover",
-      drop: function( event, ui ) {
-
-        var keywordID = $(this).contents('div').last().attr('id')
-        if (keywordID >= 0) {
-          Stream.removeBoundKeywordFromSound(keywordID)
-        }
-        var keyword = ui.helper
-
-        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
-        $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-          .addClass('keyword_dropped').hide().fadeIn()
-          .css('top', 40).css('left', 0)
-
-        $(this).find('.drop_area')[0].id  = keyword[0].id
-        var soundID = event.target.id
-        var keywordID = keyword[0].id
-        Stream.bindKeywordToSound(keywordID, soundID)
-      }
-    })
-  },
-
 
   landKeywordOnPad: function(soundID){
     var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
@@ -117,11 +123,11 @@ var Layout = {
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
-      .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound(e.target.id)
-        Layout.addTopicStyle(e)
-      })
-      .on('mouseup', Layout.removeTopicStyle)
+    .on('mousedown', function(e) {
+      Stream.removeBoundKeywordFromSound(e.target.id)
+      Layout.addTopicStyle(e)
+    })
+    .on('mouseup', Layout.removeTopicStyle)
   },
 
   addTopicStyle: function(e){
@@ -151,28 +157,22 @@ var Layout = {
   },
 
   xyPadPostition: function(e){
-      var position = Layout.getCanvasPos(this, e)
-      changeFrequency(position.x)
-      changeQ(position.y)
+    var position = Layout.getCanvasPos(this, e)
+    changeFrequency(position.x)
+    changeQ(position.y)
+  },
+
+  getCanvasPos: function(canvas,move){
+    var rect = canvas.getBoundingClientRect()
+    return{
+      x: move.clientX - rect.left,
+      y: (move.clientY - rect.top) * (-1) + (150)
+    }
   },
 
   filterToggleButton: function(){
     toggleFilter()
     $('.filter-toggle').toggleClass("filter-on")
-  },
-
-  setSliderStyle: function(){
-    $( "#slider-vertical" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 60
-    })
-    $('#slider-vertical').slider({
-      change: function(event,ui) {
-        Layout.setVolume(ui.value) }
-    })
   },
 
   setVolume: function(volume){
