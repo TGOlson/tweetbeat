@@ -8,9 +8,11 @@ var Layout = {
       changeFrequency(position.x)
       changeQ(position.y)
     })
-    $('#filter-toggle').on("click", function(){
+    $('.filter-toggle').on("click", function(){
       toggleFilter()
+      $(this).toggleClass("filter-on")
     })
+
 
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
