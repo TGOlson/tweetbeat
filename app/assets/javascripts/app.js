@@ -1,15 +1,13 @@
 $(function() {
-
   App.init()
-
 })
 
 var App = {
   init: function() {
-    Topics.init()
-    Stream.init()
     Layout.init()
-    initializeAudio()
+    // initializeAudio() // comment out for app tests -- should stub
     Scrolling.init()
+    Topics.init()
+    // Stream.init()
   }
 }

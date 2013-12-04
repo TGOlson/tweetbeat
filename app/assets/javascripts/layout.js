@@ -4,7 +4,6 @@ var Layout = {
     $('.topic').draggable({ revert: "invalid" })
     $('#xy').on("mousemove", function(move){
       var position = Layout.getCanvasPos(this, move)
-      console.log("X = " + position.x + " Y = " + position.y)
       changeFrequency(position.x)
       changeQ(position.y)
     })
@@ -12,8 +11,6 @@ var Layout = {
       toggleFilter()
       $(this).toggleClass("filter-on")
     })
-
-
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
@@ -25,7 +22,7 @@ var Layout = {
     var rect = canvas.getBoundingClientRect()
     return{
       x: move.clientX - rect.left,
-      y: (move.clientY - rect.top) * (-1) + (200)
+      y: (move.clientY - rect.top) * (-1) + (150)
     }
   },
 
@@ -168,11 +165,10 @@ var Layout = {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
-
+      value: 60
     })
     $('#slider-vertical').slider({
-      slide: function(event,ui) {
+      change: function(event,ui) {
         Layout.setVolume(ui.value) }
     })
   },
