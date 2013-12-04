@@ -1,4 +1,9 @@
 var Layout = {
+
+  bindings: {'q': 0, 'w': 1, 'e': 2,
+             'a': 3, 's': 4, 'd': 5,
+             'z': 6, 'x': 7, 'c': 8},
+
   init: function(){
     this.applyEventHandlers()
     this.callHelperFunctions()
@@ -29,20 +34,15 @@ var Layout = {
 
   bindClicksToSounds: function() {
     $('#synth_pads').on("click", 'li', function(e) {
-        Layout.invokeHitAction(e.target.id)
+      playSample(e.target.id)
+      Layout.flashColor(e.target.id)
     })
   },
 
-  invokeHitAction: function(element){
-    playSample(element)
-    Layout.flashColor(element)
-  },
-
   bindKeypressesToSounds: function() {
-    var bindings = {'q': 0, 'w': 1, 'e': 2, 'a': 3, 's': 4, 'd': 5, 'z': 6, 'x':7, 'c': 8}
     $(document).on("keydown", function(e) {
       enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
-      boundSoundID = bindings[enteredChar]
+      boundSoundID = Layout.bindings[enteredChar]
       if (boundSoundID >= 0 || boundSoundID <= 8) {
         playSample(boundSoundID)
         Layout.flashColor(boundSoundID)
