@@ -14,11 +14,11 @@ describe('app', function(){
     App.init()
     expect( Topics.init ).toHaveBeenCalled()
   })
-  it('should initialize stream', function(){
-    spyOn(Stream, 'init')
-    App.init()
-    expect( Stream.init ).toHaveBeenCalled()
-  })
+  // it('should initialize stream', function(){
+  //   spyOn(Stream, 'init')
+  //   App.init()
+  //   expect( Stream.init ).toHaveBeenCalled()
+  // })
 
 
 })
