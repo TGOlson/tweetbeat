@@ -43,16 +43,18 @@ function loadSample(sampleURL, index){
 function initializeConstants(){
   return {
     nyquist: context.sampleRate * 0.5,
-    noctaves: Math.log(context.sampleRate / 20) / Math.LN2,
-    qmult: 3/20
+    noctaves: Math.log(context.sampleRate / 15) / Math.LN2,
+    qmult: 3/15
   }
 }
 
 
 
 function changeFrequency(x){
-  var powerOfTwo = constants.noctaves * (x/200 - 1)
+  var powerOfTwo = constants.noctaves * (x/150 - 1)
   filter.frequency.value = Math.pow(2, powerOfTwo) * constants.nyquist
+  console.log(filter.frequency.value)
+  console.log (constants)
 }
 
 function changeQ(y){
