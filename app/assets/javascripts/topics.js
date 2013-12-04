@@ -21,7 +21,7 @@ var Topics = {
     }
     for (var i = 0; i < maxLoopLength; i++) {
       $(topicHolders[i]).removeClass('hidden')
-      $(topicHolders[i]).append("<li class='topic' id=" + (startIndex + i) + ">" + Topics.list[startIndex + i] + "<span class='ellipsis'><i class='fa fa-ellipsis-v'></i> <i class='fa fa-ellipsis-v'></i> <i class='fa fa-ellipsis-v'></i></span></li>")
+      $(topicHolders[i]).append("<li class='topic' id=" + (startIndex + i) + ">" + Topics.list[startIndex + i] + "</li>")
     }
     $('.topic').draggable({ revert: "invalid" })
   }

@@ -8,7 +8,7 @@ class TweetsController < ApplicationController
             "Winter", "Santa", "Snowman", "Moltar", "hurricane",
             "tornado", "earthquake", "tsunami", "blizzard",
             "Godzilla", "King Kong", "John Lennon", "Voltar",
-            "tapioca", "Star Wars"]
+            "tapioca", "Star Wars", "Xolov"]
 
   def index
     @topics = TOPICS
