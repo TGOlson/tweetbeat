@@ -28,18 +28,8 @@ var Layout = {
   },
 
   bindClicksToSounds: function() {
-    $('#synth_pads').on("click", function(e) {
-      if (e.target && e.target.nodeName == "LI") {
+    $('#synth_pads').on("click", 'li', function(e) {
         Layout.invokeHitAction(e.target.id)
-      } else if (e.target && e.target.nodeName == "DIV") {
-        var classes = e.target.className.split(" ")
-        for (var i = 0; i < classes.length; i++) {
-          if (classes[i] == "drop_area" || classes[i] == "ctrl_bound") {
-            liElement = $(e.target).closest('li')[0]
-            invokeHitAction(liElement.id)
-          }
-        }
-      }
     })
   },
 
