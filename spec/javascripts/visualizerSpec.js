@@ -1,6 +1,6 @@
 describe('visualizer', function(){
 
-  describe('visualizer properties', function(){
+  describe('properties', function(){
     it('should have a d3 color scale', function(){
       expect(Visualizer.color).toBeDefined()
       expect(Visualizer.color(1)).toEqual('#3182bd')
@@ -10,11 +10,12 @@ describe('visualizer', function(){
       expect(Visualizer.height).toBeDefined()
     })
     it('should have an svg element that defaults to null', function(){
+      expect(Visualizer.svg).toBeDefined()
       expect(Visualizer.svg).toBeNull()
     })
   })
 
-  describe('visualizer methods', function(){
+  describe('methods', function(){
 
     describe('start', function(){
       it('should set the svg canvas', function(){
@@ -26,6 +27,13 @@ describe('visualizer', function(){
         spyOn(Visualizer, 'populate')
         Visualizer.start()
         expect(Visualizer.populate).toHaveBeenCalled()
+      })
+    })
+    describe('stop', function(){
+      it('should remove all svg elements', function(){
+        spyOn( $.fn, 'remove' )
+        Visualizer.stop()
+        expect( $.fn.remove ).toHaveBeenCalled()
       })
     })
 

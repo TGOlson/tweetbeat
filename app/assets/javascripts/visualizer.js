@@ -63,10 +63,6 @@ var Visualizer = {
       .attr("transform", "translate(" + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + "," + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + ")" )
       .style("fill-opacity", 1e-6)
       .remove()
-
-    // debugger
-
-
   },
 
   appendNewCircle: function(keywordID){

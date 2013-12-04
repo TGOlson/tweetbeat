@@ -30,8 +30,10 @@ group :doc do
 end
 
 gem 'rails_12factor', :groups => [:development]
+
 group :development, :test do
   gem 'jasmine', git: 'https://my_account@github.com/pivotal/jasmine-gem'
+  gem 'jasmine-jquery-rails'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara'
