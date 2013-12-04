@@ -7,7 +7,7 @@ var sampleLibrary = [
 
 ["audio/Dminor_space_chord_root.mp3","audio/Dminor_space_chord_root+2.mp3","audio/Dminor_space_chord_root-2.mp3",
 "audio/Dminor_space_bass.mp3","audio/Dminor_space_bass_+2-1.mp3","audio/Dminor_space_bass_-2.mp3",
-"audio/Kick.mp3","audio/twinkle.mp3","audio/TwinkleDown.mp3"]
+"audio/Kick.mp3","audio/twinkle.mp3","audio/Airlock.mp3"]
 
 ]
 var sampleBuffers = new Array ()
