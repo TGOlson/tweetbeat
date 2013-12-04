@@ -92,7 +92,7 @@ var Layout = {
 
   showSynth: function(){
     $('#circle_toggle').animate({ left: '0px' }, 100)
-    $('#toggle_icon').animate({ left: '33px' }, 100)
+    $('#toggle_icon').animate({ left: '30px' }, 100)
     Visualizer.stop()
   },
 
