@@ -1458,17 +1458,58 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: #eeeeee;
-  font-family: Arial, Helvetica, sans-serif; }
+  font-family: Electrolize; }
 
-a {
+body.visual {
+  background-color: #222222; }
+
+.hidden {
+  display: none; }
+
+.topic {
+  margin: 4px;
+  border-radius: 4px;
+  background-color: rgba(127, 140, 141, 0.5);
+  text-align: center;
+  z-index: 99;
+  cursor: move;
+  font-size: 16px;
   color: white;
-  text-decoration: none; }
+  width: 160px; }
 
-a:hover {
-  text-decoration: underline; }
+.topic:hover {
+  background-color: rgba(170, 170, 170, 0.5); }
+
+.slide_toggle {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 50px;
+  height: 25px;
+  background-color: #eeeeee;
+  padding: 0 3px;
+  border-radius: 99px;
+  border: 2px solid #cccccc;
+  color: #999999;
+  font-size: 13px; }
+  .slide_toggle #circle_toggle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #999999;
+    border-radius: 99px;
+    width: 25px;
+    height: 25px;
+    z-index: 97; }
+  .slide_toggle #toggle_icon {
+    position: absolute;
+    left: 30px;
+    top: 3px;
+    font-size: 22px;
+    color: #bbbbbb; }
 
 #fullnav {
-  background-color: #222222; }
+  background-color: #e74c3c; }
   #fullnav ul {
     margin: 0px;
     padding: 0px; }
@@ -1476,92 +1517,180 @@ a:hover {
       display: inline-block;
       list-style: none; }
     #fullnav ul #nav_title {
-      margin: 10px 10px 5px 10px; }
-  #fullnav #view_toggle {
-    position: absolute;
-    right: 8px;
-    top: 8px; }
-    #fullnav #view_toggle label {
-      width: 100px;
-      background-color: white;
-      padding: 0 3px;
-      border-radius: 4px;
-      color: #222222;
-      font-size: 13px; }
-    #fullnav #view_toggle input {
-      display: none; }
+      margin: 15px 10px 5px 10px; }
+      #fullnav ul #nav_title a {
+        color: white; }
+
+.synth {
+  width: 1240px;
+  margin: 100px auto;
+  position: relative; }
 
 #topics_container {
-  font-family: Helvetica;
-  background-color: #dedede; }
+  background-color: #eeeeee;
+  top: -55px;
+  padding: 5px 0;
+  position: absolute;
+  margin: 20px 0 0 0; }
   #topics_container #topics_list {
     width: 80%;
     margin: 0 0 0 10%;
     padding: 5px 0; }
     #topics_container #topics_list .topic {
-      display: inline-block;
       list-style: none;
       padding: 8px 0;
-      width: 160px;
-      margin: 4px;
-      border-radius: 4px;
-      background-color: #2ecc71;
-      text-align: center; }
-      #topics_container #topics_list .topic .ellipsis {
-        margin-right: 7px;
-        float: right; }
-      #topics_container #topics_list .topic .fa {
-        float: right;
-        padding: 1px;
-        color: #2c3e50; }
+      position: relative; }
+
+#top-line {
+  position: absolute;
+  height: 10px;
+  background-color: #1abc9c;
+  border: 0 none;
+  width: 670px;
+  left: 25px;
+  top: 55px; }
+
+#moltar {
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 55px;
+  color: #6d2018;
+  text-shadow: 0 1px 1px #fbf0ef; }
 
 #synth_container {
-  width: 900px;
-  margin: auto; }
+  top: 5px;
+  width: 720px;
+  height: 520px;
+  margin: 50px auto 0;
+  padding-top: 80px;
+  position: relative;
+  background: #e74c3c;
+  border-right: 30px solid #c0392b;
+  border-left: 30px solid #c0392b; }
   #synth_container #synth_pads {
-    float: left;
-    width: 700px;
-    padding-top: 15%; }
+    position: absolute;
+    width: 500px;
+    padding: 10px;
+    border-right: 2px solid #1abc9c; }
     #synth_container #synth_pads ul {
       margin: 0px;
       padding: 0px; }
+      #synth_container #synth_pads ul .drop_hover {
+        background-color: #fbfbfb; }
       #synth_container #synth_pads ul li {
         display: inline-block;
         list-style: none;
-        margin: 20px;
-        width: 160px;
-        height: 160px;
-        background-color: #dddddd;
-        border: 15px solid #bbbbbb;
-        border-bottom: 15px solid #999999;
-        color: #999999; }
+        margin: 15px;
+        width: 110px;
+        height: 110px;
+        background-color: #eeeeee;
+        border: 10px solid #bdc3c7;
+        border-bottom: 10px solid #95a5a6;
+        position: relative;
+        color: #dddddd; }
         #synth_container #synth_pads ul li .drop_area {
-          margin-top: 60px;
+          position: absolute;
+          top: 20px;
           text-align: center;
-          padding: 8px 0;
-          font-size: 27px; }
+          line-height: 32px;
+          font-size: 18px;
+          cursor: move; }
         #synth_container #synth_pads ul li .keyword_dropped {
-          width: 160px; }
+          width: 110px;
+          z-index: 98; }
           #synth_container #synth_pads ul li .keyword_dropped .close {
             float: left;
             margin-left: 7px; }
+        #synth_container #synth_pads ul li .letter_display {
+          position: absolute;
+          font-size: 150%;
+          top: 5%;
+          left: 10%;
+          color: #dddddd; }
+        #synth_container #synth_pads ul li #synthname {
+          font-family: Electrolize;
+          color: #cccccc;
+          position: absolute;
+          font-size: 12px;
+          bottom: 0;
+          left: 3px; }
   #synth_container #synth_controls {
-    float: left; }
-    #synth_container #synth_controls ul {
-      padding-top: 200px;
-      margin: 0;
-      list-style: none; }
-      #synth_container #synth_controls ul li {
-        margin: 3%;
-        height: 150px;
-        width: 150px;
-        background-color: #2980b9; }
+    position: absolute;
+    top: 170px;
+    right: 20px; }
+    #synth_container #synth_controls #slider-vertical {
+      height: 150px;
+      width: 12px;
+      margin: auto; }
+    #synth_container #synth_controls #xy {
+      cursor: url("/assets/glow2.png"), auto;
+      margin-top: 50px;
+      height: 150px;
+      width: 150px;
+      border: 7px solid #5c5c5c;
+      border-radius: 10px;
+      background: url("/assets/xybackground.png");
+      background-size: contain; }
+    #synth_container #synth_controls .filter-toggle {
+      position: absolute;
+      left: 54px;
+      bottom: -30px;
+      border-radius: 5px;
+      border: 1px solid #5c5c5c;
+      background: #adadad;
+      font-family: Electrolize;
+      color: rgba(15, 8, 15, 0.6); }
+    #synth_container #synth_controls .filter-on {
+      background: rgba(254, 65, 65, 0.8); }
 
-.drop_hover {
-  background-color: #eeeeee; }
+#about_section {
+  position: fixed;
+  text-align: right;
+  right: 20px;
+  bottom: 15px;
+  font-family: "Rochester", cursive;
+  font-size: 80px;
+  color: #cccccc;
+  margin: 0px;
+  padding: 0px; }
+  #about_section p {
+    margin: 0px;
+    padding: 0px; }
 
 .ui-effects-transfer {
-  border: 2px dotted gray; }
+  border: 2px dotted #222222; }
+
+.filter-toggle:focus {
+  outline: none; }
+
+.filter-on {
+  background: rgba(254, 65, 65, 0.8); }
+
+.directional-button {
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: 70px;
+  border-left: transparent solid 30px;
+  border-right: transparent solid 30px;
+  margin: 20px 0 0 0; }
+
+#up-button {
+  top: -95px;
+  border-bottom: #34495e solid 30px; }
+
+#up-button:hover {
+  border-bottom: #1abc9c solid 30px; }
+
+#down-button {
+  top: 630px;
+  border-top: #34495e solid 30px; }
+
+#down-button:hover {
+  border-top: #1abc9c solid 30px; }
 *
 html5doctor.com Reset Stylesheet
 v1.6.1
@@ -1669,8 +1798,11 @@ rect {
   pointer-events: all; }
 
 circle {
-  fill: none;
   stroke-width: 1.5px; }
+
+text {
+  font-size: 20px;
+  width: 200px; }
 /*!
  *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

@@ -26194,30 +26194,116 @@ $.widget( "ui.tooltip", {
 }).call(this);
 $(function() {
 
-  $.get('/topics', function(data) { Topics.init(data) }) // may prove unnecessary, see var Topics
-  Layout.init()
-  Stream.init()
-  initializeAudio()
+  App.init()
+
 })
+
+var App = {
+  init: function() {
+    Topics.init()
+    // Stream.init()
+    Layout.init()
+    initializeAudio()
+    Scrolling.init()
+  }
+}
 ;
 var Layout = {
   init: function(){
-    $('#toggle_synth').on('click', this.toggleSynth)
-    $('#toggle_visual').on('click', this.toggleVisual)
+    $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
+    $('#xy').on("mousemove", function(move){
+      var position = Layout.getCanvasPos(this, move)
+      console.log("X = " + position.x + " Y = " + position.y)
+      changeFrequency(position.x)
+      changeQ(position.y)
+    })
+    $('.filter-toggle').on("click", function(){
+      toggleFilter()
+      $(this).toggleClass("filter-on")
+    })
+
+
+    this.bindClicksToSounds()
+    this.bindKeypressesToSounds()
+    this.bindControlToDisplayToggle()
     this.setDropArea()
+    this.setSliderStyle()
   },
 
-  toggleSynth: function(){
-    $('.synth').show()
-    $('body').css('background-color', '#fff')
-    Visualizer.stop()
+  getCanvasPos: function(canvas,move){
+    var rect = canvas.getBoundingClientRect()
+    return{
+      x: move.clientX - rect.left,
+      y: (move.clientY - rect.top) * (-1) + (200)
+    }
   },
 
-  toggleVisual: function(){
-    $('.synth').hide()
-    $('body').css('background-color', '#222')
+  bindClicksToSounds: function() {
+    $('#synth_pads').on("click", function(e) {
+      if (e.target && e.target.nodeName == "LI") {
+        playSample(e.target.id)
+        Layout.flashColor(e.target.id)
+      } else if (e.target && e.target.nodeName == "DIV") {
+        var classes = e.target.className.split(" ")
+        for (var i = 0; i < classes.length; i++) {
+          if (classes[i] == "drop_area" || classes[i] == "ctrl_bound") {
+            liElement = $(e.target).closest('li')[0]
+            playSample(liElement.id)
+            Layout.flashColor(liElement.id)
+          }
+        }
+      }
+    })
+  },
+
+  bindKeypressesToSounds: function() {
+    var bindings = {'q': 0, 'w': 1, 'e': 2, 'a': 3, 's': 4, 'd': 5, 'z': 6, 'x':7, 'c': 8}
+    $(document).on("keydown", function(e) {
+      enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
+      boundSoundID = bindings[enteredChar]
+      if (boundSoundID >= 0 || boundSoundID <= 8) {
+        playSample(boundSoundID)
+        Layout.flashColor(boundSoundID)
+      }
+    })
+  },
+
+  bindControlToDisplayToggle: function() {
+    $(document).on("keydown", function(e) {
+      if (e.ctrlKey) {
+        $('.ctrl_bound').removeClass('hidden')
+      }
+    })
+    $(document).on("keyup", function(e) {
+      if (e.keyCode == 17) {
+        $('.ctrl_bound').addClass('hidden')
+      }
+    })
+  },
+
+  toggleView: function(){
+    $('#toggle_icon').find('i').toggle()
+    $('.synth').toggle()
+    $('body').toggleClass('visual')
+
+    if( $('#toggle_view').hasClass('synth_view') ) {
+      Layout.showVisual()
+    } else { Layout.showSynth() }
+
+    $('#toggle_view').toggleClass('synth_view')
+  },
+
+  showVisual: function(){
+    $('#circle_toggle').animate({ left: '31px' }, 100)
+    $('#toggle_icon').animate({ left: '5px' }, 100)
     Visualizer.start()
+  },
+
+  showSynth: function(){
+    $('#circle_toggle').animate({ left: '0px' }, 100)
+    $('#toggle_icon').animate({ left: '30px' }, 100)
+    Visualizer.stop()
   },
 
   setDropArea: function(){
@@ -26225,12 +26311,18 @@ var Layout = {
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
 
+        var keywordID = $(this).contents('div').last().attr('id')
+        if (keywordID >= 0) {
+          Stream.removeBoundKeywordFromSound(keywordID)
+        }
         var keyword = ui.helper
+
         $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
+        $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+          .addClass('keyword_dropped').hide().fadeIn()
+          .css('top', 40).css('left', 0)
 
-        $(this).find('div').html(keyword.text())
-        $(this).find('div').addClass('keyword_dropped').hide().fadeIn()
-
+        $(this).find('.drop_area')[0].id  = keyword[0].id
         var soundID = event.target.id
         var keywordID = keyword[0].id
         Stream.bindKeywordToSound(keywordID, soundID)
@@ -26238,109 +26330,334 @@ var Layout = {
     })
   },
 
-  // removeDroppedKeyword: function(e){
-  //   $(e.target).closest('div').text(".").removeClass('keyword_dropped')
-  //   $(Stream.source).unbind(e.target.id)
-  // },
+
+  landKeywordOnPad: function(soundID){
+    var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
+    this.makeKeywordPadDraggable(target)
+  },
+
+  makeKeywordPadDraggable: function(target){
+    $(target).draggable({ revert: "invalid" })
+      .on('mousedown', function(e) {
+        Stream.removeBoundKeywordFromSound(e.target.id)
+        Layout.addTopicStyle(e)
+      })
+      .on('mouseup', Layout.removeTopicStyle)
+  },
+
+  addTopicStyle: function(e){
+    console.log('added topic style')
+    $(e.target).addClass('topic')
+  },
+
+  removeTopicStyle: function(e){
+    console.log('removed topic style')
+    $(e.target).removeClass('topic')
+  },
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
-      color: '#e74c3c'
-    }, 200, function() {
-      $('#synth_pads #' + soundID).animate({
-        color: '#999'
-      }, 200)
+      color: '#e74c3c',
+      borderBottomColor: '#777',
+      backgroundColor: '#ddd'
+    }, 10, function() {
+      setTimeout(function() {
+        $('#synth_pads #' + soundID).animate({
+          color: '#ddd',
+          borderBottomColor: '#95a5a6',
+          backgroundColor: '#eee'
+        }, 10)
+      }, 190)
+    })
+  },
+
+
+  setSliderStyle: function(){
+    $( "#slider-vertical" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+
+    })
+    $('#slider-vertical').slider({
+      slide: function(event,ui) {
+        Layout.setVolume(ui.value) }
+    })
+  },
+
+  setVolume: function(volume){
+    changeVolume(volume)
+  }
+}
+
+
+
+
+
+;
+var context
+var sampleLibrary = [ "audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
+                      "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
+                      "audio/correctimundo.mp3","audio/whats_the_matter.mp3"]
+
+var sampleBuffers = new Array ()
+var masterGain
+var filter
+var Qmult = 30
+
+function playSample(index){
+  var source = context.createBufferSource()
+  source.buffer = sampleBuffers[index]
+  filter.on ? source.connect(filter):source.connect(masterGain)
+  source.noteOn
+  source.start(0)
+}
+
+function changeVolume(volume){
+  console.log(volume)
+  masterGain.gain.value = (volume / 100) * (volume / 100)
+  console.log(masterGain.gain.value)
+}
+
+function loadSample(sampleURL, index){
+  var request = new XMLHttpRequest()
+  request.open("GET", sampleURL, true)
+  request.responseType = "arraybuffer"
+
+  request.onload = function(){
+    context.decodeAudioData(request.response, function(buffer){
+      sampleBuffers[index] = buffer
+    }, onerror)
+  }
+
+  request.onerror = function(){
+    alert("BufferLoader : XHR error")
+  }
+  request.send()
+
+}
+
+function changeFrequency(x){
+  xx = (x/2)/100
+  var value = xx;
+  var nyquist = context.sampleRate * 0.5;
+  var noctaves = Math.log(nyquist / 10.0) / Math.LN2;
+  var v2 = Math.pow(2.0, noctaves * (value - 1.0));
+  var cutoff = v2*nyquist;
+  filter.frequency.value = cutoff
+}
+
+function changeQ(y){
+  yy = (y/2)/100
+  filter.Q.value = yy * Qmult
+  console.log(filter.Q.value)
+}
+
+function toggleFilter(){
+  filter.on ? filter.on = false : filter.on = true
+  console.log(filter.on)
+
+}
+
+function initializeAudio(){
+  window.AudioContext = window.AudioContext || window.webkitAudioContext
+  context = new AudioContext()
+  filter = context.createBiquadFilter()
+  filter.type = 0
+  filter.frequency.value = 20000
+  filter.on = false
+  masterGain = context.createGain()
+  masterGain.gain.value = 1
+  filter.connect(masterGain)
+  masterGain.connect(context.destination)
+  for (index=0; index<sampleLibrary.length; index++)
+    loadSample(sampleLibrary[index],index)
+}
+;
+  // var sampleLibrary = [ "audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
+  //                       "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
+  //                       "audio/correctimundo.mp3","audio/whats_the_matter.mp3"]
+  // var context
+  // var masterGain
+
+
+  // function playSample(index){
+  //   var audio = new Audio()
+  //   audio.src = sampleLibrary[index]
+  //   audio.output = context.createMediaElementSource(audio)
+  //   audio.output.connect(masterGain)
+  //   audio.play()
+  // }
+
+
+  // function initializeAudio(){
+  //   window.AudioContext = window.AudioContext || window.webkitAudioContext
+  //   context = new AudioContext()
+  //   masterGain = context.createGain()
+  //   masterGain.gain.value = 1
+  //   masterGain.connect(context.destination)
+  // }
+;
+var Scrolling = {
+  firstTopicIndex: 0,
+  init: function() {
+    $('#up-button').on("click", function() {
+      Scrolling.firstTopicIndex -= Topics.eachPageListingLength
+      if (Scrolling.firstTopicIndex >= 0) {
+        Topics.rewriteListings(Scrolling.firstTopicIndex)
+      } else {
+        Scrolling.firstTopicIndex += Topics.eachPageListingLength
+      }
+    })
+    $('#down-button').on("click", function() {
+      Scrolling.firstTopicIndex += Topics.eachPageListingLength
+      if (Scrolling.firstTopicIndex <= Topics.list.length - 1) {
+        Topics.rewriteListings(Scrolling.firstTopicIndex)
+      } else {
+        Scrolling.firstTopicIndex -= Topics.eachPageListingLength
+      }
     })
   }
 }
 ;
-  var sampleLibrary = [ "audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
-                        "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
-                        "audio/correctimundo.mp3","audio/whats_the_matter.mp3"]
-  var context
-  var masterGain
-
-
-  function playSample(index){
-    var audio = new Audio()
-    audio.src = sampleLibrary[index]
-    audio.output = context.createMediaElementSource(audio)
-    audio.output.connect(masterGain)
-    audio.play()
-  }
-
-
-  function initializeAudio(){
-    window.AudioContext = window.AudioContext || window.webkitAudioContext
-    context = new AudioContext()
-    masterGain = context.createGain()
-    masterGain.gain.value = 1
-    masterGain.connect(context.destination)
-  }
-;
-var Topics = { // may not need this at all; as long as we get topic id as 'event' tag from SSE and get same id from the draggable table elements, no need
-  list: null,
-  init: function(data) {
-    Topics.list = data
-  }
-}
-
 var Stream = {
   source: null,
   init: function() {
     Stream.source = new EventSource('/stream')
   },
   bindKeywordToSound: function(keywordID, soundID) {
-    console.log('bindKeywordToSound called on keywordID', keywordID, "and soundID", soundID)
+    Layout.landKeywordOnPad(soundID)
     $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
-      tweetContent = JSON.parse(e.originalEvent.data)["content"] // mainly for debugging
-      console.log(tweetContent) // mainly for debugging
+      tweetContent = JSON.parse(e.originalEvent.data)["content"]
+      console.log(tweetContent)
     })
+  },
+  removeBoundKeywordFromSound: function(keywordID) {
+    $(Stream.source).unbind(keywordID)
   }
 }
 
 
 ;
+var Topics = {
+  list: null,
+  eachPageListingLength: 18,
+  init: function() {
+    $.get('/topics', function(data) {
+    Topics.list = data
+    })
+  },
+  rewriteListings: function(startIndex) {
+    startIndex = parseInt(startIndex, 10)
+    topicHolders = $('.deletable')
+    topicsLeft = Topics.list.length - startIndex
+    if (topicsLeft < Topics.eachPageListingLength) {
+      var maxLoopLength = topicsLeft
+    } else {
+      var maxLoopLength = Topics.eachPageListingLength
+    }
+    for (var i = 0; i < Topics.eachPageListingLength; i++) {
+      $(topicHolders[i]).html("")
+      $(topicHolders[i]).addClass('hidden')
+    }
+    for (var i = 0; i < maxLoopLength; i++) {
+      $(topicHolders[i]).removeClass('hidden')
+      $(topicHolders[i]).append("<li class='topic' id=" + (startIndex + i) + ">" + Topics.list[startIndex + i] + "</li>")
+    }
+    $('.topic').draggable({ revert: "invalid" })
+  }
+}
+;
 var Visualizer = {
+
+  color: d3.scale.category20c(),
+  width: $(window).width() - 5,
+  height: $(window).height() - 5,
+  svg: null,
+
   start: function(){
+    this.setSvgCanvas()
+    this.populate()
+    $('svg').on('click', 'circle', this.keywordClickEvent)
+  },
 
-    var width = $(window).width() - 5
-    var height = $(window).height() - 5
+  setSvgCanvas: function(width, height){
+    Visualizer.svg = d3.select("body").append("svg")
+    .attr("width", Visualizer.width)
+    .attr("height", Visualizer.height)
 
-    var color = d3.scale.category20c()
+    Visualizer.svg.append("rect")
+    .attr("width", Visualizer.width)
+    .attr("height", Visualizer.height)
+  },
 
-    var i = 0
+  populate: function(){
+    $.each( $('.keyword_dropped'), function(i, e){
 
-    var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
+      var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
+      var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
+      var color = Visualizer.color(Math.floor( Math.random()*20 + 1 ))
 
-    svg.append("rect")
-    .attr("width", width)
-    .attr("height", height)
-    .on("ontouchstart" in document ? "touchmove" : "click", particle)
+      Visualizer.svg.insert('circle')
+      .attr('id', 'visual-' + e.id)
+      .attr("cx", xloc)
+      .attr("cy", yloc )
+      .attr("r", 20)
+      .attr('keyword', $(e).find('div').text().split(' ')[0] )
+      .style("stroke", 'none')
+      .style("fill", color)
+      .style("fill-opacity", .5)
 
-    function particle() {
+      Visualizer.setEventForVisuals(e.id)
+    })
+  },
 
-      var m = d3.mouse(this)
+  setEventForVisuals: function(keywordID){
+    $(Stream.source).on(keywordID, function(){
+     Visualizer.appendNewCircle(keywordID)
+   })
+  },
 
-      svg.insert("circle", "rect")
-      .attr("cx", m[0])
-      .attr("cy", m[1])
-      .attr("r", 1e-6)
-      .style("stroke", color(++i))
-      .style("stroke-opacity", 1)
+  keywordClickEvent: function(e){
+    var keywordID = $(e.target).attr('id')
+    var keyword = $('#' + keywordID)
+    Visualizer.svg.insert("text")
+      .attr("x", keyword.attr('cx') - 30 )
+      .attr("y", keyword.attr('cy'))
+      .text( keyword.attr('keyword') )
+      .style('fill', keyword.attr('style').split(' ')[3].slice(0, 7) )
+      .style("stroke-opacity", .5)
       .transition()
-      .duration(2000)
+      .duration( 700 )
       .ease(Math.sqrt)
-      .attr("r", 100)
-      .style("stroke-opacity", 1e-6)
+      .attr("transform", "translate(" + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + "," + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + ")" )
+      .style("fill-opacity", 1e-6)
       .remove()
 
-      d3.event.preventDefault()
-    }
+    // debugger
+
+
+  },
+
+  appendNewCircle: function(keywordID){
+    var keyword = $('#visual-' + keywordID)
+    Visualizer.svg.insert("circle", "rect")
+    .attr("cx", keyword.attr('cx'))
+    .attr("cy", keyword.attr('cy'))
+    .attr("r", 40)
+    .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
+    .style("stroke-opacity", .5)
+    .style('fill', 'none')
+    .transition()
+    .duration( Math.random() * 2000 + 1000 )
+    .ease(Math.sqrt)
+    .attr("r", Math.random() * 1000 + 100 )
+    .style("stroke-opacity", 1e-6)
+    .remove()
   },
 
   stop: function(){
