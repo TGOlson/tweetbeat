@@ -63,6 +63,9 @@ body.visual
   color: #fff
   width: 160px
 
+.topic:hover
+  background-color: rgba(170, 170, 170,.5)
+
 .slide_toggle
   +toggle-style
 
@@ -101,12 +104,6 @@ body.visual
       padding: 8px 0
       position: relative
 
-      .ellipsis
-        position: absolute
-        margin-top: 1px
-        right: 7px
-        color: rgba(255, 240, 241, 1)
-
 #top-line
   position: absolute
   height: 10px
@@ -143,6 +140,10 @@ body.visual
 
     ul
       +margin-reset
+
+
+      .drop_hover
+        background-color: lighten(#eee, 5%)
 
       li
         +inline-list
@@ -227,9 +228,6 @@ body.visual
 
   p
     +margin-reset
-
-.drop_hover
-  background-color: $light-grey
 
 .ui-effects-transfer
   border: 2px dotted $dark-grey
