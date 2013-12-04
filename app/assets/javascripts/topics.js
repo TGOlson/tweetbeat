@@ -1,11 +1,13 @@
 var Topics = {
   list: null,
   eachPageListingLength: 18,
+
   init: function() {
     $.get('/topics', function(data) {
     Topics.list = data
     })
   },
+
   rewriteListings: function(startIndex) {
     startIndex = parseInt(startIndex, 10)
     topicHolders = $('.deletable')
