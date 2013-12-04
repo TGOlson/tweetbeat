@@ -1,8 +1,8 @@
 var Layout = {
 
-  bindings: {'q': 0, 'w': 1, 'e': 2,
-             'a': 3, 's': 4, 'd': 5,
-             'z': 6, 'x': 7, 'c': 8},
+  bindings: { 81: 0, 87: 1, 69: 2,  // q, w, e
+              65: 3, 83: 4, 68: 5,  // a, s, d
+              90: 6, 88: 7, 67: 8}, // z, x, c
 
   init: function(){
     this.callHelperFunctions()
@@ -32,17 +32,20 @@ var Layout = {
 
   bindKeypressesToSounds: function() {
     $(document).on("keydown", function(e) {
-      enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
-      boundSoundID = Layout.bindings[enteredChar]
-      if (boundSoundID >= 0 || boundSoundID <= 8) {
-        Layout.invokeHitAction(boundSoundID)
+      if (Layout.bindings[e.which] != undefined) {
+        Layout.invokeHitAction(Layout.bindings[e.which])
       }
     })
   },
 
+  invokeHitAction: function(element){
+    playSample(element)
+    Layout.flashColor(element)
+  },
+
   bindControlToDisplayToggle: function() {
     $(document).bind("keydown keyup", function(e) {
-      if ( (e.ctrlKey) || (e.keyCode == 17) ) {
+      if (e.which === 17) {
         $('.ctrl_bound').toggleClass('hidden')
       }
     })
@@ -84,11 +87,6 @@ var Layout = {
       change: function(event,ui) {
         Layout.setVolume(ui.value) }
       })
-  },
-
-  invokeHitAction: function(element){
-    playSample(element)
-    Layout.flashColor(element)
   },
 
   toggleView: function(){
