@@ -34,9 +34,13 @@ var Layout = {
 
   bindClicksToSounds: function() {
     $('#synth_pads').on("click", 'li', function(e) {
-      playSample(e.target.id)
-      Layout.flashColor(e.target.id)
+        Layout.invokeHitAction(e.target.id)
     })
+  },
+
+  invokeHitAction: function(element){
+    playSample(element)
+    Layout.flashColor(element)
   },
 
   bindKeypressesToSounds: function() {
@@ -44,21 +48,15 @@ var Layout = {
       enteredChar = String.fromCharCode(e.keyCode).toLowerCase()
       boundSoundID = Layout.bindings[enteredChar]
       if (boundSoundID >= 0 || boundSoundID <= 8) {
-        playSample(boundSoundID)
-        Layout.flashColor(boundSoundID)
+        Layout.invokeHitAction(boundSoundID)
       }
     })
   },
 
   bindControlToDisplayToggle: function() {
-    $(document).on("keydown", function(e) {
-      if (e.ctrlKey) {
-        $('.ctrl_bound').removeClass('hidden')
-      }
-    })
-    $(document).on("keyup", function(e) {
-      if (e.keyCode == 17) {
-        $('.ctrl_bound').addClass('hidden')
+    $(document).bind("keydown keyup", function(e) {
+      if ( (e.ctrlKey) || (e.keyCode == 17) ) {
+        $('.ctrl_bound').toggleClass('hidden')
       }
     })
   },
