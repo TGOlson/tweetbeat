@@ -20,8 +20,8 @@ var Layout = {
   applyEventHandlers: function(){
     $('.topic').draggable({ revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
-    $('#xy').on("mousemove", this.xyPadPostition)
     $('.filter-toggle').on("click", this.filterToggleButton)
+    $('#xy').on("mousemove", this.xyPadPostition)
   },
 
   bindClicksToSounds: function() {
@@ -38,9 +38,9 @@ var Layout = {
     })
   },
 
-  invokeHitAction: function(element){
-    playSample(element)
-    Layout.flashColor(element)
+  invokeHitAction: function(padNumber){
+    playSample(padNumber)
+    Layout.flashColor(padNumber)
   },
 
   bindControlToDisplayToggle: function() {
@@ -62,10 +62,8 @@ var Layout = {
         }
         var keyword = ui.helper
 
-        $(keyword).effect( "transfer", { to: this, className: "ui-effects-transfer" }, 100 ).fadeOut(100)
-        $(this).find('.drop_area').html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-        .addClass('keyword_dropped').hide().fadeIn()
-        .css('top', 40).css('left', 0)
+        Layout.playTransferEffect(keyword, this)
+        Layout.placeKeyWordInPad(keyword, this)
 
         $(this).find('.drop_area')[0].id  = keyword[0].id
         var soundID = event.target.id
@@ -73,6 +71,20 @@ var Layout = {
         Stream.bindKeywordToSound(keywordID, soundID)
       }
     })
+  },
+
+  playTransferEffect: function(keyword, target){
+        $(keyword).effect( "transfer", {
+          to: target,
+          className: "ui-effects-transfer"
+        }, 100 ).fadeOut(100)
+  },
+
+  placeKeyWordInPad: function(keyword, target){
+        $(target).find('.drop_area')
+          .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+          .addClass('keyword_dropped').hide().fadeIn()
+          .css('top', 40).css('left', 0)
   },
 
   setSliderStyle: function(){
