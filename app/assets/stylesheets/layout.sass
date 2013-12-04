@@ -87,9 +87,11 @@ body.visual
 .synth
   width: 1240px
   margin: 100px auto
+  position: relative
 
 #topics_container
   background-color: #eee
+  top: -55px
   padding: 5px 0
   position: absolute
   margin: 20px 0 0 0
@@ -123,6 +125,7 @@ body.visual
   text-shadow: 0 1px 1px lighten(#c0392b, 50%)
 
 #synth_container
+  top: 5px
   width: 720px
   height: 520px
   margin: 50px auto 0
@@ -236,7 +239,29 @@ body.visual
 
 .filter-toggle:focus
   outline: none
+
 .filter-on
   background: rgba(254,65,65,.8)
 
+.directional-button
+  height: 0
+  width: 0
+  position: absolute
+  left: 70px
+  border-left: transparent solid 30px
+  border-right: transparent solid 30px
+  margin: 20px 0 0 0
 
+#up-button
+  top: -95px
+  border-bottom: #34495e solid 30px
+
+#up-button:hover
+  border-bottom: #1abc9c solid 30px
+
+#down-button
+  top: 630px
+  border-top: #34495e solid 30px
+
+#down-button:hover
+  border-top: #1abc9c solid 30px

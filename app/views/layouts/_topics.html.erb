@@ -1,8 +1,11 @@
 <div id='topics_container'>
   <ul id='topics_list' class='connected'>
     <% topics.each_with_index do |topic, index| %>
-    <li class='topic' id="<%= index %>"><%= topic %></li>
+      <% if index < 18 %>
+        <div class='deletable'><li class='topic' id="<%= index %>"><%= topic %></li></div>
+      <% end %>
     <% end %>
   </ul>
 </div>
+
 
