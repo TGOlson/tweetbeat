@@ -145,9 +145,9 @@ var Layout = {
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
-      color: '#fff',
-      borderBottomColor: '#7f8c8d',
-      backgroundColor: '#9b59b6'
+      color: '#e74c3c',
+      borderBottomColor: '#777',
+      backgroundColor: '#bbb'
     }, 10, function() {
       setTimeout(function() {
         $('#synth_pads #' + soundID).animate({
