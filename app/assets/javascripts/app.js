@@ -5,7 +5,7 @@ $(function() {
 var App = {
   init: function() {
     Layout.init()
-    initializeAudio()
+    // initializeAudio() // comment out for app tests
     Scrolling.init()
     Topics.init()
     Stream.init()
