@@ -1,10 +1,3 @@
-var Topics = { // may not need this at all; as long as we get topic id as 'event' tag from SSE and get same id from the draggable table elements, no need
-  list: null,
-  init: function(data) {
-    Topics.list = data
-  }
-}
-
 var Stream = {
   source: null,
   init: function() {

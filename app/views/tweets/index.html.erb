@@ -1,6 +1,8 @@
 <%= render 'layouts/navbar' %>
 
 <div class='synth'>
+  <div id="left-button" class="directional"></div>
+  <div id="right-button" class="directional"></div>
   <%= render 'layouts/topics', :topics => @topics %>
   <%= render 'layouts/synth', :bindings_and_names => @bindings_and_names %>
 </div>

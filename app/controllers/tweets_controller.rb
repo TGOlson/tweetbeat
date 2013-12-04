@@ -5,7 +5,10 @@ class TweetsController < ApplicationController
 
   TOPICS = ["Coffee", "Tea", "DBCsleeps", "Canada", "USA",
             "California", "Tesla", "Spring", "Summer", "Autumn",
-            "Winter", "Santa", "Snowman", "Moltar"]
+            "Winter", "Santa", "Snowman", "Moltar", "hurricane",
+            "tornado", "earthquake", "tsunami", "blizzard",
+            "Godzilla", "King Kong", "John Lennon", "Voltar",
+            "tapioca", "Star Wars"]
 
   def index
     @topics = TOPICS
