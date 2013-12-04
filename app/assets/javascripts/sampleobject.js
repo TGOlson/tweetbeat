@@ -1,7 +1,15 @@
 var context
-var sampleLibrary = [["audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
+var sampleLibrary = [
+
+["audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
 "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
-"audio/correctimundo.mp3","audio/whats_the_matter.mp3"]]
+"audio/correctimundo.mp3","audio/whats_the_matter.mp3"], 
+
+["audio/Dminor_space_chord_root.mp3","audio/Dminor_space_chord_root+2.mp3","audio/Dminor_space_chord_root-2.mp3",
+"audio/Dminor_space_bass.mp3","audio/Dminor_space_bass_+2-1.mp3","audio/Dminor_space_bass_-2.mp3",
+"audio/Kick.mp3","audio/twinkle.mp3","audio/TwinkleDown.mp3"]
+
+]
 var sampleBuffers = new Array ()
 var masterGain
 var filter
@@ -91,8 +99,6 @@ function bufferSamples(){
   for (lib=0; lib<sampleLibrary.length; lib++){
     sampleBuffers[lib] = new Array()
     for (index=0; index<sampleLibrary[lib].length; index++){
-      console.log("index = " + index)
-      console.log("sample is " + sampleLibrary[lib][index])
       loadSample(sampleLibrary[lib][index],lib, index)
     }  
   }
