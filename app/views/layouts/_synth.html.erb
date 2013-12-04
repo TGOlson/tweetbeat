@@ -5,16 +5,16 @@
     <ul id='all_pads'>
       <ul id='all_pads'>
         <% 9.times do |i| %>
-          <li id="<%= i %>"><div class="ctrl_bound letter_display hidden"><%= bindings_and_names[i][0] %></div><div id="synthname"><%= bindings_and_names[i][1] %></div><div class='drop_area'>&nbsp;</div></li>
+          <li id="<%= i %>"><div class="ctrl_bound letter_display hidden"><%= bindings_and_names[i][0] %></div><div id="synthname"><%= bindings_and_names[i][1] %></div><div class='drop_area'></div></li>
         <% end %>
       </ul>
     </ul>
   </div>
 
   <div id='synth_controls'>
-    <div id="slider-vertical" style="height:200px;"></div> 
+    <div id="slider-vertical" style="height:150px;"></div>
+    <canvas id="xy"></canvas>
     <button class="filter-toggle">On | Off</button>
-    <canvas id="xy"></canvas>    
   </div>
 </div>
 
