@@ -206,11 +206,14 @@ a:hover
       width: 12px
       margin: auto
     #xy
+      cursor: url("/assets/glow2.png"), auto
       margin-top: 60px
       height: 200px
       width: 200px
-      background: rgba(15, 08, 15, .6)
-
+      border: 7px  solid #5c5c5c
+      border-radius: 10px
+      background: url("/assets/xybackground.png")
+      background-size: contain
 
 .drop_hover
   background-color: $light-grey
@@ -228,4 +231,24 @@ a:hover
 
 .letter_display
   color: #ddd
+
+#filter-button
+  position: absolute
+  right: 0
+
+.filter-toggle
+  position: absolute
+  left: 0
+  bottom: 220px
+  border-radius: 5px
+  border: 1px solid #5c5c5c
+  background: #adadad
+  font-family: Electrolize
+  color: rgba(15, 08, 15, .6)
+
+.filter-toggle:focus
+  outline: none
+.filter-on
+  background: rgba(254,65,65,.8)
+
 
