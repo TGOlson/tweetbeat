@@ -1,9 +1,17 @@
 var Layout = {
   init: function(){
+    this.applyEventHandlers()
+    this.callHelperFunctions()
+  },
+
+  applyEventHandlers: function(){
     $('#toggle_view').on('click', this.toggleView)
     $('.topic').draggable({ revert: "invalid" })
     $('#xy').on("mousemove", this.xyPadPostition)
     $('.filter-toggle').on("click", this.filterToggleButton)
+  },
+
+  callHelperFunctions: function(){
     this.bindClicksToSounds()
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
@@ -22,19 +30,22 @@ var Layout = {
   bindClicksToSounds: function() {
     $('#synth_pads').on("click", function(e) {
       if (e.target && e.target.nodeName == "LI") {
-        playSample(e.target.id)
-        Layout.flashColor(e.target.id)
+        Layout.invokeHitAction(e.target.id)
       } else if (e.target && e.target.nodeName == "DIV") {
         var classes = e.target.className.split(" ")
         for (var i = 0; i < classes.length; i++) {
           if (classes[i] == "drop_area" || classes[i] == "ctrl_bound") {
             liElement = $(e.target).closest('li')[0]
-            playSample(liElement.id)
-            Layout.flashColor(liElement.id)
+            invokeHitAction(liElement.id)
           }
         }
       }
     })
+  },
+
+  invokeHitAction: function(element){
+    playSample(element)
+    Layout.flashColor(element)
   },
 
   bindKeypressesToSounds: function() {
