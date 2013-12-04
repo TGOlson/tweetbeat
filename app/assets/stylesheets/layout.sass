@@ -11,36 +11,6 @@ $dark-red: #c0392b
   display: inline-block
   list-style: none
 
-=toggle-style
-  position: absolute
-  right: 8px
-  top: 5px
-  width: 40px
-  height: 20px
-  background-color: #ddd
-  padding: 0 3px
-  border-radius: 99px
-  border: 2px solid #eee
-  color: #999
-  font-size: 13px
-
-  #circle_toggle
-    position: absolute
-    left: 0
-    top: 0
-    background-color: #999
-    border-radius: 99px
-    width: 20px
-    height: 20px
-    z-index: 97
-
-  #toggle_icon
-    position: absolute
-    left: 24px
-    top: 2px
-    font-size: 17px
-    color: $light-grey
-
 body
   +margin-reset
   background-color: #eee
@@ -67,7 +37,34 @@ body.visual
   background-color: rgba(170, 170, 170,.5)
 
 .slide_toggle
-  +toggle-style
+  position: absolute
+  right: 8px
+  top: 5px
+  width: 55px
+  height: 30px
+  background-color: #eee
+  padding: 0 3px
+  border-radius: 99px
+  border: 2px solid #ccc
+  color: #999
+  font-size: 13px
+
+  #circle_toggle
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #999
+    border-radius: 99px
+    width: 30px
+    height: 30px
+    z-index: 97
+
+  #toggle_icon
+    position: absolute
+    left: 33px
+    top: 3px
+    font-size: 25px
+    color: #bbb
 
 #fullnav
   background-color: #e74c3c

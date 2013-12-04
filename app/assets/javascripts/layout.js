@@ -85,14 +85,14 @@ var Layout = {
   },
 
   showVisual: function(){
-    $('#circle_toggle').animate({ left: '25px' }, 100)
+    $('#circle_toggle').animate({ left: '31px' }, 100)
     $('#toggle_icon').animate({ left: '5px' }, 100)
     Visualizer.start()
   },
 
   showSynth: function(){
     $('#circle_toggle').animate({ left: '0px' }, 100)
-    $('#toggle_icon').animate({ left: '24px' }, 100)
+    $('#toggle_icon').animate({ left: '33px' }, 100)
     Visualizer.stop()
   },
 
