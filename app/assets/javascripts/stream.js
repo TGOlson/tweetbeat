@@ -8,8 +8,8 @@ var Stream = {
     $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
-      tweetContent = JSON.parse(e.originalEvent.data)["content"] // mainly for debugging
-      console.log(tweetContent) // mainly for debugging
+      tweetContent = JSON.parse(e.originalEvent.data)["content"]
+      console.log(tweetContent)
     })
   },
   removeBoundKeywordFromSound: function(keywordID) {

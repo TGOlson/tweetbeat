@@ -1,7 +1,15 @@
 $(function() {
 
-  Topics.init()
-  // Stream.init()
-  Layout.init()
-  initializeAudio()
+  App.init()
+
 })
+
+var App = {
+  init: function() {
+    Topics.init()
+    Stream.init()
+    Layout.init()
+    initializeAudio()
+    Scrolling.init()
+  }
+}
