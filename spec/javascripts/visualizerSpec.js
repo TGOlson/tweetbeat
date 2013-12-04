@@ -29,6 +29,7 @@ describe('visualizer', function(){
         expect(Visualizer.populate).toHaveBeenCalled()
       })
     })
+
     describe('stop', function(){
       it('should remove all svg elements', function(){
         spyOn( $.fn, 'remove' )
@@ -36,7 +37,5 @@ describe('visualizer', function(){
         expect( $.fn.remove ).toHaveBeenCalled()
       })
     })
-
-
   })
 })
