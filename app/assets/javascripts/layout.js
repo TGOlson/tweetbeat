@@ -145,17 +145,15 @@ var Layout = {
 
   flashColor: function(soundID) {
     $('#synth_pads #' + soundID).animate({
-      color: '#e5813e',
-      borderBottomColor: '#5c5c5c',
-      borderTopColor: '#3f3f3f',
-      backgroundColor: '#a0a0a0'
+      color: '#fff',
+      borderBottomColor: '#7f8c8d',
+      backgroundColor: '#9b59b6'
     }, 10, function() {
       setTimeout(function() {
         $('#synth_pads #' + soundID).animate({
-          color: '#949494',
-          borderBottomColor: '#3f3f3f',
-          borderTopColor: '#5c5c5c',
-          backgroundColor: '#adadad'
+          color: '#ddd',
+          borderBottomColor: '#95a5a6',
+          backgroundColor: '#fff'
         }, 10)
       }, 190)
     })
