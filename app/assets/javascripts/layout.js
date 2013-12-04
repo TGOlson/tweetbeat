@@ -149,13 +149,13 @@ var Layout = {
     $('#synth_pads #' + soundID).animate({
       color: '#e74c3c',
       borderBottomColor: '#777',
-      backgroundColor: '#eee'
+      backgroundColor: '#ddd'
     }, 10, function() {
       setTimeout(function() {
         $('#synth_pads #' + soundID).animate({
           color: '#ddd',
           borderBottomColor: '#95a5a6',
-          backgroundColor: '#fff'
+          backgroundColor: '#eee'
         }, 10)
       }, 190)
     })

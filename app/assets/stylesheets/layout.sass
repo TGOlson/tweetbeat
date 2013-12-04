@@ -25,7 +25,7 @@ $deep-charcoal: #2f2f2f
 =topic-style
   margin: 4px
   border-radius: 4px
-  background-color: #f1c40f
+  background-color: rgba(127, 140, 141,.5)
   text-align: center
   z-index: 99
   cursor: move
@@ -102,11 +102,14 @@ a:hover
       a
         color: #fff
 
-
+.synth
+  width: 1600px
+  margin: 100px auto
 
 #topics_container
   background-color: #eee
   padding: 5px 0
+  position: absolute
 
   #topics_list
     width: 80%
@@ -114,7 +117,7 @@ a:hover
     padding: 5px 0
 
     .topic
-      +inline-list
+      list-style: none
       +topic-style
       padding: 8px 0
       position: relative
@@ -123,13 +126,13 @@ a:hover
         position: absolute
         margin-top: 1px
         right: 7px
-        color: darken(#f1c40f, 20%)
-        text-shadow: 1px 1px darken(#f1c40f, 10%)
+        color: rgba(255, 240, 241, 1)
+        // text-shadow: 1px 1px rgba(236, 240, 241,1)
 
 #top-line
   position: absolute
   height: 10px
-  background-color: #2ecc71
+  background-color: #1abc9c
   border: 0 none
   width: 890px
   left: 30px
@@ -143,9 +146,6 @@ a:hover
   font-size: 65px
   color: darken(#c0392b, 20%)
   text-shadow: 0 1px 1px lighten(#c0392b, 50%)
-
-
-
 
 #synth_container
   width: 950px
@@ -161,7 +161,7 @@ a:hover
     position: absolute
     width: 670px
     padding: 10px
-    border-right: 2px solid #2ecc71
+    border-right: 2px solid #1abc9c
 
     ul
       +margin-reset
@@ -171,7 +171,7 @@ a:hover
         margin: 20px
         width: 150px
         height: 150px
-        background-color: #fff
+        background-color: #eee
         border: 10px solid #bdc3c7
         border-bottom: 10px solid #95a5a6
         position: relative
@@ -226,7 +226,7 @@ a:hover
 
 #synthname
   font-family: Electrolize
-  color: #ddd
+  color: #ccc
   position: absolute
   font-size: 15px
   bottom: 0
