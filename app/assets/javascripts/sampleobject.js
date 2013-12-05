@@ -26,9 +26,7 @@ function playSample(index){
 }
 
 function changeVolume(volume){
-  console.log(volume)
   masterGain.gain.value = (volume / 100) * (volume / 100)
-  console.log(masterGain.gain.value)
 }
 
 function loadSample(sampleURL,lib,index){
@@ -62,8 +60,6 @@ function initializeConstants(){
 function changeFrequency(x){
   var powerOfTwo = audioConstants.noctaves * (x/150 - 1)
   filter.frequency.value = Math.pow(2, powerOfTwo) * audioConstants.nyquist
-  console.log(filter.frequency.value)
-  console.log (audioConstants)
 }
 
 function changeQ(y){
