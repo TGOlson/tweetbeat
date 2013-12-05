@@ -12,9 +12,6 @@ var Stream = {
       console.log(tweetContent)
     })
   },
-  keywordSoundBindingHandler: function() {
-
-  },
   removeBoundKeywordFromSound: function(keywordID) {
     // if we're going to allow cloning, this will need to also accept soundID
     $(Stream.source).unbind(keywordID)
