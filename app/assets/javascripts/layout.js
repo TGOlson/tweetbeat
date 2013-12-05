@@ -55,36 +55,36 @@ var Layout = {
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ) {
-
-        var keywordID = $(this).contents('div').last().attr('id')
-        if (keywordID >= 0) {
-          Stream.removeBoundKeywordFromSound(keywordID)
-        }
-        var keyword = ui.helper
-
-        Layout.playTransferEffect(keyword, this)
-        Layout.placeKeyWordInPad(keyword, this)
-
-        $(this).find('.drop_area')[0].id  = keyword[0].id
-        var soundID = event.target.id
-        var keywordID = keyword[0].id
-        Stream.bindKeywordToSound(keywordID, soundID)
+        Layout.unbindIfPadHasKeyword(this)
+        Layout.playTransferEffect(ui.helper, this)
+        Layout.placeKeyWordInPad(ui.helper, this)
+        Stream.bindKeywordToSound(ui.helper.get(0).id, event.target.id)
       }
     })
   },
 
+  unbindIfPadHasKeyword: function(target){
+    var keywordID = $(target).contents('div').last().attr('id')
+    if (keywordID != undefined) {
+      Stream.removeBoundKeywordFromSound(keywordID)
+    }
+  },
+
   playTransferEffect: function(keyword, target){
-        $(keyword).effect( "transfer", {
-          to: target,
-          className: "ui-effects-transfer"
-        }, 100 ).fadeOut(100)
+    $(keyword).effect( "transfer", {
+      to: target,
+      className: "ui-effects-transfer"
+    }, 100 ).fadeOut(100)
   },
 
   placeKeyWordInPad: function(keyword, target){
+        $(target).find('.drop_area')[0].id  = keyword.get(0).id
         $(target).find('.drop_area')
+          .addClass('keyword_dropped')
           .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-          .addClass('keyword_dropped').hide().fadeIn()
+          .hide()
           .css('top', 40).css('left', 0)
+          .fadeIn()
   },
 
   setSliderStyle: function(){
@@ -93,24 +93,15 @@ var Layout = {
       range: "min",
       min: 0,
       max: 100,
-      value: 60
+      value: 60,
+      change: function(event,ui) { Layout.setVolume(ui.value) }
     })
-    $('#slider-vertical').slider({
-      change: function(event,ui) {
-        Layout.setVolume(ui.value) }
-      })
   },
 
   toggleView: function(){
-    $('#toggle_icon').find('i').toggle()
-    $('.synth').toggle()
-    $('body').toggleClass('visual')
-
-    if( $('#toggle_view').hasClass('synth_view') ) {
-      Layout.showVisual()
-    } else { Layout.showSynth() }
-
-    $('#toggle_view').toggleClass('synth_view')
+    if($('body').hasClass('visual')){ Layout.showSynth() }
+      else { Layout.showVisual() }
+    Layout.toggleSynthVisualClass()
   },
 
   showVisual: function(){
@@ -125,6 +116,11 @@ var Layout = {
     Visualizer.stop()
   },
 
+  toggleSynthVisualClass: function(){
+    $('#toggle_icon').find('i').toggle()
+    $('body').toggleClass('visual')
+    $('#toggle_view').toggleClass('synth_view')
+  },
 
   landKeywordOnPad: function(soundID){
     var target = $('#synth_pads #' + soundID).find('.keyword_dropped')
@@ -133,37 +129,26 @@ var Layout = {
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
-    .on('mousedown', function(e) {
-      Stream.removeBoundKeywordFromSound(e.target.id)
-      Layout.addTopicStyle(e)
+      .on('mousedown', function(e) {
+        Stream.removeBoundKeywordFromSound(e.target.id)
+        Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
   },
 
   addTopicStyle: function(e){
-    console.log('added topic style')
     $(e.target).addClass('topic')
   },
 
   removeTopicStyle: function(e){
-    console.log('removed topic style')
     $(e.target).removeClass('topic')
   },
 
   flashColor: function(soundID) {
-    $('#synth_pads #' + soundID).animate({
-      color: '#e74c3c',
-      borderBottomColor: '#777',
-      backgroundColor: '#ddd'
-    }, 10, function() {
-      setTimeout(function() {
-        $('#synth_pads #' + soundID).animate({
-          color: '#ddd',
-          borderBottomColor: '#95a5a6',
-          backgroundColor: '#eee'
-        }, 10)
-      }, 190)
-    })
+    $('#synth_pads #' + soundID).addClass('pad_hit')
+      setTimeout( function(){
+        $('#synth_pads #' + soundID).removeClass('pad_hit')
+    }, 190)
   },
 
   xyPadPostition: function(e){
