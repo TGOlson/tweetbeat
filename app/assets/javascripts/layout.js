@@ -22,28 +22,8 @@ var Layout ={
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
-    $('#next').on("mouseover", this.nextHover)
-    $('#next').on("mouseout",this.nextDefault)
     $('#next').on("click", this.nextLib)
-    $('#prev').on("mouseover", this.prevHover)
-    $('#prev').on("mouseout", this.prevDefault)
     $('#prev').on("click", this.prevLib)
-  },
-
-  nextDefault: function(){
-    $(".next-button").attr("src", "/assets/next.png")
-  },
-
-  nextHover: function(){
-    $(".next-button").attr("src", "/assets/next-hover.png")
-  },
-
-  prevDefault: function(){
-    $(".prev-button").attr("src", "/assets/prev.png")
-  },
-
-  prevHover: function(){
-    $(".prev-button").attr("src", "/assets/prev-hover.png")
   },
 
   nextLib: function(){
