@@ -207,11 +207,11 @@ body.visual
     #slider-vertical
       height: 150px
       width: 12px
-      margin: 30px auto
+      margin: 50px auto 0 auto
 
     #xy
       cursor: url("/assets/glow2.png"), auto
-      margin-top: 20px
+      margin-top: 30px
       height: 150px
       width: 150px
       border: 7px  solid #5c5c5c
@@ -285,21 +285,30 @@ body.visual
   margin: 0 auto
 
 #prev
+  background: url("/assets/prev.png")
+  background-size: contain
   position: absolute
-  left: 20px
-  cursor: pointer
-.prev-button
+  left: 50px
   width: 20px
   height: 20px
+  cursor: pointer
+
+#prev:hover
+  background: url("/assets/prev-hover.png")
+  background-size: contain
 
 #next
+  background: url("/assets/next.png")
+  background-size: contain
   position: absolute
-  right: 20px
-  cursor: pointer
-
-.next-button
+  right: 50px
   width: 20px
   height: 20px
+  cursor: pointer
+
+#next:hover
+  background: url("/assets/next-hover.png")
+  background-size: contain
 
 
 
