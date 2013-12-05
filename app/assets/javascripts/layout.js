@@ -145,9 +145,9 @@ var Layout = {
   },
 
   flashColor: function(soundID) {
-    $('#synth_pads #' + soundID).addClass('pad_hit')
+    $($('#synth_pads #' + soundID)[0]).addClass('pad_hit')
       setTimeout( function(){
-        $('#synth_pads #' + soundID).removeClass('pad_hit')
+        $($('#synth_pads #' + soundID)[0]).removeClass('pad_hit')
     }, 190)
   },
 
