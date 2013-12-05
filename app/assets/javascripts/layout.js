@@ -1,8 +1,8 @@
 var Layout ={
 
-  bindings: { 81: 0, 87: 1, 69: 2,  // q, w, e
-              65: 3, 83: 4, 68: 5,  // a, s, d
-              90: 6, 88: 7, 67: 8}, // z, x, c
+  bindings: { 81: '0', 87: '1', 69: '2',  // q, w, e
+              65: '3', 83: '4', 68: '5',  // a, s, d
+              90: '6', 88: '7', 67: '8'}, // z, x, c
 
   init: function(){
     this.callHelperFunctions()
@@ -18,7 +18,7 @@ var Layout ={
   },
 
   applyEventListeners: function(){
-    $('.topic').draggable({ revert: "invalid" })
+    $('.topic').draggable({ helper: "clone" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
@@ -99,10 +99,12 @@ var Layout ={
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ){
+        var keywordText = $(ui.helper[0]).text()
+        var keywordID = Topics.list.indexOf(keywordText).toString()
         Layout.unbindIfPadHasKeyword(this)
         Layout.playTransferEffect(ui.helper, this)
-        Layout.placeKeyWordInPad(ui.helper, this)
-        Stream.bindKeywordToSound(ui.helper.get(0).id, event.target.id)
+        Layout.placeKeyWordInPad(keywordID, this)
+        Stream.bindKeywordToSound(keywordID, event.target.id)
       }
     })
   },
@@ -121,11 +123,14 @@ var Layout ={
     }, 100 ).fadeOut(100)
   },
 
-  placeKeyWordInPad: function(keyword, target){
-    $(target).find('.drop_area')[0].id  = keyword.get(0).id
+  placeKeyWordInPad: function(keywordID, target){
+
+    var keyword = Topics.list[keywordID]
+
+    $(target).find('.drop_area')[0].id  = keywordID
     $(target).find('.drop_area')
       .addClass('keyword_dropped')
-      .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+      .html('<div class="dropped_keyword">' + keyword + '</div>')
       .hide()
       .css('top', 40).css('left', 0)
       .fadeIn()
@@ -172,7 +177,7 @@ var Layout ={
   },
 
   makeKeywordPadDraggable: function(target){
-    $(target).draggable({ revert: "invalid" })
+    $(target).draggable({ helper: "clone" })
       .on('mousedown', function(e) {
         Stream.removeBoundKeywordFromSound($(e.target).closest('.drop_area').attr('id'))
         // can access soundID via $(e.originalEvent.target).closest('li').attr('id')
