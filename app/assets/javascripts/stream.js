@@ -13,6 +13,7 @@ var Stream = {
     })
   },
   removeBoundKeywordFromSound: function(keywordID) {
+    // if we're going to allow cloning, this will need to also accept soundID
     $(Stream.source).unbind(keywordID)
   }
 }
