@@ -193,8 +193,8 @@ var Layout ={
   flashColor: function(soundID) {
     var possibleTargets = $('#synth_pads #' + soundID)
     for (var i = 0; i < possibleTargets.length; i++) {
-      if (possibleTargets[0].nodeName == 'LI') {
-        var target = possibleTargets[0]
+      if (possibleTargets[i].nodeName == 'LI') {
+        var target = possibleTargets[i]
       }
     }
     $(target).addClass('pad_hit')
