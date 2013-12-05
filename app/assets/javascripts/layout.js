@@ -1,4 +1,4 @@
-var Layout = {
+var Layout ={
 
   bindings: { 81: 0, 87: 1, 69: 2,  // q, w, e
               65: 3, 83: 4, 68: 5,  // a, s, d
@@ -6,7 +6,7 @@ var Layout = {
 
   init: function(){
     this.callHelperFunctions()
-    this.applyEventHandlers()
+    this.applyEventListeners()
   },
 
   callHelperFunctions: function(){
@@ -17,22 +17,22 @@ var Layout = {
     this.setSliderStyle()
   },
 
-  applyEventHandlers: function(){
+  applyEventListeners: function(){
     $('.topic').draggable({ revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
   },
 
-  bindClicksToSounds: function() {
-    $('#synth_pads').on("click", 'li', function(e) {
+  bindClicksToSounds: function(){
+    $('#synth_pads').on("click", 'li', function(e){
       Layout.invokeHitAction(e.target.id)
     })
   },
 
-  bindKeypressesToSounds: function() {
-    $(document).on("keydown", function(e) {
-      if (Layout.bindings[e.which] != undefined) {
+  bindKeypressesToSounds: function(){
+    $(document).on("keydown", function(e){
+      if (Layout.bindings[e.which] != undefined){
         Layout.invokeHitAction(Layout.bindings[e.which])
       }
     })
@@ -43,9 +43,9 @@ var Layout = {
     Layout.flashColor(padNumber)
   },
 
-  bindControlToDisplayToggle: function() {
-    $(document).bind("keydown keyup", function(e) {
-      if (e.which === 17) {
+  bindControlToDisplayToggle: function(){
+    $(document).bind("keydown keyup", function(e){
+      if (e.which === 17){
         $('.ctrl_bound').toggleClass('hidden')
       }
     })
@@ -54,7 +54,7 @@ var Layout = {
   setDropArea: function(){
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
-      drop: function( event, ui ) {
+      drop: function( event, ui ){
         Layout.unbindIfPadHasKeyword(this)
         Layout.playTransferEffect(ui.helper, this)
         Layout.placeKeyWordInPad(ui.helper, this)
@@ -65,13 +65,13 @@ var Layout = {
 
   unbindIfPadHasKeyword: function(target){
     var keywordID = $(target).contents('div').last().attr('id')
-    if (keywordID != undefined) {
+    if (keywordID != undefined){
       Stream.removeBoundKeywordFromSound(keywordID)
     }
   },
 
   playTransferEffect: function(keyword, target){
-    $(keyword).effect( "transfer", {
+    $(keyword).effect( "transfer",{
       to: target,
       className: "ui-effects-transfer"
     }, 100 ).fadeOut(100)
@@ -94,13 +94,13 @@ var Layout = {
       min: 0,
       max: 100,
       value: 60,
-      slide: function(event,ui) { Layout.setVolume(ui.value) }
+      slide: function(event,ui){ Layout.setVolume(ui.value) }
     })
   },
 
   toggleView: function(){
     if($('body').hasClass('visual')){ Layout.showSynth() }
-      else { Layout.showVisual() }
+      else{ Layout.showVisual() }
     Layout.toggleSynthVisualClass()
   },
 
@@ -129,7 +129,7 @@ var Layout = {
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
-      .on('mousedown', function(e) {
+      .on('mousedown', function(e){
         Stream.removeBoundKeywordFromSound(e.target.id)
         Layout.addTopicStyle(e)
     })
@@ -144,7 +144,7 @@ var Layout = {
     $(e.target).removeClass('topic')
   },
 
-  flashColor: function(soundID) {
+  flashColor: function(soundID){
     $('#synth_pads #' + soundID).addClass('pad_hit')
       setTimeout( function(){
         $('#synth_pads #' + soundID).removeClass('pad_hit')
