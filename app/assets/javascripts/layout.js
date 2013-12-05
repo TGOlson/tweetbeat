@@ -18,7 +18,7 @@ var Layout ={
   },
 
   applyEventListeners: function(){
-    $('.topic').draggable({ helper: "clone" })
+    $('.topic').draggable({ helper: "clone", revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
