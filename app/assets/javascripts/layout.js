@@ -179,11 +179,13 @@ var Layout ={
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: function(valid) {
-      var keywordID = $(this).attr('id')
-      var soundID = $(this).closest('li').attr('id')
-      setTimeout(function() {
-        Stream.bindKeywordToSound(keywordID, soundID)
-      }, 500)
+      if (!valid) {
+        var keywordID = $(this).attr('id')
+        var soundID = $(this).closest('li').attr('id')
+        setTimeout(function() {
+          Stream.bindKeywordToSound(keywordID, soundID)
+        }, 500)
+      }
       return !valid
     } })
     .on('mousedown', function(e) {
