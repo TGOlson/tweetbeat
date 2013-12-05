@@ -182,13 +182,20 @@ var Layout ={
   },
 
   makeKeywordPadDraggable: function(target){
-    $(target).draggable({ revert: "invalid" })
-      .on('mousedown', function(e) {
-        var soundID = $(e.originalEvent.target).closest('li').attr('id')
-        var keywordID = $(e.target).closest('.drop_area').attr('id')
-        var eventName = keywordID + '.sound' + soundID
-        Stream.removeBoundKeywordFromSound(eventName)
-        Layout.addTopicStyle(e)
+    $(target).draggable({ revert: function(valid) {
+      setTimeout(function() {
+        var keywordID = $(this).attr('id')
+        var soundID = $(this).closest('li').attr('id')
+        Stream.bindKeywordToSound(keywordID, soundID)
+      }, 500)
+      return !valid
+    } })
+    .on('mousedown', function(e) {
+      var soundID = $(e.originalEvent.target).closest('li').attr('id')
+      var keywordID = $(e.target).closest('.drop_area').attr('id')
+      var eventName = keywordID + '.sound' + soundID
+      Stream.removeBoundKeywordFromSound(eventName)
+      Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
   },
