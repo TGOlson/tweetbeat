@@ -94,7 +94,7 @@ var Layout = {
       min: 0,
       max: 100,
       value: 60,
-      change: function(event,ui) { Layout.setVolume(ui.value) }
+      slide: function(event,ui) { Layout.setVolume(ui.value) }
     })
   },
 
