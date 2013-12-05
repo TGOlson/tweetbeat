@@ -1,8 +1,8 @@
 var Layout ={
 
-  bindings: { 81: 0, 87: 1, 69: 2,  // q, w, e
-              65: 3, 83: 4, 68: 5,  // a, s, d
-              90: 6, 88: 7, 67: 8}, // z, x, c
+  bindings: { 81: '0', 87: '1', 69: '2',  // q, w, e
+              65: '3', 83: '4', 68: '5',  // a, s, d
+              90: '6', 88: '7', 67: '8'}, // z, x, c
 
   init: function(){
     this.callHelperFunctions()
@@ -18,7 +18,7 @@ var Layout ={
   },
 
   applyEventListeners: function(){
-    $('.topic').draggable({ revert: "invalid" })
+    $('.topic').draggable({ helper: "clone", revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
@@ -28,7 +28,6 @@ var Layout ={
     $('#prev').on("mouseover", this.prevHover)
     $('#prev').on("mouseout", this.prevDefault)
     $('#prev').on("click", this.prevLib)
-
   },
 
   nextDefault: function(){
@@ -99,18 +98,22 @@ var Layout ={
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
       drop: function( event, ui ){
+        var keywordText = $(ui.helper[0]).text()
+        var keywordID = Topics.list.indexOf(keywordText).toString()
         Layout.unbindIfPadHasKeyword(this)
         Layout.playTransferEffect(ui.helper, this)
-        Layout.placeKeyWordInPad(ui.helper, this)
-        Stream.bindKeywordToSound(ui.helper.get(0).id, event.target.id)
+        Layout.placeKeyWordInPad(keywordID, this)
+        Stream.bindKeywordToSound(keywordID, event.target.id)
       }
     })
   },
 
   unbindIfPadHasKeyword: function(target){
+    var soundID = target.id
     var keywordID = $(target).contents('div').last().attr('id')
+    var eventName = keywordID + '.sound' + soundID
     if (keywordID != undefined){
-      Stream.removeBoundKeywordFromSound(keywordID)
+      Stream.removeBoundKeywordFromSound(eventName)
     }
   },
 
@@ -121,11 +124,14 @@ var Layout ={
     }, 100 ).fadeOut(100)
   },
 
-  placeKeyWordInPad: function(keyword, target){
-    $(target).find('.drop_area')[0].id  = keyword.get(0).id
+  placeKeyWordInPad: function(keywordID, target){
+
+    var keyword = Topics.list[keywordID]
+
+    $(target).find('.drop_area')[0].id  = keywordID
     $(target).find('.drop_area')
       .addClass('keyword_dropped')
-      .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+      .html('<div class="dropped_keyword">' + keyword + '</div>')
       .hide()
       .css('top', 40).css('left', 0)
       .fadeIn()
@@ -172,11 +178,22 @@ var Layout ={
   },
 
   makeKeywordPadDraggable: function(target){
-    $(target).draggable({ revert: "invalid" })
-      .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound($(e.target).closest('.drop_area').attr('id'))
-        // can access soundID via $(e.originalEvent.target).closest('li').attr('id')
-        Layout.addTopicStyle(e)
+    $(target).draggable({ revert: function(valid) {
+      if (!valid) {
+        var keywordID = $(this).attr('id')
+        var soundID = $(this).closest('li').attr('id')
+        setTimeout(function() {
+          Stream.bindKeywordToSound(keywordID, soundID)
+        }, 500)
+      }
+      return !valid
+    } })
+    .on('mousedown', function(e) {
+      var soundID = $(e.originalEvent.target).closest('li').attr('id')
+      var keywordID = $(e.target).closest('.drop_area').attr('id')
+      var eventName = keywordID + '.sound' + soundID
+      Stream.removeBoundKeywordFromSound(eventName)
+      Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
   },
@@ -193,8 +210,8 @@ var Layout ={
   flashColor: function(soundID) {
     var possibleTargets = $('#synth_pads #' + soundID)
     for (var i = 0; i < possibleTargets.length; i++) {
-      if (possibleTargets[0].nodeName == 'LI') {
-        var target = possibleTargets[0]
+      if (possibleTargets[i].nodeName == 'LI') {
+        var target = possibleTargets[i]
       }
     }
     $(target).addClass('pad_hit')

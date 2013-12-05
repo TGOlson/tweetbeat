@@ -8,6 +8,6 @@ var App = {
     initializeAudio()
     Scrolling.init()
     Topics.init()
-    // Stream.init()
+    Stream.init()
   }
 }
