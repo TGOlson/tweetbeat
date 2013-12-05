@@ -145,9 +145,15 @@ var Layout = {
   },
 
   flashColor: function(soundID) {
-    $($('#synth_pads #' + soundID)[0]).addClass('pad_hit')
+    var possibleTargets = $('#synth_pads #' + soundID)
+    for (var i = 0; i < possibleTargets.length; i++) {
+      if (possibleTargets[0].nodeName == 'LI') {
+        var target = possibleTargets[0]
+      }
+    }
+    $(target).addClass('pad_hit')
       setTimeout( function(){
-        $($('#synth_pads #' + soundID)[0]).removeClass('pad_hit')
+        $(target).removeClass('pad_hit')
     }, 190)
   },
 
