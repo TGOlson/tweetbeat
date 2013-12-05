@@ -183,9 +183,9 @@ var Layout ={
 
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: function(valid) {
+      var keywordID = $(this).attr('id')
+      var soundID = $(this).closest('li').attr('id')
       setTimeout(function() {
-        var keywordID = $(this).attr('id')
-        var soundID = $(this).closest('li').attr('id')
         Stream.bindKeywordToSound(keywordID, soundID)
       }, 500)
       return !valid
