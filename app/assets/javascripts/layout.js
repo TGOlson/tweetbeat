@@ -22,6 +22,50 @@ var Layout ={
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
     $('#xy').on("mousemove", this.xyPadPostition)
+    $('#next').on("mouseover", this.nextHover)
+    $('#next').on("mouseout",this.nextDefault)
+    $('#next').on("click", this.nextLib)
+    $('#prev').on("mouseover", this.prevHover)
+    $('#prev').on("mouseout", this.prevDefault)
+    $('#prev').on("click", this.prevLib)
+
+  },
+
+  nextDefault: function(){
+    $(".next-button").attr("src", "/assets/next.png")
+  },
+
+  nextHover: function(){
+    $(".next-button").attr("src", "/assets/next-hover.png")
+  },
+
+  prevDefault: function(){
+    $(".prev-button").attr("src", "/assets/prev.png")
+  },
+
+  prevHover: function(){
+    $(".prev-button").attr("src", "/assets/prev-hover.png")
+  },
+
+  nextLib: function(){
+    if ( $('#library ul').find('.current-lib').is(':last-child') ){
+      return
+    }
+    var lib = $('ul').find('.current-lib').next().attr("lib-id")
+    changeLibrary(lib)
+    $('ul').find('.current-lib').next().addClass('current-lib')
+    $('ul').find('.current-lib').first().removeClass('current-lib')
+
+  },
+
+  prevLib: function(){
+    if ( $('#library ul').find('.current-lib').is(':first-child') ){
+      return
+    }
+    var lib = $('ul').find('.current-lib').prev().attr("lib-id")
+    changeLibrary(lib)
+    $('ul').find('.current-lib').prev().addClass('current-lib')
+    $('ul').find('.current-lib').last().removeClass('current-lib')
   },
 
   bindClicksToSounds: function(){

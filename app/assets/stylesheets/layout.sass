@@ -1,3 +1,7 @@
+@font-face
+  font-family: digital
+  src: url('/fonts/DS-DIGI.TTF')
+
 $light-grey: #eee
 $dark-grey: #222
 $red: #e74c3c
@@ -197,17 +201,17 @@ body.visual
 
   #synth_controls
     position: absolute
-    top: 170px
+    top: 100px
     right: 20px
 
     #slider-vertical
       height: 150px
       width: 12px
-      margin: auto
+      margin: 30px auto
 
     #xy
       cursor: url("/assets/glow2.png"), auto
-      margin-top: 50px
+      margin-top: 20px
       height: 150px
       width: 150px
       border: 7px  solid #5c5c5c
@@ -275,3 +279,49 @@ body.visual
 
 #down-button:hover
   border-top: #1abc9c solid 30px
+
+#library-container
+  position: relative
+  margin: 0 auto
+
+#prev
+  position: absolute
+  left: 20px
+  cursor: pointer
+.prev-button
+  width: 20px
+  height: 20px
+
+#next
+  position: absolute
+  right: 20px
+  cursor: pointer
+
+.next-button
+  width: 20px
+  height: 20px
+
+
+
+
+#library
+  margin: 0 auto
+  font-family: digital
+  background: rgba(72,171,92,.2)
+  border: 3px  solid #5c5c5c
+  width: 130px
+
+  ul
+    text-align: center
+    padding: 0
+    margin: 7.5px
+
+  li
+    font-size: 25px
+    margin: 0 auto
+    list-style-type: none
+    display: none
+    text-align: left
+
+  .current-lib
+    display: inline
