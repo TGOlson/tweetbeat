@@ -130,7 +130,7 @@ var Layout = {
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
       .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound(e.target.id)
+        Stream.removeBoundKeywordFromSound($(e.originalEvent.target).closest('li').attr('id'))
         Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
@@ -145,9 +145,9 @@ var Layout = {
   },
 
   flashColor: function(soundID) {
-    $('#synth_pads #' + soundID).addClass('pad_hit')
+    $($('#synth_pads #' + soundID)[0]).addClass('pad_hit')
       setTimeout( function(){
-        $('#synth_pads #' + soundID).removeClass('pad_hit')
+        $($('#synth_pads #' + soundID)[0]).removeClass('pad_hit')
     }, 190)
   },
 
