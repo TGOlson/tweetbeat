@@ -1,4 +1,4 @@
-var Layout = {
+var Layout ={
 
   bindings: { 81: 0, 87: 1, 69: 2,  // q, w, e
               65: 3, 83: 4, 68: 5,  // a, s, d
@@ -6,7 +6,7 @@ var Layout = {
 
   init: function(){
     this.callHelperFunctions()
-    this.applyEventHandlers()
+    this.applyEventListeners()
   },
 
   callHelperFunctions: function(){
@@ -17,7 +17,7 @@ var Layout = {
     this.setSliderStyle()
   },
 
-  applyEventHandlers: function(){
+  applyEventListeners: function(){
     $('.topic').draggable({ revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
@@ -68,15 +68,15 @@ var Layout = {
     $('ul').find('.current-lib').last().removeClass('current-lib')
   },
 
-  bindClicksToSounds: function() {
-    $('#synth_pads').on("click", 'li', function(e) {
+  bindClicksToSounds: function(){
+    $('#synth_pads').on("click", 'li', function(e){
       Layout.invokeHitAction(e.target.id)
     })
   },
 
-  bindKeypressesToSounds: function() {
-    $(document).on("keydown", function(e) {
-      if (Layout.bindings[e.which] != undefined) {
+  bindKeypressesToSounds: function(){
+    $(document).on("keydown", function(e){
+      if (Layout.bindings[e.which] != undefined){
         Layout.invokeHitAction(Layout.bindings[e.which])
       }
     })
@@ -87,9 +87,9 @@ var Layout = {
     Layout.flashColor(padNumber)
   },
 
-  bindControlToDisplayToggle: function() {
-    $(document).bind("keydown keyup", function(e) {
-      if (e.which === 17) {
+  bindControlToDisplayToggle: function(){
+    $(document).bind("keydown keyup", function(e){
+      if (e.which === 17){
         $('.ctrl_bound').toggleClass('hidden')
       }
     })
@@ -98,7 +98,7 @@ var Layout = {
   setDropArea: function(){
     $('#synth_pads li').droppable({
       hoverClass: "drop_hover",
-      drop: function( event, ui ) {
+      drop: function( event, ui ){
         Layout.unbindIfPadHasKeyword(this)
         Layout.playTransferEffect(ui.helper, this)
         Layout.placeKeyWordInPad(ui.helper, this)
@@ -109,26 +109,26 @@ var Layout = {
 
   unbindIfPadHasKeyword: function(target){
     var keywordID = $(target).contents('div').last().attr('id')
-    if (keywordID != undefined) {
+    if (keywordID != undefined){
       Stream.removeBoundKeywordFromSound(keywordID)
     }
   },
 
   playTransferEffect: function(keyword, target){
-    $(keyword).effect( "transfer", {
+    $(keyword).effect( "transfer",{
       to: target,
       className: "ui-effects-transfer"
     }, 100 ).fadeOut(100)
   },
 
   placeKeyWordInPad: function(keyword, target){
-        $(target).find('.drop_area')[0].id  = keyword.get(0).id
-        $(target).find('.drop_area')
-          .addClass('keyword_dropped')
-          .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-          .hide()
-          .css('top', 40).css('left', 0)
-          .fadeIn()
+    $(target).find('.drop_area')[0].id  = keyword.get(0).id
+    $(target).find('.drop_area')
+      .addClass('keyword_dropped')
+      .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+      .hide()
+      .css('top', 40).css('left', 0)
+      .fadeIn()
   },
 
   setSliderStyle: function(){
@@ -138,13 +138,13 @@ var Layout = {
       min: 0,
       max: 100,
       value: 60,
-      slide: function(event,ui) { Layout.setVolume(ui.value) }
+      slide: function(event,ui){ Layout.setVolume(ui.value) }
     })
   },
 
   toggleView: function(){
     if($('body').hasClass('visual')){ Layout.showSynth() }
-      else { Layout.showVisual() }
+      else{ Layout.showVisual() }
     Layout.toggleSynthVisualClass()
   },
 
@@ -174,7 +174,7 @@ var Layout = {
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
       .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound(e.target.id)
+        Stream.removeBoundKeywordFromSound($(e.originalEvent.target).closest('li').attr('id'))
         Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
@@ -188,10 +188,17 @@ var Layout = {
     $(e.target).removeClass('topic')
   },
 
+
   flashColor: function(soundID) {
-    $('#synth_pads #' + soundID).addClass('pad_hit')
+    var possibleTargets = $('#synth_pads #' + soundID)
+    for (var i = 0; i < possibleTargets.length; i++) {
+      if (possibleTargets[0].nodeName == 'LI') {
+        var target = possibleTargets[0]
+      }
+    }
+    $(target).addClass('pad_hit')
       setTimeout( function(){
-        $('#synth_pads #' + soundID).removeClass('pad_hit')
+        $(target).removeClass('pad_hit')
     }, 190)
   },
 

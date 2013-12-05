@@ -1,6 +1,6 @@
 var Topics = {
   list: null,
-  eachPageListingLength: 18,
+  eachPageListingLength: 15,
 
   init: function() {
     $.get('/topics', function(data) {
