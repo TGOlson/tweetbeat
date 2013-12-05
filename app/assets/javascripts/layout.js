@@ -130,7 +130,7 @@ var Layout = {
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
       .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound(e.target.id)
+        Stream.removeBoundKeywordFromSound($(e.originalEvent.target).closest('li').attr('id'))
         Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
