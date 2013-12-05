@@ -19,6 +19,9 @@ body
 body.visual
   background-color: $dark-grey
 
+  .synth
+    display: none
+
 .hidden
   display: none
 
@@ -143,7 +146,12 @@ body.visual
 
 
       .drop_hover
-        background-color: lighten(#eee, 5%)
+        background-color: lighten(#eee, 10%)
+
+      .pad_hit
+        color: #e74c3c
+        background-color: #ddd
+        border-bottom: 10px solid #777
 
       li
         +inline-list

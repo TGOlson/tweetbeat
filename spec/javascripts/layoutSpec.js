@@ -1,5 +1,10 @@
 describe('Layout', function(){
   describe('init', function(){
+    it('should make topics draggable', function(){
+      spyOn($.fn, 'draggable')
+      Layout.init()
+      expect($.fn.draggable).toHaveBeenCalled()
+    })
     it('should bind clicks to sounds', function(){
       spyOn(Layout, 'bindClicksToSounds')
       Layout.init()

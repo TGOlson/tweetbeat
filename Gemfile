@@ -23,13 +23,17 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'font-awesome-rails'
 
+gem 'd3-rails'
+
 group :doc do
   gem 'sdoc', require: false
 end
 
 gem 'rails_12factor', :groups => [:development]
+
 group :development, :test do
   gem 'jasmine', git: 'https://my_account@github.com/pivotal/jasmine-gem'
+  gem 'jasmine-jquery-rails'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara'
