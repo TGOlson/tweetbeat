@@ -4,7 +4,6 @@ var Stream = {
     Stream.source = new EventSource('/stream')
   },
   bindKeywordToSound: function(keywordID, soundID) {
-    console.log('bind called on keyword id', keywordID, ' and sound id', soundID)
     Layout.landKeywordOnPad(soundID)
     $(Stream.source).on(keywordID, function(e) {
       playSample(soundID)
