@@ -28,6 +28,9 @@ var Layout ={
     $('#prev').on("mouseover", this.prevHover)
     $('#prev').on("mouseout", this.prevDefault)
     $('#prev').on("click", this.prevLib)
+    $('#synth_pads #0').on('click.0', function() {
+      console.log('heya')
+    })
 
   },
 
@@ -110,9 +113,11 @@ var Layout ={
   },
 
   unbindIfPadHasKeyword: function(target){
+    var soundID = target.id
     var keywordID = $(target).contents('div').last().attr('id')
+    var eventName = keywordID + '.sound' + soundID
     if (keywordID != undefined){
-      Stream.removeBoundKeywordFromSound(keywordID)
+      Stream.removeBoundKeywordFromSound(eventName)
     }
   },
 
@@ -179,8 +184,10 @@ var Layout ={
   makeKeywordPadDraggable: function(target){
     $(target).draggable({ revert: "invalid" })
       .on('mousedown', function(e) {
-        Stream.removeBoundKeywordFromSound($(e.target).closest('.drop_area').attr('id'))
-        // can access soundID via $(e.originalEvent.target).closest('li').attr('id')
+        var soundID = $(e.originalEvent.target).closest('li').attr('id')
+        var keywordID = $(e.target).closest('.drop_area').attr('id')
+        var eventName = keywordID + '.sound' + soundID
+        Stream.removeBoundKeywordFromSound(eventName)
         Layout.addTopicStyle(e)
     })
     .on('mouseup', Layout.removeTopicStyle)
