@@ -5,9 +5,9 @@ $(function() {
 var App = {
   init: function() {
     Layout.init()
-    initializeAudio() // comment out for app tests -- should stub
+    initializeAudio()
     Scrolling.init()
     Topics.init()
-    Stream.init()
+    // Stream.init()
   }
 }

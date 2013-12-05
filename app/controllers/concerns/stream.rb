@@ -2,6 +2,7 @@ require 'formatter/sse'
 
 module Stream
   def self.start(response)
+
     response.headers['Content-Type'] = 'text/event-stream'
     sse = Formatter::SSE.new(response.stream)
     client = TwitterClient.new.client
@@ -13,9 +14,11 @@ module Stream
           sse.write({ :content => text }, :event => index) if text.downcase.match(topic.downcase)
         end
       end
+
     rescue IOError
     ensure
       sse.close
     end
+
   end
 end
