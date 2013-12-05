@@ -5,16 +5,16 @@ var Stream = {
   },
   bindKeywordToSound: function(keywordID, soundID) {
     Layout.landKeywordOnPad(soundID)
-    $(Stream.source).on(keywordID, function(e) {
+    var eventName = keywordID + '.sound' + soundID
+    $(Stream.source).on(eventName, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
       tweetContent = JSON.parse(e.originalEvent.data)["content"]
       console.log(tweetContent)
     })
   },
-  removeBoundKeywordFromSound: function(keywordID) {
-    // if we're going to allow cloning, this will need to also accept soundID
-    $(Stream.source).unbind(keywordID)
+  removeBoundKeywordFromSound: function(eventName) {
+    $(Stream.source).off(eventName)
   }
 }
 
