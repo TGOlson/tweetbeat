@@ -83,20 +83,6 @@ describe('Layout', function(){
         expect($.fn.slider).toHaveBeenCalledWith(jasmine.any(Object))
       })
     })
-
-    describe('toggleView', function(){
-      it ('should test that the toggle works', function(){
-
-      })
-    })
-    // describe('invokeHitAction', function(){
-    //   it('should call playSample and flashColor', function(){
-    //     spyOn(Layout, 'flashColor')
-    //     Layout.invokeHitAction()
-    //     expect(Layout.flashColor).toHaveBeenCalled()
-    //   })
-    // })
-
   })
 })
 
