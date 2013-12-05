@@ -1,0 +1,30 @@
+class Topic
+  def self.all
+    [  "Coffee",
+       "Tea",
+       "DBCsleeps",
+       "Canada",
+       "USA",
+       "California",
+       "Tesla",
+       "Spring",
+       "Summer",
+       "Autumn",
+       "Winter",
+       "Santa",
+       "Snowman",
+       "Moltar",
+       "Hurricane",
+       "Tornado",
+       "Earthquake",
+       "Tsunami",
+       "Blizzard",
+       "Godzilla",
+       "King Kong",
+       "John Lennon",
+       "Voltar",
+       "Tapioca",
+       "Star Wars",
+       "Xolov"       ]
+  end
+end
