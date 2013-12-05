@@ -78,13 +78,13 @@ var Layout ={
   },
 
   placeKeyWordInPad: function(keyword, target){
-        $(target).find('.drop_area')[0].id  = keyword.get(0).id
-        $(target).find('.drop_area')
-          .addClass('keyword_dropped')
-          .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
-          .hide()
-          .css('top', 40).css('left', 0)
-          .fadeIn()
+    $(target).find('.drop_area')[0].id  = keyword.get(0).id
+    $(target).find('.drop_area')
+      .addClass('keyword_dropped')
+      .html('<div class="dropped_keyword">' + keyword.text() + '</div>')
+      .hide()
+      .css('top', 40).css('left', 0)
+      .fadeIn()
   },
 
   setSliderStyle: function(){

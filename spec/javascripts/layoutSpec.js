@@ -68,9 +68,30 @@ describe('Layout', function(){
       })
     })
 
-    describe('Control button can toggle display', function(){
-      // spyOn
+    describe('setDropArea', function(){
+      it('should set the drop area', function(){
+        spyOn($.fn, 'droppable')
+        Layout.setDropArea()
+        expect($.fn.droppable).toHaveBeenCalled()
+      })
     })
+
+    describe('setSliderStyle', function(){
+      it ('should test that a slider is present', function(){
+        spyOn($.fn, 'slider')
+        Layout.setSliderStyle()
+        expect($.fn.slider).toHaveBeenCalledWith(jasmine.any(Object))
+      })
+    })
+
+
+    // describe('invokeHitAction', function(){
+    //   it('should call playSample and flashColor', function(){
+    //     spyOn(Layout, 'flashColor')
+    //     Layout.invokeHitAction()
+    //     expect(Layout.flashColor).toHaveBeenCalled()
+    //   })
+    // })
 
   })
 })
