@@ -28,10 +28,6 @@ var Layout ={
     $('#prev').on("mouseover", this.prevHover)
     $('#prev').on("mouseout", this.prevDefault)
     $('#prev').on("click", this.prevLib)
-    $('#synth_pads #0').on('click.0', function() {
-      console.log('heya')
-    })
-
   },
 
   nextDefault: function(){
