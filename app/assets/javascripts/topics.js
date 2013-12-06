@@ -25,6 +25,6 @@ var Topics = {
       $(topicHolders[i]).removeClass('hidden')
       $(topicHolders[i]).append("<li class='topic' id=" + (startIndex + i) + ">" + Topics.list[startIndex + i] + "</li>")
     }
-    $('.topic').draggable({ revert: "invalid" })
+    $('.topic').draggable({ helper: "clone", revert: "invalid" })
   }
 }
