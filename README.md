@@ -12,6 +12,25 @@ A web-based synthesizer that can be played by Twitter. Uses the Twitter streamin
 * jQuery Drag and Drop
 * D3 Visualizer
 
+### To Contribute
+
+We would love a hand fixing bugs or adding new features. To help out, simply fork this repo, make your changes, and submit a pull request.
+
+To run locally you need to recreate the ```.env``` file on your machine. Use this format:
+
+```
+CONSUMER_KEY: "your-twitter-key"
+CONSUMER_SECRET: "your-twitter-secret"
+ACCESS_TOKEN: "your-twitter-token"
+ACCESS_TOKEN_SECRET: "your-twitter-token-secret"
+SECRET_KEY: 'your-rails-secret-keys'
+```
+
+Then run the app using Puma in the root directory.
+
+```
+puma
+```
 
 ### Team
 [@TGOlson](https://github.com/TGOlson)
