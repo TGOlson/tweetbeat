@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
   end
 
   def stream
-    Stream.start(response)
+    Stream.start(twitter_client, response)
   end
 
   def topics

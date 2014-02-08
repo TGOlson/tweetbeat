@@ -1,11 +1,11 @@
 require 'formatter/sse'
 
 module Stream
-  def self.start(response)
+  def self.start(client, response)
 
     response.headers['Content-Type'] = 'text/event-stream'
     sse = Formatter::SSE.new(response.stream)
-    client = TwitterClient.new.client
+    # @twitter_client = TwitterClient.new.client
 
     begin
       client.filter(:track => Topic.all.join(",")) do |tweet|
