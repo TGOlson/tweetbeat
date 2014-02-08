@@ -26,7 +26,7 @@ var Visualizer = {
 
       var xloc = Math.random() * ( Visualizer.width - 100 )  + 50
       var yloc = Math.random() * ( Visualizer.height - 100 )  + 50
-      var color = Visualizer.color(Math.floor( Math.random()*20 + 1 ))
+      var color = Visualizer.color( Visualizer.randNum(20, 1) )
 
       Visualizer.svg.insert('circle')
       .attr('id', 'visual-' + e.id)
@@ -60,7 +60,9 @@ var Visualizer = {
       .transition()
       .duration( 700 )
       .ease(Math.sqrt)
-      .attr("transform", "translate(" + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + "," + ((Math.round(Math.random()) * 2 - 1) * Math.random() * 100) + ")" )
+      .attr("transform", "translate(" +
+        Visualizer.randTransform() + "," +
+        Visualizer.randTransform() + ")" )
       .style("fill-opacity", 1e-6)
       .remove()
   },
@@ -71,15 +73,23 @@ var Visualizer = {
     .attr("cx", keyword.attr('cx'))
     .attr("cy", keyword.attr('cy'))
     .attr("r", 40)
-    .style("stroke", Visualizer.color(Math.floor( Math.random()*20 + 1 )))
+    .style("stroke", Visualizer.color( Visualizer.randNum(20, 1) ))
     .style("stroke-opacity", .5)
     .style('fill', 'none')
     .transition()
-    .duration( Math.random() * 2000 + 1000 )
+    .duration( Visualizer.randNum(2000, 1000) )
     .ease(Math.sqrt)
-    .attr("r", Math.random() * 1000 + 100 )
+    .attr("r", Visualizer.randNum(1000, 100) )
     .style("stroke-opacity", 1e-6)
     .remove()
+  },
+
+  randNum: function(mult, add){
+    return Math.round( Math.random() * mult + add )
+  },
+
+  randTransform: function(){
+    return Visualizer.randNum(2, -1) * Visualizer.randNum(100, 1)
   },
 
   stop: function(){
