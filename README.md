@@ -1,9 +1,20 @@
-# The Legend of Moltar
+# TweetBeat
 
-## The Beginning
-Moltar was angry.
+A web-based synthesizer that can be played by Twitter. Uses the Twitter streaming API to scan for user selected keywords, which then corresponds to drum pads on the synthesizer. Features include an XY pad for frequency distortion and a visualizer setting.
 
-Very angry.
-The anger came from the actions of Voltar.  The planet Xolov had been under a state of peace and tranquility for the last 325, 834 years.  Xolov is ruled by the four tribes.  Heading the four tribes are Moltar, (...).
+### Features
 
-As Moltar stormed home through fields of ashen gray, he asked himself why his wife never seemed to understand.  SHe was still young and beautiful, at 129,464 years she was a great catch.  She was the the lava that melted the rocks solid foundations were built on.  This was well respected in Xolov.
+* Rails 4 Based
+* Twitter Streaming API
+* Server Sent Events
+* Puma Server for Mulithreading Capability
+* Flat UI
+* jQuery Drag and Drop
+* D3 Visualizer
+
+
+### Team
+@TGOlson
+@DanielEarthy
+@MarcusMalarkus
+@Techowl
