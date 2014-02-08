@@ -14,7 +14,10 @@ A web-based synthesizer that can be played by Twitter. Uses the Twitter streamin
 
 
 ### Team
-@TGOlson
-@DanielEarthy
-@MarcusMalarkus
-@Techowl
+[@TGOlson](https://github.com/TGOlson)
+
+[@DanielEarthy](https://github.com/danielearthy)
+
+[@MarcusMalarkus](https://github.com/marcusmalarkus)
+
+[@Techowl](https://github.com/techowl)
