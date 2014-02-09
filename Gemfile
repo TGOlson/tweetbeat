@@ -29,16 +29,16 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'rails_12factor', :groups => [:development]
+gem 'rails_12factor', :groups => [:development, :production]
 
 group :development, :test do
-  gem 'jasmine', git: 'https://my_account@github.com/pivotal/jasmine-gem'
-  gem 'jasmine-jquery-rails'
   gem 'dotenv-rails'
-  gem 'rspec-rails'
-  gem 'capybara'
 end
 
 group :test do
+  gem 'jasmine', git: 'https://my_account@github.com/pivotal/jasmine-gem'
+  gem 'jasmine-jquery-rails'
   gem 'simplecov', :require => false
+  gem 'rspec-rails'
+  gem 'capybara'
 end
