@@ -2,7 +2,7 @@
 
 A web-based synthesizer that can be played by Twitter. Uses the Twitter streaming API to scan for user selected keywords, which then corresponds to drum pads on the synthesizer. Features include an XY pad for frequency distortion and a visualizer setting.
 
-### Features
+## Features
 
 * Rails 4 Based
 * Twitter Streaming API
@@ -13,7 +13,7 @@ A web-based synthesizer that can be played by Twitter. Uses the Twitter streamin
 * jQuery Drag and Drop
 * D3 Visualizer
 
-### To Contribute
+## To Contribute
 
 We would love a hand fixing bugs or adding new features. To help out, simply fork this repo, make your changes, and submit a pull request.
 
@@ -48,7 +48,7 @@ redis-server
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari)
 * Data is pushed to the client with server sent events, which is less widely supported than websockets
 
-### Team
+## Team
 
 * Tyler Olson [@TGOlson](https://github.com/TGOlson)
 * Dan Earthy [@DanielEarthy](https://github.com/danielearthy)
