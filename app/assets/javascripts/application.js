@@ -15,5 +15,4 @@
 //= require jquery.ui.all
 //= require turbolinks
 //= require d3
-//=require jasmine-jquery
 //= require_tree .
