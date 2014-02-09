@@ -37,15 +37,19 @@ NOTE: make sure you are running a redis server:
 
 [Quick-start](http://redis.io/topics/quickstart)
 
-```redis-server```
+```
+redis-server
+```
 
 ## Known Issues
+
 * Can't remove keywords once dropped
 * Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari)
 * Data is pushed to the client with server sent events, which is less widely supported than websockets
 
 ### Team
+
 * Tyler Olson [@TGOlson](https://github.com/TGOlson)
 * Dan Earthy [@DanielEarthy](https://github.com/danielearthy)
 * Marc Cordier [@MarcusMalarkus](https://github.com/marcusmalarkus)
