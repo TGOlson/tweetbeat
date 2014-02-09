@@ -10,6 +10,10 @@ class TweetsController < ApplicationController
     Stream.start(twitter_client, response) unless @twitter_client
   end
 
+  def new_client
+    NewClient.connect(response)
+  end
+
   def topics
     render json: Topic.all
   end

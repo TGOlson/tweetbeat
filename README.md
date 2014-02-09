@@ -6,6 +6,7 @@ A web-based synthesizer that can be played by Twitter. Uses the Twitter streamin
 
 * Rails 4 Based
 * Twitter Streaming API
+* Redis subscriptions and publishing
 * Server Sent Events
 * Puma Server for Mulithreading Capability
 * Flat UI
@@ -23,7 +24,7 @@ CONSUMER_KEY: "your-twitter-key"
 CONSUMER_SECRET: "your-twitter-secret"
 ACCESS_TOKEN: "your-twitter-token"
 ACCESS_TOKEN_SECRET: "your-twitter-token-secret"
-SECRET_KEY: 'your-rails-secret-keys'
+SECRET_KEY: 'your-rails-secret-key'
 ```
 
 Then run the app using Puma in the root directory.
@@ -32,11 +33,20 @@ Then run the app using Puma in the root directory.
 puma
 ```
 
+NOTE: make sure you are running a redis server:
+
+[Quick-start](http://redis.io/topics/quickstart)
+
+```redis-server```
+
+## Known Issues
+* Can't remove keywords once dropped
+* Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
+* Audio web kit does not work in Firefox (works in Chrome, maybe also Safari)
+* Data is pushed to the client with server sent events, which is less widely supported than websockets
+
 ### Team
-Tyler Olson [@TGOlson](https://github.com/TGOlson)
-
-Dan Earthy [@DanielEarthy](https://github.com/danielearthy)
-
-Marc Cordier [@MarcusMalarkus](https://github.com/marcusmalarkus)
-
-Daniel Kimbel [@Techowl](https://github.com/techowl)
+* Tyler Olson [@TGOlson](https://github.com/TGOlson)
+* Dan Earthy [@DanielEarthy](https://github.com/danielearthy)
+* Marc Cordier [@MarcusMalarkus](https://github.com/marcusmalarkus)
+* Daniel Kimbel [@Techowl](https://github.com/techowl)

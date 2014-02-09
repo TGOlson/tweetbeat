@@ -9,5 +9,7 @@ var App = {
     Scrolling.init()
     Topics.init()
     Stream.init()
+    // Initializes the tweet stream
+    $.get('/stream')
   }
 }
