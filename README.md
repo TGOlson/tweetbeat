@@ -24,7 +24,7 @@ CONSUMER_KEY: "your-twitter-key"
 CONSUMER_SECRET: "your-twitter-secret"
 ACCESS_TOKEN: "your-twitter-token"
 ACCESS_TOKEN_SECRET: "your-twitter-token-secret"
-SECRET_KEY: 'your-rails-secret-key'
+SECRET_KEY: "your-rails-secret-key"
 ```
 
 Then run the app using Puma in the root directory.
