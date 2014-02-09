@@ -1,6 +1,10 @@
 # TweetBeat
 
+AKA Moltar
+
 A web-based synthesizer that can be played by Twitter. Uses the Twitter streaming API to scan for user selected keywords, which then corresponds to drum pads on the synthesizer. Features include an XY pad for frequency distortion and a visualizer setting.
+
+[See it live.](http://tweetbeat.herokuapp.com/)
 
 ## Features
 
