@@ -1,22 +1,19 @@
-require 'formatter/sse'
-
 module Stream
   def self.start(client, response)
-
     response.headers['Content-Type'] = 'text/event-stream'
-    sse = Formatter::SSE.new(response.stream)
 
     begin
       client.filter(:track => Topic.all.join(",")) do |tweet|
         text = tweet.text
         Topic.all.each_with_index do |topic, index|
-          sse.write({ :content => text }, :event => index) if text.downcase.match(topic.downcase)
+          content = { index: index, topic: topic, text: text }.to_json
+          $redis.publish('tweet', content) if text.downcase.match(topic.downcase)
         end
       end
 
     rescue IOError
     ensure
-      sse.close
+      response.stream.close
     end
 
   end
