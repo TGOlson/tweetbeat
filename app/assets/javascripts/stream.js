@@ -18,7 +18,6 @@ var Stream = {
   setEventHandlers: function(){
     this.myDataRef.on('child_added', function(childSnapshot) {
       var keyWordID = childSnapshot.val().keyword_id
-      console.log(keyWordID)
       var e = $.Event(keyWordID.toString())
       $('body').trigger(e)
     })
