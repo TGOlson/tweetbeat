@@ -43,7 +43,7 @@ var Visualizer = {
   },
 
   setEventForVisuals: function(keywordID){
-    $(Stream.source).on(keywordID, function(){
+    $('body').on(keywordID, function(){
      Visualizer.appendNewCircle(keywordID)
    })
   },

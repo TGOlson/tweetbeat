@@ -1,15 +1,3 @@
-// var Stream = {
-//   source: null,
-
-//   init: function() {
-//     Stream.source = new EventSource('/stream')
-//   },
-
-//   removeBoundKeywordFromSound: function(eventName) {
-//     $(Stream.source).off(eventName)
-//   }
-// }
-
 var Stream = {
   myDataRef: null,
 
@@ -45,20 +33,9 @@ var Stream = {
       Layout.flashColor(soundID)
       console.log(e)
     })
+  },
+
+  removeBoundKeywordFromSound: function(eventName) {
+    $('body').off(eventName)
   }
 }
-
-
-      // var myDataRef = new Firebase('https://tweetbeatfb.firebaseio.com/tweets');
-      // // $('#messageInput').keypress(function (e) {
-      // //   if (e.keyCode == 13) {
-      // //     var name = $('#nameInput').val();
-      // //     var text = $('#messageInput').val();
-      // //     myDataRef.push({name: name, text: text});
-      // //     $('#messageInput').val('');
-      // //   }
-
-      // // function displayChatMessage(name, text) {
-      // //   $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-      // //   $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      // // }
