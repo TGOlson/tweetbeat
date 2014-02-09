@@ -27,11 +27,9 @@ var Stream = {
   bindKeywordToSound: function(keywordID, soundID) {
     Layout.landKeywordOnPad(soundID)
     var eventName = keywordID + '.sound' + soundID
-    console.log(eventName)
     $('body').on(eventName, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
-      console.log(e)
     })
   },
 
