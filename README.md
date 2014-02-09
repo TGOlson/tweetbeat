@@ -33,10 +33,10 @@ puma
 ```
 
 ### Team
-[@TGOlson](https://github.com/TGOlson)
+Tyler Olson [@TGOlson](https://github.com/TGOlson)
 
-[@DanielEarthy](https://github.com/danielearthy)
+Dan Earthy [@DanielEarthy](https://github.com/danielearthy)
 
-[@MarcusMalarkus](https://github.com/marcusmalarkus)
+Marc Cordier [@MarcusMalarkus](https://github.com/marcusmalarkus)
 
-[@Techowl](https://github.com/techowl)
+Daniel Kimbel [@Techowl](https://github.com/techowl)
