@@ -5,7 +5,6 @@ module NewClient
     uri = URI.parse(ENV["REDISTOGO_URL"])
     redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 
-
     begin
       redis.subscribe('tweet') do |on|
         on.message do |event, data|
