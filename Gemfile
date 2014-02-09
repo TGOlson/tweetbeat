@@ -8,6 +8,8 @@ gem 'puma'
 gem 'twitter'
 gem 'pg'
 
+gem 'redis'
+
 gem 'sass-rails', '~> 4.0.0'
 
 gem 'uglifier', '>= 1.3.0'
