@@ -18,11 +18,11 @@ module Stream
         text = tweet.text
         Topic.all.each_with_index do |topic, index|
           if text.downcase.match(topic.downcase)
-            firebase.push('Tweets', { topic: topic, text: text, index: index })
+            firebase.push('tweets', { topic: topic, text: text, index: index })
             count +=1
           end
-          if count == 10
-            firebase.delete('Tweets')
+          if count == 100
+            firebase.delete('tweets')
             count = 0
           end
         end
