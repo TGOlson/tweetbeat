@@ -3,13 +3,14 @@ var Stream = {
 
   init: function() {
     // Starts a new stream for each connected client
-    Stream.source = new EventSource('/new_client')
+    this.source = new EventSource('/new_client')
+    this.setCloseAction()
   },
 
   bindKeywordToSound: function(keywordID, soundID) {
     Layout.landKeywordOnPad(soundID)
     var eventName = keywordID + '.sound' + soundID
-    $(Stream.source).on(eventName, function(e) {
+    $(this.source).on(eventName, function(e) {
       playSample(soundID)
       Layout.flashColor(soundID)
       var object = JSON.parse(e.originalEvent.data)
@@ -18,8 +19,13 @@ var Stream = {
   },
 
   removeBoundKeywordFromSound: function(eventName) {
-    $(Stream.source).off(eventName)
+    $(this.source).off(eventName)
+  },
+
+  setCloseAction: function(){
+    window.onunload = function() {
+      Stream.source.close()
+      console.log('source closed')
+    }
   }
 }
-
-
