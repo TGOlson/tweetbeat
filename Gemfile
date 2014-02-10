@@ -8,6 +8,8 @@ gem 'puma'
 gem 'twitter'
 gem 'pg'
 
+gem 'newrelic_rpm'
+
 gem 'redis'
 
 gem 'sass-rails', '~> 4.0.0'
