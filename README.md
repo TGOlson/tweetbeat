@@ -52,10 +52,10 @@ redis-server
 * Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari)
 * Data is pushed to the client with server sent events, which is less widely supported than websockets
-* Max connections is set at 10 (Redis To Go limit)
-* DB connections could stall and not reap - consider using [this](https://devcenter.heroku.com/articles/concurrency-and-database-connections#threaded-servers)
 
-HOW TO UPGRADE MAX CONNECTIONS: if this is necessary at some point, the Redis To Go add-on on Heroku would need to be upgraded to a paid level (or maybe moved to the Redis Cloud service, which seems like a better deal). In addition the ```DB_POOL``` size would need to be upped as well. It is currently set at 10, and can be increased with ```heroku config:set DB_POOL=10```. Read more [here](https://devcenter.heroku.com/articles/concurrency-and-database-connections).
+## Redis
+
+The app is currently using the 100MB (256 connection) RedisCloud plan on Heroku. This should be the only main limiting factor as to the count of simultaneousness visitors.
 
 ## Team
 
