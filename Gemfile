@@ -10,6 +10,8 @@ gem 'pg'
 
 gem 'newrelic_rpm'
 
+gem "rack-timeout"
+
 gem 'redis'
 
 gem 'sass-rails', '~> 4.0.0'
