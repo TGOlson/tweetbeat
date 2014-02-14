@@ -46,6 +46,11 @@ NOTE: make sure you are running a redis server:
 redis-server
 ```
 
+Also, make sure to set up your database:
+```
+rake db:setup
+```
+
 ## Known Issues
 
 * Can't remove keywords once dropped
