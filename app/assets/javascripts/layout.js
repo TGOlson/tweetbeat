@@ -90,17 +90,12 @@ var Layout ={
   },
 
   setDeletionField: function() {
-    $('#deletion-field').droppable({
-      accept: ".dropped_keyword",
-      hoverClass: "deletion-hover",
+    $('.deletion-field').droppable({
+      accept: ".keyword_dropped",
       activeClass: "deletion-active",
-      drop: function( event, ui ){
-        debugger
-        var $deletionField = $(event.target)
-        Layout.playTransferEffect(ui.helper, this)
-        setTimeout(function() {
-          $deletionField.animate({opacity:0}, 500)
-        }, 100)
+      hoverClass: "deletion-hover",
+      drop: function( event, ui ) {
+        Layout.playFastTransferEffect(ui.helper, this)
       }
     })
   },
@@ -119,6 +114,13 @@ var Layout ={
       to: target,
       className: "ui-effects-transfer"
     }, 100 ).fadeOut(100)
+  },
+
+  playFastTransferEffect: function(keyword, target){
+    $(keyword).effect( "transfer",{
+      to: target,
+      className: "ui-effects-transfer"
+    }, 1 ).fadeOut(1)
   },
 
   placeKeyWordInPad: function(keywordID, target){
