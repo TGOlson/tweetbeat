@@ -56,7 +56,7 @@ rake db:setup
 * Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari) - should issue a warning
 * Data is pushed to the client with server sent events, which is less widely supported than websockets
-* Doesn't check for SEE compadibility - should use this:
+* Doesn't check for SSE compadibility - should use this:
 
 ```javascript
 function supportsSSE() {
