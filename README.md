@@ -29,7 +29,7 @@ CONSUMER_SECRET: "your-twitter-secret"
 ACCESS_TOKEN: "your-twitter-token"
 ACCESS_TOKEN_SECRET: "your-twitter-token-secret"
 SECRET_KEY: "your-rails-secret-key"
-REDISTOGO_URL: "redis://localhost:6379/"
+REDISCLOUD_URL: "redis://localhost:6379/"
 ```
 
 Then run the app using Puma in the root directory.
