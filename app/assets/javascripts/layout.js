@@ -14,6 +14,7 @@ var Layout ={
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
     this.setDropArea()
+    this.setDeletionField()
     this.setSliderStyle()
   },
 
@@ -21,7 +22,7 @@ var Layout ={
     $('.topic').draggable({ helper: "clone", revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
-    $('#xy').on("mousemove", this.xyPadPostition)
+    $('#xy').on("mousemove", this.xyPadPosition)
     $('#next').on("click", this.nextLib)
     $('#prev').on("click", this.prevLib)
   },
@@ -84,6 +85,15 @@ var Layout ={
         Layout.playTransferEffect(ui.helper, this)
         Layout.placeKeyWordInPad(keywordID, this)
         Stream.bindKeywordToSound(keywordID, event.target.id)
+      }
+    })
+  },
+
+  setDeletionField: function() {
+    $('#deletion-field').droppable({
+      hoverClass: "drop_hover",
+      drop: function( event, ui ){
+        Layout.playTransferEffect(ui.helper, this)
       }
     })
   },
@@ -200,7 +210,7 @@ var Layout ={
     }, 190)
   },
 
-  xyPadPostition: function(e){
+  xyPadPosition: function(e){
     var position = Layout.getCanvasPos(this, e)
     changeFrequency(position.x)
     changeQ(position.y)
