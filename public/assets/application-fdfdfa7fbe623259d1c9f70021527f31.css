@@ -1529,7 +1529,7 @@ body.visual {
 
 .synth {
   width: 1240px;
-  margin: 100px auto;
+  margin: 20px auto 100px auto;
   position: relative; }
 
 #topics_container {
@@ -1751,6 +1751,27 @@ body.visual {
     text-align: left; }
   #library .current-lib {
     display: inline; }
+
+.deletion-field {
+  background: #d14536;
+  width: 20%;
+  height: 50px;
+  top: 25px;
+  margin-bottom: 5px;
+  position: relative;
+  text-align: center;
+  left: 40%;
+  color: white;
+  line-height: 50px;
+  border-radius: 5px;
+  cursor: default;
+  opacity: 0; }
+
+.deletion-hover {
+  background-color: #da6b60; }
+
+.deletion-active {
+  opacity: 1; }
 *
 html5doctor.com Reset Stylesheet
 v1.6.1
