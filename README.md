@@ -29,7 +29,7 @@ CONSUMER_SECRET: "your-twitter-secret"
 ACCESS_TOKEN: "your-twitter-token"
 ACCESS_TOKEN_SECRET: "your-twitter-token-secret"
 SECRET_KEY: "your-rails-secret-key"
-REDISTOGO_URL: "redis://localhost:6379/"
+REDISCLOUD_URL: "redis://localhost:6379/"
 ```
 
 Then run the app using Puma in the root directory.
@@ -46,9 +46,13 @@ NOTE: make sure you are running a redis server:
 redis-server
 ```
 
+Also, make sure to set up your database:
+```
+rake db:setup
+```
+
 ## Known Issues
 
-* Can't remove keywords once dropped
 * Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari) - should issue a warning
 * Data is pushed to the client with server sent events, which is less widely supported than websockets

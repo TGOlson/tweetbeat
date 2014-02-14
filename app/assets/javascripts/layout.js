@@ -14,6 +14,7 @@ var Layout ={
     this.bindKeypressesToSounds()
     this.bindControlToDisplayToggle()
     this.setDropArea()
+    this.setDeletionField()
     this.setSliderStyle()
   },
 
@@ -21,7 +22,7 @@ var Layout ={
     $('.topic').draggable({ helper: "clone", revert: "invalid" })
     $('#toggle_view').on('click', this.toggleView)
     $('.filter-toggle').on("click", this.filterToggleButton)
-    $('#xy').on("mousemove", this.xyPadPostition)
+    $('#xy').on("mousemove", this.xyPadPosition)
     $('#next').on("click", this.nextLib)
     $('#prev').on("click", this.prevLib)
   },
@@ -88,6 +89,17 @@ var Layout ={
     })
   },
 
+  setDeletionField: function() {
+    $('.deletion-field').droppable({
+      accept: ".keyword_dropped",
+      activeClass: "deletion-active",
+      hoverClass: "deletion-hover",
+      drop: function( event, ui ) {
+        Layout.playFastTransferEffect(ui.helper, this)
+      }
+    })
+  },
+
   unbindIfPadHasKeyword: function(target){
     var soundID = target.id
     var keywordID = $(target).contents('div').last().attr('id')
@@ -102,6 +114,13 @@ var Layout ={
       to: target,
       className: "ui-effects-transfer"
     }, 100 ).fadeOut(100)
+  },
+
+  playFastTransferEffect: function(keyword, target){
+    $(keyword).effect( "transfer",{
+      to: target,
+      className: "ui-effects-transfer"
+    }, 1 ).fadeOut(1)
   },
 
   placeKeyWordInPad: function(keywordID, target){
@@ -200,7 +219,7 @@ var Layout ={
     }, 190)
   },
 
-  xyPadPostition: function(e){
+  xyPadPosition: function(e){
     var position = Layout.getCanvasPos(this, e)
     changeFrequency(position.x)
     changeQ(position.y)
