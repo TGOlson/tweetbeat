@@ -91,9 +91,16 @@ var Layout ={
 
   setDeletionField: function() {
     $('#deletion-field').droppable({
-      hoverClass: "drop_hover",
+      accept: ".dropped_keyword",
+      hoverClass: "deletion-hover",
+      activeClass: "deletion-active",
       drop: function( event, ui ){
+        debugger
+        var $deletionField = $(event.target)
         Layout.playTransferEffect(ui.helper, this)
+        setTimeout(function() {
+          $deletionField.animate({opacity:0}, 500)
+        }, 100)
       }
     })
   },
