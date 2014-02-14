@@ -53,7 +53,6 @@ rake db:setup
 
 ## Known Issues
 
-* Can't remove keywords once dropped
 * Toggling back and forth to visualizer can stack the visualizer 'ripples' (need to remove event listener)
 * Audio web kit does not work in Firefox (works in Chrome, maybe also Safari) - should issue a warning
 * Data is pushed to the client with server sent events, which is less widely supported than websockets
