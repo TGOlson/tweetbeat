@@ -97,7 +97,6 @@ GEM
     newrelic_rpm (3.7.2.192)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
-    pg (0.17.0)
     phantomjs (1.9.2.0)
     polyglot (0.3.3)
     puma (2.6.0)
@@ -203,7 +202,6 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   newrelic_rpm
-  pg
   puma
   rails (= 4.0.1)
   rails_12factor

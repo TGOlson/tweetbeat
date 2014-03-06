@@ -6,7 +6,6 @@ gem 'rails', '4.0.1'
 
 gem 'puma'
 gem 'twitter'
-gem 'pg'
 
 gem 'newrelic_rpm'
 
