@@ -82,6 +82,6 @@ TweetBeat::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 
-  config.action_controller.asset_host = ENV['ASSET_HOST']
+  # config.action_controller.asset_host = ENV['ASSET_HOST']
 
 end
