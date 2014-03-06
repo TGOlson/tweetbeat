@@ -9,3 +9,5 @@ class TwitterClient
     end
   end
 end
+
+$twitter_client = TwitterClient.new.client

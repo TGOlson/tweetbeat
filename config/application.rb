@@ -1,6 +1,15 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# require 'rails/all'
+
+# Remove references to ActiveRecord
+
+# require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+# require 'active_resource/railtie'
+require 'rails/test_unit/railtie'
+require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -19,5 +28,19 @@ module TweetBeat
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+
+    ## FOR AWS
+    # config.assets.enabled = true
+
+    # #Needs to be false on Heroku
+    # config.assets.initialize_on_precompile = false
+    # # Can be set to invalidate the whole cache
+    # config.assets.version = "1.2"
+
+    # # Serving static assets and setting cache headers
+    # # which will be used by cloudfront as well
+    # config.serve_static_assets = true
+    # config.static_cache_control = "public, max-age=31536000"
   end
 end
