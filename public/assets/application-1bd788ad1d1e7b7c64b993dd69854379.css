@@ -1636,13 +1636,13 @@ body.visual {
       width: 12px;
       margin: 50px auto 0 auto; }
     #synth_container #synth_controls #xy {
-      cursor: url("/assets/glow2.png"), auto;
+      cursor: url("/images/glow2.png"), auto;
       margin-top: 30px;
       height: 150px;
       width: 150px;
       border: 7px solid #5c5c5c;
       border-radius: 10px;
-      background: url("/assets/xybackground.png");
+      background: url("/images/xybackground.png");
       background-size: contain; }
     #synth_container #synth_controls .filter-toggle {
       position: absolute;
@@ -1708,7 +1708,7 @@ body.visual {
   margin: 0 auto; }
 
 #prev {
-  background: url("/assets/prev.png");
+  background: url("/images/prev.png");
   background-size: contain;
   position: absolute;
   left: 50px;
@@ -1717,11 +1717,11 @@ body.visual {
   cursor: pointer; }
 
 #prev:hover {
-  background: url("/assets/prev-hover.png");
+  background: url("/images/prev-hover.png");
   background-size: contain; }
 
 #next {
-  background: url("/assets/next.png");
+  background: url("/images/next.png");
   background-size: contain;
   position: absolute;
   right: 50px;
@@ -1730,7 +1730,7 @@ body.visual {
   cursor: pointer; }
 
 #next:hover {
-  background: url("/assets/next-hover.png");
+  background: url("/images/next-hover.png");
   background-size: contain; }
 
 #library {
