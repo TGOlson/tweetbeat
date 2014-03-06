@@ -35448,8 +35448,22 @@ var Layout ={
               90: '6', 88: '7', 67: '8'}, // z, x, c
 
   init: function(){
+    this.checkIfChrome()
     this.callHelperFunctions()
     this.applyEventListeners()
+  },
+
+  checkIfChrome: function(){
+    var chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+
+    if(!chrome){
+
+      var message = 'It looks like you aren\'t using Chrome.\n\n' +
+                    'Because of this, the audio may be limited or non-functioning.\n\n' +
+                    'Sorry about that.'
+
+      alert(message)
+    }
   },
 
   callHelperFunctions: function(){
@@ -35696,7 +35710,7 @@ var sampleLibrary = [
 
 ["audio/D.mp3", "audio/D_3rd.mp3", "audio/D_5th.mp3",
 "audio/pew.mp3","audio/hat2.mp3","audio/fuck_you.mp3",
-"audio/correctimundo.mp3","audio/whats_the_matter.mp3"], 
+"audio/correctimundo.mp3","audio/whats_the_matter.mp3"],
 
 ["audio/Dminor_space_chord_root.mp3","audio/Dminor_space_chord_root+2.mp3","audio/Dminor_space_chord_root-2.mp3",
 "audio/Dminor_space_bass.mp3","audio/Dminor_space_bass_+2-1.mp3","audio/Dminor_space_bass_-2.mp3",
@@ -35705,7 +35719,7 @@ var sampleLibrary = [
 ["audio/hiphop/yo.mp3","audio/hiphop/nelly.mp3","audio/hiphop/piano.mp3",
  "audio/hiphop/clap.mp3", "audio/hiphop/scratch1.mp3","audio/hiphop/scratch2.mp3",
  "audio/hiphop/kick.mp3", "audio/hiphop/hat.mp3","audio/hiphop/snare.mp3"],
- 
+
 ["audio/mario/1up.mp3","audio/mario/Bowser.mp3","audio/mario/Coin.mp3",
  "audio/mario/Kick-1.mp3", "audio/mario/Mario-dies.mp3", "audio/mario/Pipe.mp3",
  "audio/mario/Power-appears.mp3","audio/mario/Power-up.mp3","audio/mario/Stomp.mp3"]
@@ -35722,7 +35736,7 @@ function playSample(index){
   var source = context.createBufferSource()
   source.buffer = sampleBuffers[currentLibrary][index]
   filter.on ? source.connect(filter):source.connect(masterGain)
-  source.noteOn 
+  source.noteOn
   source.start(0)
 }
 
@@ -35797,7 +35811,7 @@ function bufferSamples(){
     sampleBuffers[lib] = new Array()
     for (index=0; index<sampleLibrary[lib].length; index++){
       loadSample(sampleLibrary[lib][index],lib, index)
-    }  
+    }
   }
 }
 
