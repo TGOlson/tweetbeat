@@ -5,8 +5,22 @@ var Layout ={
               90: '6', 88: '7', 67: '8'}, // z, x, c
 
   init: function(){
+    this.checkIfChrome()
     this.callHelperFunctions()
     this.applyEventListeners()
+  },
+
+  checkIfChrome: function(){
+    var chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+
+    if(!chrome){
+
+      var message = 'It looks like you aren\'t using Chrome.\n\n' +
+                    'Because of this, the audio may be limited or non-functioning.\n\n' +
+                    'Sorry about that.'
+
+      alert(message)
+    }
   },
 
   callHelperFunctions: function(){
