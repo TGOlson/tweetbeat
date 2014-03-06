@@ -26,7 +26,7 @@ TweetBeat::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
+  config.assets.compress = false
 
   # Parallel Requests
   # We need to update the configuration in development to handle multiple requests at the same time. One request for the page we’re working on, and another request for the SSE controller. Add these lines to your config/environments/development.rb but please note that they may change in the future:

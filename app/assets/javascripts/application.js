@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
+//= require jquery.ui.slider
+//= require jquery.ui.effect.all
 //= require turbolinks
 //= require d3
 //= require_tree .
