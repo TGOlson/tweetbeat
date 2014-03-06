@@ -2,6 +2,8 @@ module Stream
   def self.start(client, response)
     response.headers['Content-Type'] = 'text/event-stream'
 
+    $streaming = true
+
     begin
       client.filter(:track => Topic.all.join(",")) do |tweet|
         text = tweet.text
@@ -13,6 +15,7 @@ module Stream
 
     rescue IOError
     ensure
+      $streaming = false
       response.stream.close
     end
 

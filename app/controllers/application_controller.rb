@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def twitter_client
-    @twitter_client ||= TwitterClient.new.client
+    $twitter_client ||= TwitterClient.new.client
   end
 end

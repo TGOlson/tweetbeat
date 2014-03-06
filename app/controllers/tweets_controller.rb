@@ -7,11 +7,13 @@ class TweetsController < ApplicationController
   end
 
   def stream
-    Stream.start(twitter_client, response) unless @twitter_client
+    Stream.start(twitter_client, response) unless $streaming
+    render nothing: true
   end
 
   def new_client
     NewClient.connect(response)
+    render nothing: true
   end
 
   def topics
